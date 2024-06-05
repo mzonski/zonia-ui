@@ -1,0 +1,24 @@
+{
+  "name": "@zonia-ui/root",
+  "version": "0.0.1",
+  "description": "UI library root",
+  "private": true,
+  "repository": "https://github.com/mzonski/zonia-ui.git",
+  "author": "Maciej Zonski <me@zonni.pl>",
+  "license": "MIT",
+  "workspaces": [
+    "components",
+    "core",
+    "icons",
+    "libs/*",
+    "theme"
+  ],
+  "dependencies": {
+    "typescript": "5.2.2"
+  },
+  "engines": {
+    "npm": "please-use-yarn",
+    "yarn": ">= 1.22.19",
+    "node": ">= v16.20.1"
+  }
+}
