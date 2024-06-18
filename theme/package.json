@@ -1,0 +1,30 @@
+{
+  "name": "@zonia-ui/theme",
+  "version": "0.0.1",
+  "description": "Themes for ZONIA UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "components/*",
+    "constants/*",
+    "mixins/*",
+    "themes/*",
+    "utils/*",
+    "reset.css"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.3.1",
+    "@fontsource-variable/plus-jakarta-sans": "latest",
+    "@fontsource-variable/inter": "latest",
+    "styled-components": "^6.1.11",
+    "modern-normalize": "^2.0.0",
+    "utility-types": "^3.11.0",
+    "vitest": "^1.6.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "@zonia-ui/core": "*"
+  }
+}

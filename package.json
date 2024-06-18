@@ -4,6 +4,9 @@
   "description": "UI library root",
   "private": true,
   "repository": "https://github.com/mzonski/zonia-ui.git",
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
   "author": "Maciej Zonski <me@zonni.pl>",
   "license": "MIT",
   "workspaces": [
@@ -14,7 +17,12 @@
     "theme"
   ],
   "dependencies": {
-    "typescript": "5.2.2"
+    "vitest": "^1.6.0",
+    "eslint-plugin-zonia": "^1.0.1",
+    "zonia-config-prettier": "^1.0.2",
+    "stylelint-config-zonia": "^1.0.0",
+    "typescript": "5.2.2",
+    "fp-ts": "^2.16.6"
   },
   "engines": {
     "npm": "please-use-yarn",
