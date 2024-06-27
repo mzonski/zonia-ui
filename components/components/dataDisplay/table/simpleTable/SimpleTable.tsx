@@ -8,7 +8,7 @@ import SimpleTableBody from './components/body';
 export type SimpleTableProps<TData extends SimpleTableRequiredProps = SimpleTableRequiredProps> =
   Partial<LayoutTableProps> & {
     data: TData[];
-    headers: Record<number, HeaderOptions<TData>>;
+    headers: ReadonlyArray<HeaderOptions<TData>>;
     renderFooter?: () => ReactElement;
   };
 
@@ -29,6 +29,3 @@ export default function SimpleTable<TData extends SimpleTableRequiredProps>(prop
 }
 
 SimpleTable.defaultName = 'ZUISimpleTable';
-SimpleTable.defaultProps = {
-  renderFooter: undefined,
-};

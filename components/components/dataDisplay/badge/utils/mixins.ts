@@ -14,7 +14,7 @@ export const badgeMixin: StyleFunction<BadgeMixinProps> = (ctx) => {
   const {
     colors: { primary: primaryColors },
     spacing,
-    shape: { square: squareShape },
+    shape,
   } = ctx.theme;
 
   const horizontalPadding = spacing[getBadgeHorizontalPaddingSpacing(badgeSize)];
@@ -28,7 +28,7 @@ export const badgeMixin: StyleFunction<BadgeMixinProps> = (ctx) => {
     gap: ${gap};
     padding: ${`${verticalPadding} ${horizontalPadding}`};
     background-color: ${primaryColors[bgColor]};
-    border-radius: ${badgeShape === 'rounded' ? horizontalPadding : squareShape};
+    border-radius: ${badgeShape === 'badge' ? horizontalPadding : shape[badgeShape]};
     align-self: flex-start;
     text-align: center;
   `;

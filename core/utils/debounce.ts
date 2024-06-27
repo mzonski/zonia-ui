@@ -1,4 +1,4 @@
-function debounce<T extends unknown[], R>(
+export function debounce<T extends unknown[], R>(
   func: (...args: T) => R,
   waitMs: number,
 ): ((...args: T) => void) & { cancel: () => void; isDebouncing: () => boolean } {
@@ -25,5 +25,3 @@ function debounce<T extends unknown[], R>(
 
   return debounceFn;
 }
-
-export default debounce;

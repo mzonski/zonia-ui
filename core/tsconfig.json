@@ -9,7 +9,7 @@
     "pretty": true,
     "strict": true,
     "esModuleInterop": true,
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals", "vite/client"]
     //    "skipLibCheck": true,
     // "typeRoots": ["definitions", "node_modules/@types"]
   },

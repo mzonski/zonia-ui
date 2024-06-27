@@ -8,11 +8,12 @@ const createReactPackageConfig = (path) => {
       project: [`./${path}/tsconfig.json`],
     },
     rules: {
-      "import/no-extraneous-dependencies": "off",
-      "react/jsx-props-no-spreading": "off",
-      "react/function-component-definition": "off",
-      "react/destructuring-assignment": "off",
       "default-case-last": "off",
+      "import/no-extraneous-dependencies": "off",
+      "react/destructuring-assignment": "off",
+      "react/function-component-definition": "off",
+      "react/jsx-props-no-spreading": "off",
+      "react/require-default-props": "off",
     }
   };
 };
@@ -44,6 +45,7 @@ const config = {
     project: './tsconfig.json',
   },
   overrides: [
+    createReactPackageConfig('app'),
     createReactPackageConfig('components'),
     createStorybookReactPackageConfig('components'),
     createReactPackageConfig('theme'),

@@ -1,6 +1,6 @@
 import { createElement, ElementType, ReactElement } from 'react';
 import styled from 'styled-components';
-import { DolarPrefix, ThemePrimaryColor } from '@zonia-ui/theme';
+import { DolarPrefix, ThemePrimaryColor, type ThemeShapeType } from '@zonia-ui/theme';
 
 import { TextVariant } from '../typography';
 import { badgeMixin } from './utils/mixins';
@@ -17,7 +17,7 @@ export type BadgeProps = {
   color?: ThemePrimaryColor;
   icon?: ElementType;
   iconPosition?: 'left' | 'right';
-  shape?: 'rounded' | 'square';
+  shape?: 'badge' | ThemeShapeType;
   text: string;
 };
 
@@ -27,7 +27,7 @@ export const Badge = ({
   size = 'md',
   color = 'primary',
   iconPosition = 'left',
-  shape = 'rounded',
+  shape = 'badge',
 }: Readonly<BadgeProps>) => {
   const textElement = (
     <TextVariant variant={getBadgeTypographyTextVariant(size)} weight="medium">

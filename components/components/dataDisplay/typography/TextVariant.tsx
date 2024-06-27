@@ -12,7 +12,7 @@ export function TextVariant({
   children,
   as: Component = 'span',
   variant = 'md',
-  weight = 'normal',
+  weight = 'medium',
   color = 'black',
 }: Readonly<Omit<TextProps, 'type'>>) {
   return (

@@ -1,3 +1,4 @@
+import { PropsWithChildren } from 'react';
 import type { Meta } from '@storybook/react';
 import styled from 'styled-components';
 import { DUMMY_MESSAGE } from '@zonia-ui/core';
@@ -48,7 +49,7 @@ const DisplayElement = styled(component)`
   background-clip: content-box, padding-box;
 `;
 
-export const SpacingBox = (props: SpacingBoxProps) => {
+export const SpacingBox = (props: SpacingBoxProps & PropsWithChildren) => {
   return <DisplayElement {...props} />;
 };
 

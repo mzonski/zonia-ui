@@ -88,15 +88,15 @@ function fakeOrderGenerator(length: number) {
 const fakeOrdersList = fakeOrderGenerator(20);
 
 const fakeOrdersTableProps = {
-  headers: {
-    1: { type: 'text', content: 'Order', width: '35%', colTextAlign: 'left', dataProp: 'orderId' },
-    2: {
+  headers: [
+    { type: 'text', content: 'Order', width: '35%', colTextAlign: 'left', dataProp: 'orderId' },
+    {
       type: 'text',
       content: 'Billing date',
       dataProp: 'billingDate',
       width: '20%',
     },
-    3: {
+    {
       type: 'text',
       content: 'Amount',
       dataProp: 'amount',
@@ -106,7 +106,7 @@ const fakeOrdersTableProps = {
         return `$${amount}`;
       },
     },
-    4: {
+    {
       type: 'text',
       content: 'Via',
       dataProp: 'method',
@@ -114,7 +114,7 @@ const fakeOrdersTableProps = {
       colTextAlign: 'right',
       renderCellContent: (idx) => getPaymentMethodTypeMessage(fakeOrdersList[idx].method),
     },
-  },
+  ],
   data: fakeOrdersList,
 } satisfies Omit<SimpleTableProps<FakeOrder>, '$layoutType'>;
 
@@ -122,7 +122,7 @@ export const Clean: Story = {
   args: {
     ...fakeOrdersTableProps,
     $layoutType: 'fluid',
-    clean: true,
+    $clean: true,
   },
 };
 export const Fixed: Story = {

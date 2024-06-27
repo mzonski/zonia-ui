@@ -4,6 +4,7 @@ import { themes } from '@storybook/theming';
 
 import 'modern-normalize/modern-normalize.css';
 import '@zonia-ui/theme/reset.css';
+import './storybook-reset.css';
 import { primaryColors, ThemeProvider } from "@zonia-ui/theme";
 
 export const withZuiTheme: DecoratorFunction<ReactRenderer> = (Story) => {
