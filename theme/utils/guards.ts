@@ -1,3 +1,5 @@
+import { isString } from '@zonia-ui/core';
+
 import type { HexColor, RgbaColor, RgbColor, ValidColorFormat, ValidSizeFormat } from '../types';
 
 // Font sizes
@@ -21,6 +23,6 @@ export const isRgbaColor = (str: string): str is RgbaColor => {
     str,
   );
 };
-export const isValidColorFormat = (str: string): str is ValidColorFormat => {
-  return isHexColor(str) || isRgbColor(str) || isRgbaColor(str);
+export const isValidColorFormat = (str: unknown): str is ValidColorFormat => {
+  return isString(str) && (isHexColor(str) || isRgbColor(str) || isRgbaColor(str));
 };

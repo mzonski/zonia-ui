@@ -2,7 +2,6 @@ import { ElementType, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 import { DolarPrefix } from '@zonia-ui/theme';
 import { AsProp } from '@zonia-ui/core';
-import { badgeMixin } from './utils/mixins';
 
 export type StyledBadgeProps = DolarPrefix<Pick<BadgeProps, 'size' | 'shape' | 'iconPosition' | 'color'>>;
 

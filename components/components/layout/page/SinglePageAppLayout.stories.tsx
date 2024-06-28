@@ -8,7 +8,7 @@ import SinglePageAppLayout from './SinglePageAppLayout';
 import { useSPALayoutCollapseContext } from './contexts/CollapseContext';
 
 const meta = {
-  title: '2. Components/Layout/SPA',
+  title: '2. Components/Layout',
   parameters: {
     layout: 'none',
   },
@@ -27,7 +27,6 @@ const StyledButton = styled.button`
 
 const SpaSidebarControlIcon = () => {
   const { toggle } = useSPALayoutCollapseContext();
-  const handleToggle = () => {};
 
   return (
     <StyledButton type="button" onClick={toggle}>
@@ -41,13 +40,15 @@ const SpacedDummyPage = styled(SpacingBox).attrs<Omit<SpacingBoxProps, 'children
   $mt: '14',
 });
 
-export const Collapsed = () => {
+export const SingleSPALayout = () => {
   return (
-    <SinglePageAppLayout defaultSidebarOpen={false} togglePlacement="header">
+    <SinglePageAppLayout defaultSidebarOpen={false} togglePlacement="sidebar-header">
       <div key="footer">footer</div>
-      <div key="sidebar-header">sidebar content</div>
+      <div key="sidebar-header">sidebar header</div>
       <div key="sidebar">sidebar</div>
-      <div key="content">content</div>
+      <div key="content">
+        <div style={{ height: 8000, width: 400, backgroundColor: 'rebeccapurple' }} />
+      </div>
       <SpaSidebarControlIcon key="toggle" />
       <div key="header">Box</div>
     </SinglePageAppLayout>

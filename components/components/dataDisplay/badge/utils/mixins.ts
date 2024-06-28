@@ -1,4 +1,4 @@
-import { borderMixin, flexAlignmentMixin } from '@zonia-ui/theme';
+import { borderMixin, calculateTextContrast, flexAlignmentMixin } from '@zonia-ui/theme';
 import type { StyleFunction } from 'styled-components';
 import { css } from 'styled-components';
 
@@ -20,14 +20,19 @@ export const badgeMixin: StyleFunction<BadgeMixinProps> = (ctx) => {
   const horizontalPadding = spacing[getBadgeHorizontalPaddingSpacing(badgeSize)];
   const verticalPadding = spacing[getBadgeVerticalPaddingSpacing(badgeSize)];
   const gap = spacing[getBadgeGapSpacing(badgeSize)];
+  const backgroundColor = primaryColors[bgColor];
+  const color = calculateTextContrast(primaryColors[bgColor]);
+
+  console.log('=>(mixins.ts:27) backgroundColor, color', backgroundColor, color);
 
   return css`
     ${flexAlignmentMixin('center', 'center', true)}
     ${borderMixin('tiny')}
+    color: ${color};
     flex-direction: ${iconPosition === 'left' ? 'row' : 'row-reverse'};
     gap: ${gap};
     padding: ${`${verticalPadding} ${horizontalPadding}`};
-    background-color: ${primaryColors[bgColor]};
+    background-color: ${backgroundColor};
     border-radius: ${badgeShape === 'badge' ? horizontalPadding : shape[badgeShape]};
     align-self: flex-start;
     text-align: center;

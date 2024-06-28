@@ -24,6 +24,7 @@
     "index.ts",
     "components",
     "constants",
+    "helpers",
     "mixins",
     "themes",
     "types",

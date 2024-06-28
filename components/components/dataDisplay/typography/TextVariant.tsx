@@ -3,7 +3,7 @@ import { DolarPrefix } from '@zonia-ui/theme';
 import { TextProps } from './types';
 import { textTypographyMixin } from './utils/mixins';
 
-export type StyledTextProps = Required<DolarPrefix<Pick<TextProps, 'variant' | 'weight' | 'color'>>>;
+export type StyledTextProps = DolarPrefix<Required<Pick<TextProps, 'variant' | 'weight'>> & Pick<TextProps, 'color'>>;
 const StyledText = styled.div<StyledTextProps>`
   ${textTypographyMixin}
 `;
@@ -13,7 +13,7 @@ export function TextVariant({
   as: Component = 'span',
   variant = 'md',
   weight = 'medium',
-  color = 'black',
+  color,
 }: Readonly<Omit<TextProps, 'type'>>) {
   return (
     <StyledText as={Component} $variant={variant} $weight={weight} $color={color}>

@@ -15,10 +15,10 @@ export const textTypographyMixin: StyleFunction<StyledTextProps> = (ctx) => {
 
   const { fontSize, lineHeight } = typographyText[$variant];
   const fontWeight = fontWeights[$weight];
-  const fontColor = primaryColors[$color];
+  const fontColor = $color ? primaryColors[$color] : undefined;
 
   return css`
-    color: ${fontColor};
+    color: ${fontColor ?? 'inherit'};
     font-weight: ${fontWeight};
     font-size: ${fontSize};
     line-height: ${lineHeight};
@@ -38,10 +38,10 @@ export const headingTypographyMixin: StyleFunction<StyledTextProps> = (ctx) => {
 
   const { fontSize, lineHeight } = typographyHead[$variant];
   const fontWeight = fontWeights[$weight];
-  const fontColor = primaryColors[$color];
+  const fontColor = $color ? primaryColors[$color] : undefined;
 
   return css`
-    color: ${fontColor};
+    color: ${fontColor ?? 'inherit'};
     font-weight: ${fontWeight};
     font-size: ${fontSize};
     line-height: ${lineHeight};
