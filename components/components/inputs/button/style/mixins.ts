@@ -9,7 +9,7 @@ import {
   DolarPrefix,
   rgbaToHex,
   RuleBuilder,
-  shadowMixin,
+  boxShadowMixin,
   shapeMixin,
   ThemeElevationSpacing,
   typographyMixin,
@@ -160,11 +160,11 @@ const buttonShadowMixin: StyleFunction<
 
   return css`
     &:hover:not(&:disabled) {
-      ${shadowMixin(hover, shadowColor)};
+      ${boxShadowMixin(hover, shadowColor)};
     }
 
     &:active:not(&:disabled) {
-      ${shadowMixin(active, shadowColor)};
+      ${boxShadowMixin(active, shadowColor)};
     }
   `;
 };

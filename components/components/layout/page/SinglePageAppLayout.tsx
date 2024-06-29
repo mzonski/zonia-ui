@@ -1,9 +1,11 @@
 import React, { Children, isValidElement, PropsWithChildren, ReactNode, useMemo } from 'react';
 import { isString } from '@zonia-ui/core';
+import { ValuesType } from 'utility-types';
+import { validationT } from 'fp-ts';
 import { SpaLayoutStyles } from './styles/spa.styles';
 import { useSPALayoutCollapseContext, withCollapseContext } from './contexts/CollapseContext';
 
-const spaSlots = ['header', 'sidebar-header', 'sidebar', 'content', 'footer', 'toggle'] as const;
+const spaSlots = ['header', 'sidebar-header', 'sidebar', 'content', 'footer'] as const;
 export type SpaSlotProp = (typeof spaSlots)[number];
 
 const isSpaSlot = (value: unknown): value is SpaSlotProp =>
@@ -47,7 +49,7 @@ const getLayoutSlotMap = (componentChildren: PropsWithChildren['children']) => {
 
 export type SinglePageAppLayoutProps = PropsWithChildren & {
   defaultSidebarOpen?: boolean;
-  togglePlacement: Exclude<SpaSlotProp, 'toggle'>;
+  togglePlacement: SpaSlotProp;
 };
 
 const spaSlotStyles = {
@@ -55,40 +57,24 @@ const spaSlotStyles = {
   footer: SpaLayoutStyles.Footer,
   header: SpaLayoutStyles.Header,
   sidebar: SpaLayoutStyles.Sidebar,
+  toggle: SpaLayoutStyles.Toggle,
   'sidebar-header': SpaLayoutStyles.SidebarHeader,
 } as const;
+type SpaSlot = (typeof spaSlotStyles)[ValuesType<typeof spaSlots>];
 
 const TOGGLE_SLOT = 'toggle' as const;
 
-const getAppLayoutContent = ({ children, togglePlacement }: Readonly<SinglePageAppLayoutProps>) => {
+const getAppLayoutContent = ({ children }: Readonly<SinglePageAppLayoutProps>) => {
   const [slotMap, orphans] = getLayoutSlotMap(children);
-  let toggle: ReactNode;
-  if (slotMap.has('toggle')) {
-    toggle = slotMap.get('toggle');
-  }
 
   const slots: ReactNode[] = [];
   Array.from(slotMap.entries())
-    .filter(([type]) => type !== TOGGLE_SLOT)
-    .forEach(([type, component]) => {
-      if (type === 'toggle') {
-        return;
-      }
 
+    .forEach(([type, component]) => {
+      const innerContent: ReactNode[] = [component];
       const Element = spaSlotStyles[type];
 
-      const withExtraElement = togglePlacement === type;
-      if (withExtraElement) {
-        slots.push(
-          <Element key={`${type}_s`}>
-            {toggle}
-            {component}
-          </Element>,
-        );
-        return;
-      }
-
-      slots.push(<Element key={`${type}_s`}>{component}</Element>);
+      slots.push(<Element key={`${type}_s`}>{innerContent}</Element>);
     });
 
   return [slots, orphans] as const;
@@ -97,7 +83,7 @@ const getAppLayoutContent = ({ children, togglePlacement }: Readonly<SinglePageA
 /**
  *
  * @param {Object} props - The props object.
- * @param {SinglePageAppLayoutProps<SpaReactElement>} props.children - Slots: Assign a React element to one of the following keys: 'header', 'sidebarHeader', 'sidebar', 'content', 'footer'. Rest elements will mount on end
+ * @param {SinglePageAppLayoutProps<SpaReactElement>} props.children - Slots: Assign a React element to one of the following keys: 'header', 'sidebar-header', 'sidebar', 'content', 'footer'. Rest elements will mount on end
  *
  * @returns The rendered SinglePageAppLayout component.
  * @constructor

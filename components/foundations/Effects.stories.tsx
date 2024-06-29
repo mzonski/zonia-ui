@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {
   defaultBorderMixin,
   focusOutlineMixin,
-  shadowMixin,
+  boxShadowMixin,
   shapeMixin,
   spacingMixin,
   ThemeElevationType,
@@ -32,7 +32,7 @@ const StyledEffectRow = styled(Stack)`
 const StyledShadowItem = styled.div<{ $type: ThemeElevationType; $color: ThemePrimaryColor }>`
   background-color: ${(props) => props.theme.colors.primary.white};
   ${defaultBorderMixin()}
-  ${(props) => shadowMixin(props.$type, props.$color)}
+  ${(props) => boxShadowMixin(props.$type, props.$color)}
   ${spacingMixin('padding', '44', ['horizontal'])}
   ${spacingMixin('padding', '14', ['vertical'])}
   ${shapeMixin('rounded')}

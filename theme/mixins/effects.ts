@@ -15,7 +15,7 @@ export const defaultBorderMixin =
     `;
   };
 
-export const shadowMixin =
+export const boxShadowMixin =
   (space: ThemeElevationSpacing, color: ThemePrimaryColor = 'black'): StyleFunction<object> =>
   (ctx) => {
     const {
@@ -26,16 +26,6 @@ export const shadowMixin =
 
     return css`
       box-shadow: ${spacing[elevationSpacing[space]]} ${spacing[elevationSpacing[space]]} 0 ${primaryColors[color]};
-    `;
-  };
-
-export const shapeMixin =
-  (shapeType: ThemeShapeType): StyleFunction<object> =>
-  (ctx) => {
-    const { shape } = ctx.theme;
-
-    return css`
-      border-radius: ${shape[shapeType]};
     `;
   };
 

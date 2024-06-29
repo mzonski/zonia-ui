@@ -1,6 +1,6 @@
 import { css, RuleSet, StyleFunction } from 'styled-components';
 
-import type { MixinCorners, ThemeBorderSizes, ThemePrimaryColor } from '../types';
+import { MixinCorners, ThemeBorderSizes, ThemePrimaryColor, ThemeShapeType } from '../types';
 
 export const borderMixin =
   (size: ThemeBorderSizes = 'tiny', corners: MixinCorners = 'all', color?: ThemePrimaryColor): StyleFunction<object> =>
@@ -54,4 +54,14 @@ export const borderMixin =
     }
 
     return rule;
+  };
+
+export const shapeMixin =
+  (shapeType: ThemeShapeType): StyleFunction<object> =>
+  (ctx) => {
+    const { shape } = ctx.theme;
+
+    return css`
+      border-radius: ${shape[shapeType]};
+    `;
   };

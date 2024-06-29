@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, PropsWithChildren, useContext, useMemo } from 'react';
 import { useToggle } from '@zonia-ui/core';
 import { AppLayout, SinglePageAppLayoutProps } from '../SinglePageAppLayout';
@@ -10,12 +11,6 @@ type CollapseContextValue = {
 
 const CollapseContext = createContext({} as CollapseContextValue);
 
-export const useSPALayoutCollapseContext = () => {
-  const context = useContext(CollapseContext);
-
-  return context;
-};
-
 const SpaLayoutCollapsedProvider = ({ children, defaultValue }: PropsWithChildren<{ defaultValue?: boolean }>) => {
   const [collapsed, toggle, set] = useToggle(defaultValue ?? false);
 
@@ -24,10 +19,16 @@ const SpaLayoutCollapsedProvider = ({ children, defaultValue }: PropsWithChildre
   return <CollapseContext.Provider value={contextValue}>{children}</CollapseContext.Provider>;
 };
 
+export const useSPALayoutCollapseContext = () => {
+  const context = useContext(CollapseContext);
+
+  return context;
+};
+
 export function withCollapseContext<T extends SinglePageAppLayoutProps>(WrappedComponent: typeof AppLayout) {
   return function WrappedWithCollapseContext(props: T) {
-    const { defaultSidebarOpen, togglePlacement } = props;
-    if (togglePlacement === 'toggle') throw new Error('Toggle cannot be allocated in the same slot');
+    const { defaultSidebarOpen } = props;
+    // if (togglePlacement === 'toggle') throw new Error('Toggle cannot be allocated in the same slot');
 
     return (
       <SpaLayoutCollapsedProvider defaultValue={defaultSidebarOpen}>

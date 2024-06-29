@@ -26,6 +26,7 @@ const Container = styled.div<{ $sidebarCollapsed?: boolean }>`
   display: grid;
   height: 100%;
   width: 100%;
+  transition: grid-template-columns 0.2s;
   ${sidebarContainerMixin};
   ${colorMixin('bg', 'primary', 'grey100')}
 `;

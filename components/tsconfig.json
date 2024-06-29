@@ -25,6 +25,7 @@
   },
   "include": [
     "index.ts",
+    "types",
     "foundations",
     "components",
     "components/themeOverride.d.ts",
