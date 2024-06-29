@@ -7,6 +7,7 @@ import { themeShape, themeShapes } from '../constants/shape';
 import { baseTheme } from '../themes/baseTheme';
 import { themeElevationOutline, themeElevationSpacing, themeElevationType } from '../themes/elevation';
 import { themeSpacing } from '../themes/spacing';
+import { defaultThemeHeadTypography, defaultThemeTextTypography } from '../themes/typography';
 
 type ValidFontSizeUnits = 'px' | 'rem' | 'em' | '%';
 export type ValidSizeFormat = `${number}${ValidFontSizeUnits}` | '0';
@@ -25,8 +26,8 @@ export type ThemeElevationSpacing = keyof typeof themeElevationSpacing;
 export type ThemeElevationType = ValuesType<typeof themeElevationType>;
 export type ThemeOutline = keyof typeof themeElevationOutline;
 export type ThemeTypographyTypes = keyof typeof baseTheme.components.typography;
-export type ThemeTypographyHeads = keyof typeof baseTheme.components.typography.head;
-export type ThemeTypographyTexts = keyof typeof baseTheme.components.typography.text;
+export type ThemeTypographyHeads = keyof typeof defaultThemeHeadTypography;
+export type ThemeTypographyTexts = keyof typeof defaultThemeTextTypography;
 
 export type ThemeBorderSizes = keyof typeof baseTheme.borders.size;
 

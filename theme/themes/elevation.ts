@@ -2,6 +2,8 @@ import type { ThemeSpacings, ThemeElevationSpacing } from '../types';
 
 export const themeElevationType = ['md', 'lg', 'xl'] as const;
 export const themeElevationSpacing = {
+  xs: 'px',
+  sm: '0.5',
   md: '1',
   lg: '2',
   xl: '3',

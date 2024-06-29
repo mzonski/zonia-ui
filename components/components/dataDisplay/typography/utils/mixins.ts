@@ -3,7 +3,7 @@ import { css, StyleFunction } from 'styled-components';
 import type { StyledTextProps } from '../TextVariant';
 
 export const textTypographyMixin: StyleFunction<StyledTextProps> = (ctx) => {
-  const { $variant, $color, $weight } = ctx;
+  const { $variant, $color, $weight = 'medium' } = ctx;
 
   const {
     components: {
