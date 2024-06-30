@@ -43,3 +43,14 @@ export const spacingMixin = (type: MixinMoveType, themeSpacing: ThemeSpacings, c
     ${applySpacing}
   `;
 };
+
+export const fullViewportMixin = () => css`
+  width: 100vw;
+  height: 100vh;
+`;
+
+export const fixedHeaderMixin = () => css`
+  position: fixed;
+  top: 0;
+  width: 100%;
+`;

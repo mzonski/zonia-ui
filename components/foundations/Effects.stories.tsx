@@ -16,7 +16,7 @@ import { FoundationPage } from './storyBlocks/FoundationPage';
 const meta = {
   title: '1. Foundations',
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
 } satisfies Meta;
 

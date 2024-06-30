@@ -10,6 +10,7 @@ import { themeSpacing } from '../themes/spacing';
 import { defaultThemeHeadTypography, defaultThemeTextTypography } from '../themes/typography';
 
 type ValidFontSizeUnits = 'px' | 'rem' | 'em' | '%';
+export type PxSizeUnit = `${number}px` | 0;
 export type ValidSizeFormat = `${number}${ValidFontSizeUnits}` | '0';
 
 type HexColor = `#${string}`;

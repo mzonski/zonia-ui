@@ -9,7 +9,7 @@ import { FoundationPage } from './storyBlocks/FoundationPage';
 const meta = {
   title: '1. Foundations',
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
 } satisfies Meta;
 
@@ -29,21 +29,21 @@ export const Spacing = () => {
     >
       <SimpleTable
         $clean
-        headers={{
-          1: { type: 'text', content: 'Name', colTextAlign: 'left', dataProp: 'name' },
-          2: {
+        headers={[
+          { type: 'text', content: 'Name', colTextAlign: 'left', dataProp: 'name' },
+          {
             type: 'text',
             content: 'Rem',
             dataProp: 'rem',
             colTextAlign: 'left',
           },
-          3: {
+          {
             type: 'text',
             content: 'Pixel',
             dataProp: 'px',
             colTextAlign: 'left',
           },
-          4: {
+          {
             type: 'text',
             content: 'Example',
             dataProp: 'px',
@@ -51,7 +51,7 @@ export const Spacing = () => {
             colTextAlign: 'left',
             renderCellContent: (_idx, value) => (value === '0px' ? '👻' : <StyledSpacingDisplay $width={value} />),
           },
-        }}
+        ]}
         data={Object.entries(themeSpacing)
           .map(([key, value]) => ({
             id: key,

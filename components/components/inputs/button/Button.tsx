@@ -4,7 +4,7 @@ import { StyledButton } from './style/styles';
 
 export type ButtonComponentProps = PropsWithChildren<
   ButtonProps & Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'onClick' | 'disabled'>
->;
+> & { 'data-testid'?: string };
 
 const ButtonComponent = (
   {
@@ -23,6 +23,7 @@ const ButtonComponent = (
   return (
     <StyledButton
       ref={ref}
+      {...buttonProps}
       $color={color}
       $labelTextVariant={labelTextVariant}
       $labelBold={labelBold}
@@ -30,7 +31,6 @@ const ButtonComponent = (
       $fullWidth={fullWidth}
       $variant={variant}
       $shadowColor={shadowColor}
-      {...buttonProps}
     >
       {children}
     </StyledButton>

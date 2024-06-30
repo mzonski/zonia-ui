@@ -1,5 +1,6 @@
 import { css, StyleFunction } from 'styled-components';
 
+import { StyledHeadingProps } from '../HeadingVariant';
 import type { StyledTextProps } from '../TextVariant';
 
 export const textTypographyMixin: StyleFunction<StyledTextProps> = (ctx) => {
@@ -25,7 +26,7 @@ export const textTypographyMixin: StyleFunction<StyledTextProps> = (ctx) => {
   `;
 };
 
-export const headingTypographyMixin: StyleFunction<StyledTextProps> = (ctx) => {
+export const headingTypographyMixin: StyleFunction<StyledHeadingProps> = (ctx) => {
   const { $variant, $color, $weight } = ctx;
 
   const {

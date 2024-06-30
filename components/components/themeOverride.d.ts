@@ -1,4 +1,5 @@
 import 'styled-components';
+import '@zonia-ui/theme/types';
 import {
   ThemeSecondaryColor,
   ThemeBorderSizes,

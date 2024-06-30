@@ -34,7 +34,6 @@ export const badgeMixin: StyleFunction<BadgeMixinProps> = (ctx) => {
     padding: ${`${verticalPadding} ${horizontalPadding}`};
     background-color: ${backgroundColor};
     border-radius: ${badgeShape === 'badge' ? horizontalPadding : shape[badgeShape]};
-    align-self: flex-start;
     text-align: center;
   `;
 };

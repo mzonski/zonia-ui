@@ -4,12 +4,14 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { primaryColors, secondaryColors } from '@zonia-ui/theme';
 import { SpacingBox, Stack } from '../../layout';
 import { Button } from '../button/Button';
-import { Switch, SwitchProps } from './Switch';
+import { Switch } from './Switch';
+import { SwitchProps, switchSizes } from './types';
 
 const meta = {
-  title: '2. Components/Data display/Switch',
+  title: '2. Components/Input/Switch',
   component: Switch,
   parameters: {
+    actions: { argTypesRegex: '^on.*' },
     layout: 'centered',
   },
   argTypes: {
@@ -20,12 +22,22 @@ const meta = {
     color: {
       control: 'select',
       options: Object.keys(primaryColors),
+      defaultValue: 'primary',
     },
     size: {
       control: 'radio',
-      options: ['sm', 'md'],
+      options: switchSizes,
       defaultValue: 'sm',
     },
+    disabled: {
+      control: 'boolean',
+      false: true,
+    },
+  },
+  args: {
+    color: 'primary',
+    size: 'sm',
+    disabled: false,
   },
 } satisfies Meta<typeof Switch>;
 
@@ -43,10 +55,66 @@ export const Component: Story = {
   },
 };
 
-export const Controlled = ({ checked: checkedArg, ...props }: Required<SwitchProps>) => {
-  const [isChecked, setChecked] = useState(checkedArg);
+export const Uncontrolled: Story = {
+  argTypes: {
+    checked: { table: { disable: true } },
+    defaultChecked: {
+      control: 'boolean',
+      defaultValue: true,
+    },
+  },
+  args: {
+    defaultChecked: false,
+  },
+  render: (props) => <UncontrolledExample {...props} />,
+};
+export const Controlled: Story = {
+  argTypes: {
+    defaultChecked: { table: { disable: true } },
+    checked: {
+      control: 'boolean',
+      defaultValue: true,
+    },
+  },
+  args: {
+    checked: true,
+  },
+  render: (props) => <ControlledExample {...props} />,
+};
+
+const UncontrolledExample = ({ defaultChecked, ...props }: Partial<SwitchProps>) => {
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    if (defaultChecked !== undefined && inputRef.current && inputRef.current.checked !== defaultChecked) {
+      inputRef.current.click();
+    }
+  }, [defaultChecked]);
+
+  const onChangeHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
+    console.log('Uncontrolled change', e.currentTarget.checked, e);
+  };
+
+  return (
+    <div style={{ padding: 80, backgroundColor: secondaryColors.jadeGreenLight, overflow: 'auto' }}>
+      <Stack $gap="16px" $center>
+        <Button size="2xs" onClick={() => inputRef.current?.focus()}>
+          Focus
+        </Button>
+        <Button size="2xs" onClick={() => inputRef.current?.click()}>
+          Toggle
+        </Button>
+        <Switch {...props} ref={inputRef} defaultChecked={defaultChecked} onChange={onChangeHandler} />
+      </Stack>
+    </div>
+  );
+};
+
+const ControlledExample = ({ checked: checkedArg, ...props }: Partial<SwitchProps>) => {
+  const [isChecked, setChecked] = useState(checkedArg ?? true);
+
+  useEffect(() => {
+    if (!checkedArg) return;
     setChecked(checkedArg);
   }, [checkedArg]);
 
@@ -58,32 +126,16 @@ export const Controlled = ({ checked: checkedArg, ...props }: Required<SwitchPro
   return (
     <div style={{ padding: 80, backgroundColor: secondaryColors.jadeGreenLight, overflow: 'auto' }}>
       <SpacingBox $mh="8" $mv="8">
-        <Switch {...props} checked={isChecked} onChange={onChangeHandler} />
+        <Stack $gap="16px" $center>
+          <Button size="2xs" onClick={() => setChecked(true)}>
+            Check
+          </Button>
+          <Button size="2xs" onClick={() => setChecked(false)}>
+            Uncheck
+          </Button>
+          <Switch {...props} checked={isChecked} onChange={onChangeHandler} />
+        </Stack>
       </SpacingBox>
-    </div>
-  );
-};
-
-export const Uncontrolled = ({ defaultChecked }: Required<SwitchProps>) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.checked = defaultChecked;
-    }
-  }, [defaultChecked]);
-
-  const onChangeHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
-    console.log('Uncontrolled change', e.currentTarget.checked, e);
-  };
-
-  return (
-    <div style={{ padding: 80, backgroundColor: secondaryColors.jadeGreenLight, overflow: 'auto' }}>
-      <Stack $gap="16px" $center>
-        <Button onClick={() => inputRef.current?.focus()}>Focus</Button>
-        <Button onClick={() => inputRef.current?.focus()}>Toggle</Button>
-        <Switch ref={inputRef} defaultChecked={defaultChecked} onChange={onChangeHandler} />
-      </Stack>
     </div>
   );
 };

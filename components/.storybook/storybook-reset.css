@@ -8,6 +8,10 @@ body {
   height: 100%;
 }
 
+.sb-show-main.sb-main-centered {
+  min-height: unset;
+}
+
 .sb-main-centered {
   #storybook-root {
     display: flex;

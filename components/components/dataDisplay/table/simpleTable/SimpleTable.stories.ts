@@ -89,14 +89,16 @@ const fakeOrdersList = fakeOrderGenerator(20);
 
 const fakeOrdersTableProps = {
   headers: [
-    { type: 'text', content: 'Order', width: '35%', colTextAlign: 'left', dataProp: 'orderId' },
+    { id: 1, type: 'text', content: 'Order', width: '35%', colTextAlign: 'left', dataProp: 'orderId' },
     {
+      id: 2,
       type: 'text',
       content: 'Billing date',
       dataProp: 'billingDate',
       width: '20%',
     },
     {
+      id: 3,
       type: 'text',
       content: 'Amount',
       dataProp: 'amount',
@@ -107,6 +109,7 @@ const fakeOrdersTableProps = {
       },
     },
     {
+      id: 4,
       type: 'text',
       content: 'Via',
       dataProp: 'method',

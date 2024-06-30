@@ -118,23 +118,21 @@ const buttonColorsMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'color' | '
 
       break;
     case 'ghost':
-      {
-        ruleBuilder.push(css`
-          background-color: transparent;
-          &:hover:not(&:disabled) {
-            border-color: ${selectedColor};
-          }
-          &:active:not(&:disabled) {
-            border-color: ${selectedColor};
-          }
-        `);
-      }
+      ruleBuilder.push(css`
+        background-color: transparent;
+        &:hover:not(&:disabled) {
+          border-color: ${selectedColor};
+        }
+        &:active:not(&:disabled) {
+          border-color: ${selectedColor};
+        }
+      `);
+
       break;
     default:
       break;
   }
 
-  console.log('=>(mixins.ts:126) ruleBuilder.build', ruleBuilder.build());
   return ruleBuilder.build();
 };
 
@@ -195,27 +193,16 @@ const buttonTypographyMixin: StyleFunction<
   `;
 };
 
-const buttonShapeMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'size' | 'variant' | 'labelBold'>>> = (ctx) => {
-  const { $variant: variant, $size: size, $labelBold: isBold } = ctx;
+const buttonShapeMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'variant'>>> = (ctx) => {
+  const { $variant: variant } = ctx;
 
   const ruleBuilder = new RuleBuilder();
 
   ruleBuilder.push(css`
-    transition: border 0.05s linear;
-
-    border: 0;
-
     ${variant !== 'ghost' && borderMixin('small')};
+    ${variant === 'ghost' && borderMixin('small', 'all', 'transparent')};
 
     ${shapeMixin('medium')}
-
-    &:hover:not(&:disabled) {
-      ${borderMixin('small')}
-    }
-
-    &:active:not(&:disabled) {
-      ${borderMixin('tiny')}
-    }
   `);
 
   return ruleBuilder.build();

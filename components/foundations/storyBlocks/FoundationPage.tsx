@@ -5,7 +5,6 @@ import { HeadingVariant, SpacingBox, TextVariant } from '../../components';
 
 const StyledFoundationPage = styled(SpacingBox)`
   width: 1440px;
-  height: 100%;
   background-color: ${(props) => props.theme.colors.primary.grey100};
 `;
 

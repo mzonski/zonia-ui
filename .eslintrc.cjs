@@ -27,12 +27,13 @@ const createStorybookReactPackageConfig = (path) => {
       project: [`./${path}/tsconfig.json`],
     },
     rules: {
-      "react/jsx-props-no-spreading": "off",
-      "react/destructuring-assignment": "off",
-      "react/function-component-definition": "off",
+      "@typescript-eslint/no-use-before-define": "off",
       "import/no-extraneous-dependencies": "off",
       "no-plusplus": "off",
       "react-refresh/only-export-components": "off",
+      "react/destructuring-assignment": "off",
+      "react/function-component-definition": "off",
+      "react/jsx-props-no-spreading": "off",
     }
   };
 };

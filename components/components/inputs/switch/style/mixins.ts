@@ -3,6 +3,7 @@ import {
   calculateTextContrast,
   colorMixin,
   DolarPrefix,
+  fillAbsoluteSpaceMixin,
   focusOutlineMixin,
   rgbaToHex,
   RuleBuilder,
@@ -10,7 +11,7 @@ import {
 } from '@zonia-ui/theme';
 import { css, RuleSet, StyleFunction } from 'styled-components';
 
-import { SwitchProps } from '../types';
+import { StyledSwitchProps, SwitchProps } from '../types';
 
 const switchColorMixin: StyleFunction<NonNullable<DolarPrefix<Pick<SwitchProps, 'color'>>>> = (ctx) => {
   const {
@@ -39,6 +40,12 @@ const switchColorMixin: StyleFunction<NonNullable<DolarPrefix<Pick<SwitchProps, 
       }
     }
     input[type='checkbox'] {
+      &:not(&:checked) + span {
+        &:before {
+          background-color: ${calculateTextContrast(primaryColors.grey100)};
+        }
+      }
+
       &:checked + span {
         ${colorMixin('bg', 'primary', color)}
       }
@@ -47,89 +54,120 @@ const switchColorMixin: StyleFunction<NonNullable<DolarPrefix<Pick<SwitchProps, 
         ${focusOutlineMixin('lg', color)}
       }
 
-      &:hover:is(&:checked) + span {
+      &:hover:is(&:checked):not(:disabled) + span {
         background-color: ${checkedHoverBg};
       }
-      &:active:is(&:checked) + span {
+      &:active:is(&:checked):not(:disabled) + span {
         background-color: ${checkedActiveBg};
       }
 
-      &:hover:not(&:checked) + span {
+      &:hover:not(&:checked):not(:disabled) + span {
         background-color: ${uncheckedHoverBg};
       }
-      &:active:not(&:checked) + span {
+      &:active:not(&:checked):not(:disabled) + span {
         background-color: ${uncheckedActiveBg};
       }
 
-      &:active + span {
+      &:active:not(:disabled) + span {
         ${focusOutlineMixin('md', color)}
       }
+
+      &:disabled + span {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
     }
   `);
 
   return ruleBuilder.build();
 };
 
-const switchSizeMapInterpolation: Record<NonNullable<SwitchProps['size']>, RuleSet> = {
-  sm: css`
-    width: 36px;
-    height: 20px;
+// Not every thumbPx works flawlessly with this, don't know why yet xD
+const switchToggleMixin = (thumbPx: number): RuleSet => {
+  const spacing = 3;
+
+  const height = thumbPx + spacing;
+  const width = thumbPx * 2 + spacing;
+  const topMargin = spacing / 2;
+  const thumbSize = thumbPx - topMargin;
+  const transformPx = width - spacing - topMargin - thumbSize;
+
+  return css`
+    width: ${width}px;
+    height: ${height}px;
+
     span {
       &:before {
-        margin-block: ${valueToRem(3.5)};
-        height: 12px;
-        width: 12px;
-        left: ${valueToRem(3)};
+        top: ${valueToRem(topMargin)};
+        left: ${valueToRem(topMargin)};
+        height: ${valueToRem(thumbSize)};
+        width: ${valueToRem(thumbSize)};
         border-radius: 50%;
       }
-      left: 0;
-      top: 0;
     }
-  `,
-  md: css`
-    width: 44px;
-    height: 24px;
-  `,
+
+    input[type='checkbox'] {
+      &:not(&:checked) + span:before {
+        transform: translateX(0);
+      }
+
+      &:checked + span:before {
+        transform: translateX(${valueToRem(transformPx)});
+      }
+    }
+  `;
 };
-const switchBorderRadius = 12;
-const switchThumbSizePx: Record<NonNullable<SwitchProps['size']>, number> = {
+
+const switchBorderRadius: Record<NonNullable<StyledSwitchProps['size']>, number> = {
   sm: 14,
   md: 18,
+  lg: 22,
 };
 
-const switchSizeMixin: StyleFunction<DolarPrefix<Pick<SwitchProps, 'size'>>> = (ctx) => {
-  const {
-    $size: switchSize,
-    theme: {
-      colors: { primary: primaryColors },
-    },
-  } = ctx;
+const switchSizeMixin: StyleFunction<DolarPrefix<Pick<Required<StyledSwitchProps>, 'size'>>> = (ctx) => {
+  const { $size: switchSize } = ctx;
 
-  const ruleBuilder = new RuleBuilder();
+  return css`
+    ${switchToggleMixin(switchBorderRadius[switchSize])}
+  `;
+};
 
-  const thumbSize = switchThumbSizePx[switchSize ?? 'sm'];
-  ruleBuilder.push(switchSizeMapInterpolation[switchSize ?? 'sm']);
+const switchShapeMixin: StyleFunction<DolarPrefix<Pick<Required<StyledSwitchProps>, 'size'>>> = (ctx) => {
+  const { $size: switchSize } = ctx;
 
-  ruleBuilder.push(css`
-    input[type="checkbox"] {
-      &:checked + span:before {
-        transform: translateX(${thumbSize + switchBorderRadius / 4 - 2}px);
+  return css`
+    border-radius: ${switchBorderRadius[switchSize]}px;
+
+    span {
+      border-radius: ${switchBorderRadius[switchSize]}px;
+    }
+  `;
+};
+
+const switchCursorMixin: StyleFunction<object> = () => {
+  return css`
+    input[type='checkbox'] {
+      cursor: pointer;
+
+      &:disabled {
+        cursor: not-allowed;
       }
     }
-    span {
-      &:before {
-        position: absolute;
-        content: '';
-        transition: transform 0.25s cubic-bezier(.38,1.22,.54,.98);
-      }
-  `);
-
-  return ruleBuilder.build();
+  `;
 };
-
-const switchShapeMixin: StyleFunction<object> = () => {
+const switchAlignmentMixin: StyleFunction<object> = () => {
   return css`
-    border-radius: ${switchBorderRadius}px;
+    span {
+      ${fillAbsoluteSpaceMixin};
+      &:before {
+        ${fillAbsoluteSpaceMixin};
+        content: '';
+      }
+    }
+
+    input[type='checkbox'] {
+      ${fillAbsoluteSpaceMixin};
+    }
   `;
 };
 
@@ -137,4 +175,6 @@ export const SwitchMixins = {
   colors: switchColorMixin,
   size: switchSizeMixin,
   shape: switchShapeMixin,
+  alignment: switchAlignmentMixin,
+  cursor: switchCursorMixin,
 };

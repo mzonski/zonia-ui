@@ -8,7 +8,7 @@ import SimpleTableBody from './components/body';
 export type SimpleTableProps<TData extends SimpleTableRequiredProps = SimpleTableRequiredProps> =
   Partial<LayoutTableProps> & {
     data: TData[];
-    headers: ReadonlyArray<HeaderOptions<TData>>;
+    headers: ReadonlyArray<HeaderOptions<TData> & SimpleTableRequiredProps>;
     renderFooter?: () => ReactElement;
   };
 
