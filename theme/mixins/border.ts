@@ -5,9 +5,8 @@ import { MixinCorners, ThemeBorderSizes, ThemePrimaryColor, ThemeShapeType } fro
 export const borderMixin =
   (size: ThemeBorderSizes = 'tiny', corners: MixinCorners = 'all', color?: ThemePrimaryColor): StyleFunction<object> =>
   (ctx) => {
-    const { size: borderSizes, color: defaultColor, defaultType } = ctx.theme.borders;
     const primaryColors = ctx.theme.colors.primary;
-
+    const { size: borderSizes, color: defaultColor, defaultType } = ctx.theme.borders;
     const borderStyle = `${borderSizes[size]} ${defaultType} ${color ? primaryColors[color] : defaultColor}`;
 
     let rule: RuleSet;

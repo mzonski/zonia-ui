@@ -30,20 +30,23 @@ export const Spacing = () => {
       <SimpleTable
         $clean
         headers={[
-          { type: 'text', content: 'Name', colTextAlign: 'left', dataProp: 'name' },
+          { id: 1, type: 'text', content: 'Name', colTextAlign: 'left', dataProp: 'name' },
           {
+            id: 2,
             type: 'text',
             content: 'Rem',
             dataProp: 'rem',
             colTextAlign: 'left',
           },
           {
+            id: 3,
             type: 'text',
             content: 'Pixel',
             dataProp: 'px',
             colTextAlign: 'left',
           },
           {
+            id: 4,
             type: 'text',
             content: 'Example',
             dataProp: 'px',

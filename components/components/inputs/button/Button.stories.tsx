@@ -51,9 +51,19 @@ const meta = {
     variant: {
       control: 'radio',
       options: ButtonVariants,
-      defaultValue: 'secondary',
+      defaultValue: 'primary',
     },
     onClick: { action: 'onClick' },
+  },
+  args: {
+    color: 'primary',
+    shadowColor: 'black',
+    labelTextVariant: 'md',
+    size: 'md',
+    labelBold: false,
+    disabled: false,
+    fullWidth: false,
+    variant: 'primary',
   },
 } satisfies Meta<typeof Button>;
 

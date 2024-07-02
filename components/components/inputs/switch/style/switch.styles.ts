@@ -1,11 +1,11 @@
-import { borderMixin, DolarPrefix } from '@zonia-ui/theme';
+import { borderMixin, fillAbsoluteSpaceMixin, RequiredDolar } from '@zonia-ui/theme';
 import styled from 'styled-components';
 
 import { StyledSwitchProps } from '../types';
 
 import { SwitchMixins } from './mixins';
 
-const Container = styled.div<DolarPrefix<Required<StyledSwitchProps>>>`
+const Container = styled.div<RequiredDolar<StyledSwitchProps>>`
   display: inline-block;
   position: relative;
 
@@ -27,11 +27,20 @@ const Input = styled.input.attrs({
 
 const Slider = styled.span`
   ${borderMixin('tiny')}
+  ${fillAbsoluteSpaceMixin};
 
   &:before {
+    ${fillAbsoluteSpaceMixin};
     z-index: 1;
-    //position: absolute;
-    //content: '';
+    position: absolute;
+    content: '';
+
+    width: 24px;
+    height: 24px;
+    background-color: black;
+
+    top: 0;
+
     transition: transform 0.25s cubic-bezier(0.38, 1.22, 0.54, 0.98);
   }
 `;

@@ -1,15 +1,12 @@
-import { isDevEnv } from '@zonia-ui/core';
 import {
   adjustLightness,
-  adjustSaturation,
-  appendAlpha,
   blendColors,
   borderMixin,
+  boxShadowMixin,
   calculateTextContrast,
   DolarPrefix,
   rgbaToHex,
   RuleBuilder,
-  boxShadowMixin,
   shapeMixin,
   ThemeElevationSpacing,
   typographyMixin,
@@ -195,12 +192,18 @@ const buttonTypographyMixin: StyleFunction<
 
 const buttonShapeMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'variant'>>> = (ctx) => {
   const { $variant: variant } = ctx;
+  const { size: borderSizes, defaultType } = ctx.theme.borders;
 
   const ruleBuilder = new RuleBuilder();
 
+  if (variant === 'ghost') {
+    ruleBuilder.push(css`
+      border: ${borderSizes.small} ${defaultType} transparent;
+    `);
+  }
+
   ruleBuilder.push(css`
     ${variant !== 'ghost' && borderMixin('small')};
-    ${variant === 'ghost' && borderMixin('small', 'all', 'transparent')};
 
     ${shapeMixin('medium')}
   `);

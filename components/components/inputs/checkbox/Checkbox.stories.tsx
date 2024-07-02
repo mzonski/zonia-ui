@@ -1,80 +1,107 @@
+import { useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { DUMMY_MESSAGE } from '@zonia-ui/core';
 
-import { primaryColors, secondaryColors, ValidSizeFormat } from '@zonia-ui/theme';
-
-import { keys } from 'fp-ts/Record';
-import { SpacingBox, Stack } from '../../layout';
-import { Badge } from './Badge';
+import { primaryColors } from '@zonia-ui/theme';
+import { Stack } from '../../layout';
+import { Button } from '../button/Button';
+import { Checkbox } from './Checkbox';
+import { checkboxSizes } from './types';
 
 const meta = {
-  title: '2. Components/Data display/Badge',
-  component: Badge,
+  title: '2. Components/Input/Checkbox',
+  component: Checkbox,
   parameters: {
+    actions: { argTypesRegex: '^on.*' },
     layout: 'centered',
   },
   argTypes: {
     color: {
+      table: { diable: false },
       control: 'select',
       options: Object.keys(primaryColors),
     },
-    iconPosition: {
-      control: 'radio',
-      options: ['left', 'right'],
+    outlineColor: {
+      control: 'select',
+      options: Object.keys(primaryColors),
     },
-    shape: {
-      control: 'radio',
-      options: ['rounded', 'square'],
+    borderColor: {
+      control: 'select',
+      options: Object.keys(primaryColors),
     },
     size: {
       control: 'radio',
-      options: ['xs', 'sm', 'md', 'lg'],
+      options: checkboxSizes,
     },
-    text: {
-      control: 'text',
-    },
+    onChange: { action: 'onChange' },
   },
-} satisfies Meta<typeof Badge>;
+  args: {
+    color: 'primary',
+    outlineColor: 'primary',
+    borderColor: 'black',
+    size: 'md',
+  },
+} satisfies Meta<typeof Checkbox>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const Icon = ({ size }: { size: ValidSizeFormat }) => {
+export const Design: Story = {};
+
+const InputRenderer: typeof Controlled.render = (props) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const setIntermediate = () => {
+    if (!inputRef.current) return;
+
+    inputRef.current.indeterminate = true;
+  };
+
   return (
-    <svg width={size} height={size} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M7.08305 0.00344878C7.63342 0.0493135 8.04241 0.532663 7.99655 1.08304L7.67013 4.99999H13.6632L14.0035 0.916949C14.0493 0.366572 14.5327 -0.042416 15.083 0.00344878C15.6334 0.0493135 16.0424 0.532663 15.9965 1.08304L15.6701 4.99999H19C19.5523 4.99999 20 5.44771 20 5.99999C20 6.55228 19.5523 6.99999 19 6.99999H15.5035L15.0035 13H18C18.5523 13 19 13.4477 19 14C19 14.5523 18.5523 15 18 15H14.8368L14.4965 19.083C14.4507 19.6334 13.9673 20.0424 13.417 19.9965C12.8666 19.9507 12.4576 19.4673 12.5035 18.9169L12.8299 15H6.8368L6.49655 19.083C6.45068 19.6334 5.96733 20.0424 5.41695 19.9965C4.86658 19.9507 4.45759 19.4673 4.50345 18.9169L4.82987 15H1C0.447715 15 0 14.5523 0 14C0 13.4477 0.447715 13 1 13H4.99653L5.49653 6.99999H2C1.44772 6.99999 1 6.55228 1 5.99999C1 5.44771 1.44772 4.99999 2 4.99999H5.6632L6.00345 0.916949C6.04932 0.366572 6.53267 -0.042416 7.08305 0.00344878ZM7.50347 6.99999L7.00347 13H12.9965L13.4965 6.99999H7.50347Z"
-        fill="black"
-      />
-    </svg>
+    <Stack $gap="16px" $center>
+      <Button size="2xs" onClick={() => console.debug('Current ref', inputRef)}>
+        Debug
+      </Button>
+      <Button size="2xs" onClick={setIntermediate}>
+        Intermediate
+      </Button>
+      <Button size="2xs" onClick={() => inputRef.current?.focus()}>
+        Focus
+      </Button>
+      <Checkbox ref={inputRef} {...props} size="lg" />
+    </Stack>
   );
 };
 
-export const Component: Story = {
+export const Controlled: Story = {
   args: {
-    size: 'md',
-    color: 'primary',
-    iconPosition: 'right',
-    icon: Icon,
-    text: DUMMY_MESSAGE,
+    checked: true,
   },
+  argTypes: {
+    checked: {
+      checked: 'boolean',
+    },
+    color: { table: { disable: true } },
+    outlineColor: { table: { disable: true } },
+    borderColor: { table: { disable: true } },
+    size: { table: { disable: true } },
+  },
+  render: InputRenderer,
 };
 
-export const Display = () => {
-  return (
-    <div style={{ width: 400, height: 400, backgroundColor: secondaryColors.jadeGreenLight, overflow: 'scroll' }}>
-      <SpacingBox $mh="2" $mt="5" $mb="2">
-        <Stack $wrap="wrap" $direction="row" $gap="4px">
-          <Badge color="primary" text={DUMMY_MESSAGE} icon={Icon} iconPosition="left" />
-          <Badge color="error" text={DUMMY_MESSAGE} icon={Icon} iconPosition="right" />
-          {keys(primaryColors).map((key) => (
-            <Badge key={key} color={key} text={key} />
-          ))}
-        </Stack>
-      </SpacingBox>
-    </div>
-  );
+export const Uncontrolled: Story = {
+  argTypes: {
+    checked: { table: { disable: true } },
+    color: { table: { disable: true } },
+    outlineColor: { table: { disable: true } },
+    borderColor: { table: { disable: true } },
+    size: { table: { disable: true } },
+    defaultChecked: {
+      control: 'boolean',
+    },
+  },
+  args: {
+    defaultChecked: false,
+  },
+  render: InputRenderer,
 };

@@ -28,7 +28,6 @@ export const useSPALayoutCollapseContext = () => {
 export function withCollapseContext<T extends SinglePageAppLayoutProps>(WrappedComponent: typeof AppLayout) {
   return function WrappedWithCollapseContext(props: T) {
     const { defaultSidebarOpen } = props;
-    // if (togglePlacement === 'toggle') throw new Error('Toggle cannot be allocated in the same slot');
 
     return (
       <SpaLayoutCollapsedProvider defaultValue={defaultSidebarOpen}>

@@ -1,21 +1,18 @@
-import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
-import { DolarPrefix } from '@zonia-ui/theme';
+import type { DolarPrefix } from '@zonia-ui/theme';
 import { spacingBoxMixin } from './utils/mixins';
-import { SpacingProps } from './types';
+import type { SpacingProps } from './types';
 
 export const SpacingBox = styled.div<DolarPrefix<SpacingProps>>`
+  display: ${(props) => (props.$inline ? 'inline-block' : 'block')};
   ${spacingBoxMixin}
 `;
-
-export type SpacingBoxProps = SpacingProps;
 
 // function SpacingBoxFn({ children, ...rest }: SpacingBoxProps<C>) {
 //   return <StyledSpacingBox {...prefixPropsWithDolar(rest)}>{children}</StyledSpacingBox>;
 // }
-
-const testProp1 = {} satisfies SpacingBoxProps;
-
+//
+// const testProp1 = {} satisfies SpacingBoxProps;
 // const testProp2 = {
 //   mh: '3',
 //   mv: '2',

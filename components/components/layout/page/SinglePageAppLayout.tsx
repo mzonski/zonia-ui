@@ -1,7 +1,6 @@
 import React, { Children, isValidElement, PropsWithChildren, ReactNode, useMemo } from 'react';
 import { isString } from '@zonia-ui/core';
 import { ValuesType } from 'utility-types';
-import { validationT } from 'fp-ts';
 import { SpaLayoutStyles } from './styles/spa.styles';
 import { useSPALayoutCollapseContext, withCollapseContext } from './contexts/CollapseContext';
 

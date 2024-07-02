@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import type { Property } from 'csstype';
+import { SpacingBox } from '../spacing';
+import type { SpacingProps } from '../spacing/types';
 
 export type FlexProps = {
   $inline?: boolean;
@@ -18,7 +20,7 @@ export type FlexProps = {
   $order?: Property.Order;
 };
 
-export const Flexbox = styled.div<FlexProps>`
+export const Flexbox = styled(SpacingBox)<FlexProps>`
   display: ${(props) => (props.$inline ? 'inline-flex' : 'flex')};
   flex-direction: ${(props) => props.$direction};
   justify-content: ${(props) => props.$justify};

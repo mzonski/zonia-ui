@@ -23,8 +23,6 @@ export const badgeMixin: StyleFunction<BadgeMixinProps> = (ctx) => {
   const backgroundColor = primaryColors[bgColor];
   const color = calculateTextContrast(primaryColors[bgColor]);
 
-  console.log('=>(mixins.ts:27) backgroundColor, color', backgroundColor, color);
-
   return css`
     ${flexAlignmentMixin('center', 'center', true)}
     ${borderMixin('tiny')}

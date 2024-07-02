@@ -70,4 +70,4 @@ export type MarginProps =
   | HorizontalMarginProps
   | VerticalHorizontalMarginProps;
 
-export type SpacingProps = Partial<MarginProps | PaddingProps>;
+export type SpacingProps = Partial<(MarginProps | PaddingProps) & { inline: boolean }>;
