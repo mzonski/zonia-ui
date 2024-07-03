@@ -1,2 +1,2 @@
 export * from './dataDisplay';
-export * from './layout';
+export * from './containers';

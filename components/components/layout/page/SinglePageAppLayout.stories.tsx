@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { Button } from '../../inputs/button/Button';
-import { Flexbox } from '../flexbox';
+import { Button } from '../../inputs/button';
+import { Flexbox } from '../../containers';
 import SinglePageAppLayout from './SinglePageAppLayout';
 import { useSPALayoutCollapseContext } from './contexts/CollapseContext';
 

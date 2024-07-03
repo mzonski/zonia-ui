@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { DUMMY_MESSAGE } from '@zonia-ui/core';
 
-import { primaryColors, secondaryColors, ValidColorFormat, ValidSizeFormat } from '@zonia-ui/theme';
+import { primaryColors, secondaryColors, ValidSizeFormat } from '@zonia-ui/theme';
 
 import { keys } from 'fp-ts/Record';
-import { SpacingBox, Stack } from '../../layout';
+import { SpacingBox, Stack } from '../../containers';
 import { Badge } from './Badge';
 
 const meta = {

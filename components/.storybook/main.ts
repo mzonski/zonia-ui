@@ -7,9 +7,9 @@ function getAbsolutePath(value: string): any {
 
 const config: StorybookConfig = {
   stories: [
+    "../foundations/**/*.stories.@(ts|tsx)",
     "../components/**/*.mdx",
     "../components/**/*.stories.@(ts|tsx)",
-    "../foundations/**/*.stories.@(ts|tsx)",
   ],
   addons: [
     getAbsolutePath("@storybook/addon-links"),

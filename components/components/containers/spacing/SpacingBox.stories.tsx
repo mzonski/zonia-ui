@@ -8,7 +8,7 @@ import type { SpacingBoxProps } from './SpacingBox';
 import { SpacingBox as component } from './SpacingBox';
 
 const meta = {
-  title: '2. Components/Layout',
+  title: '2. Components/Containers',
   component,
   parameters: {
     layout: 'none',

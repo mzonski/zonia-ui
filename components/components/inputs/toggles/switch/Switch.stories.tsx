@@ -2,41 +2,45 @@ import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { primaryColors, secondaryColors } from '@zonia-ui/theme';
-import { SpacingBox, Stack } from '../../layout';
-import { Button } from '../button/Button';
-import { Switch } from './Switch';
+import { themeShape } from '@zonia-ui/theme/constants/shape';
+import { Button } from '../../button';
+import { SpacingBox, Stack } from '../../../containers';
+import { radioSizes } from '../radio';
+import { ToggleStoryUtil } from '../_shared/toggle.storyutil';
+import { Checkbox } from '../checkbox/Checkbox';
+import { checkboxSizes } from '../checkbox/types';
 import { SwitchProps, switchSizes } from './types';
+import { Switch } from './Switch';
 
 const meta = {
+  ...ToggleStoryUtil.meta,
   title: '2. Components/Input/Switch',
   component: Switch,
-  parameters: {
-    actions: { argTypesRegex: '^on.*' },
-    layout: 'centered',
-  },
   argTypes: {
+    ...ToggleStoryUtil.meta.argTypes,
     checked: {
       control: 'boolean',
       defaultValue: true,
-    },
-    color: {
-      control: 'select',
-      options: Object.keys(primaryColors),
-      defaultValue: 'primary',
     },
     size: {
       control: 'radio',
       options: switchSizes,
       defaultValue: 'sm',
     },
+    pillShape: {
+      control: 'select',
+      options: themeShape,
+    },
     disabled: {
       control: 'boolean',
       false: true,
     },
+    onChange: { action: 'onChange' },
   },
   args: {
-    color: 'primary',
+    ...ToggleStoryUtil.meta.args,
     size: 'sm',
+    pillShape: 'oval',
     disabled: false,
   },
 } satisfies Meta<typeof Switch>;
@@ -45,7 +49,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Component: Story = {
+export const Design: Story = {
   argTypes: {
     checked: { table: { disable: true } },
     // defaultChecked: { table: { disable: true } },

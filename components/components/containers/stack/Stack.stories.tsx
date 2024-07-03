@@ -4,7 +4,7 @@ import { createArray } from '@zonia-ui/core/utils';
 import { Stack as component } from './Stack';
 
 export default {
-  title: '2. Components/Layout',
+  title: '2. Components/Containers',
   component,
   parameters: {
     layout: 'centered',

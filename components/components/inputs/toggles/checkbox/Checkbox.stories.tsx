@@ -1,33 +1,17 @@
 import { useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-
-import { primaryColors } from '@zonia-ui/theme';
-import { Stack } from '../../layout';
-import { Button } from '../button/Button';
+import { Stack } from '../../../containers';
+import { Button } from '../../button';
+import { ToggleStoryUtil } from '../_shared/toggle.storyutil';
 import { Checkbox } from './Checkbox';
 import { checkboxSizes } from './types';
 
 const meta = {
+  ...ToggleStoryUtil.meta,
   title: '2. Components/Input/Checkbox',
   component: Checkbox,
-  parameters: {
-    actions: { argTypesRegex: '^on.*' },
-    layout: 'centered',
-  },
   argTypes: {
-    color: {
-      table: { diable: false },
-      control: 'select',
-      options: Object.keys(primaryColors),
-    },
-    outlineColor: {
-      control: 'select',
-      options: Object.keys(primaryColors),
-    },
-    borderColor: {
-      control: 'select',
-      options: Object.keys(primaryColors),
-    },
+    ...ToggleStoryUtil.meta.argTypes,
     size: {
       control: 'radio',
       options: checkboxSizes,
@@ -35,9 +19,7 @@ const meta = {
     onChange: { action: 'onChange' },
   },
   args: {
-    color: 'primary',
-    outlineColor: 'primary',
-    borderColor: 'black',
+    ...ToggleStoryUtil.meta.args,
     size: 'md',
   },
 } satisfies Meta<typeof Checkbox>;
@@ -76,14 +58,16 @@ const InputRenderer: typeof Controlled.render = (props) => {
 export const Controlled: Story = {
   args: {
     checked: true,
+    disabled: false,
   },
   argTypes: {
     checked: {
       checked: 'boolean',
     },
-    color: { table: { disable: true } },
-    outlineColor: { table: { disable: true } },
-    borderColor: { table: { disable: true } },
+    disabled: {
+      checked: 'boolean',
+    },
+    ...ToggleStoryUtil.disabledArgTypes,
     size: { table: { disable: true } },
   },
   render: InputRenderer,

@@ -37,4 +37,6 @@ const ButtonComponent = (
   );
 };
 
-export const Button = forwardRef(ButtonComponent);
+const Button = forwardRef(ButtonComponent);
+
+export default Button;

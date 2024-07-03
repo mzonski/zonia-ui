@@ -1,4 +1,1 @@
-export * from './Box';
-export * from './flexbox';
-export * from './spacing';
-export * from './stack';
+export { default as SpaAppLayout } from './page/SinglePageAppLayout';

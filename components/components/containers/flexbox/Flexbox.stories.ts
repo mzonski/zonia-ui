@@ -3,7 +3,7 @@ import { DUMMY_MESSAGE } from '@zonia-ui/core/constants';
 import { Flexbox as component } from './Flexbox.tsx';
 
 export default {
-  title: '2. Components/Layout',
+  title: '2. Components/Containers',
   component,
   parameters: {
     layout: 'centered',

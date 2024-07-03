@@ -8,19 +8,26 @@ const CheckboxComponent = (
     size = 'sm',
     outlineColor = 'primary',
     borderColor = 'black',
+    shape = 'medium',
     ...props
   }: Readonly<CheckboxProps>,
   ref: ForwardedRef<HTMLInputElement>,
 ) => {
   return (
-    <CheckboxStyles.Container $color={color} $size={size} $borderColor={borderColor} $outlineColor={outlineColor}>
+    <CheckboxStyles.Container
+      $color={color}
+      $size={size}
+      $borderColor={borderColor}
+      $outlineColor={outlineColor}
+      $shape={shape}
+    >
       <CheckboxStyles.Input ref={ref} {...props} />
-      <CheckboxStyles.Box>
+      <CheckboxStyles.Element>
         <CheckboxStyles.Svg>
           <CheckboxStyles.Path className="checkbox-left-path" />
           <CheckboxStyles.Path className="checkbox-right-path" />
         </CheckboxStyles.Svg>
-      </CheckboxStyles.Box>
+      </CheckboxStyles.Element>
     </CheckboxStyles.Container>
   );
 };
