@@ -1,10 +1,10 @@
-import { colorMixin, StyleFunctionPick } from '@zonia-ui/theme';
+import { colorMixin, StyleFunctionRequirePick } from '@zonia-ui/theme';
 import { css, StyleFunction } from 'styled-components';
 
 import { toggleSizes } from '../../_shared';
 import { CheckboxProps } from '../types';
 
-const checkboxColorMixin: StyleFunctionPick<CheckboxProps, 'color'> = (ctx) => {
+const checkboxColorMixin: StyleFunctionRequirePick<CheckboxProps, 'color'> = (ctx) => {
   const { $color: color } = ctx;
 
   return css`
@@ -14,7 +14,7 @@ const checkboxColorMixin: StyleFunctionPick<CheckboxProps, 'color'> = (ctx) => {
   `;
 };
 
-const checkboxSizeMixin: StyleFunctionPick<CheckboxProps, 'size'> = (ctx) => {
+const checkboxSizeMixin: StyleFunctionRequirePick<CheckboxProps, 'size'> = (ctx) => {
   const { $size } = ctx;
 
   const size = toggleSizes[$size];

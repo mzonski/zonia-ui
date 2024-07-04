@@ -1,13 +1,26 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { DolarPrefix } from '@zonia-ui/theme';
 import { Flexbox, FlexProps } from '../flexbox';
 
-export type StackProps = Pick<FlexProps, 'inline' | 'direction' | 'gap'> & { center?: boolean };
+const directionMap = {
+  right: 'row',
+  left: 'row-reverse',
+  top: 'column-reverse',
+  bottom: 'column',
+} as const;
+
+export type StackProps = Pick<FlexProps, 'inline' | 'gap'> & {
+  center?: boolean;
+  direction?: keyof typeof directionMap;
+};
 
 export const Stack = styled(Flexbox)<DolarPrefix<StackProps>>`
-  display: ${(props) => (props.$inline ? 'inline-flex' : 'flex')};
-  flex-direction: ${(props) => props.$direction ?? 'column'};
-  gap: ${(props) => props.$gap ?? '1rem'};
+  ${(props) =>
+    props.$inline &&
+    css`
+      display: inline-flex;
+    `};
+  flex-direction: ${(props) => directionMap[props.$direction ?? 'bottom']};
   justify-content: ${(props) => (props.$center ? 'center' : props.$justify)};
   align-items: ${(props) => (props.$center ? 'center' : props.$align)};
 `;

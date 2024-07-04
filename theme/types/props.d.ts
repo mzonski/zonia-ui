@@ -5,6 +5,6 @@ export type DolarPrefix<T> = {
 };
 
 export type RequiredDolar<T> = DolarPrefix<Required<T>>;
-export type PickStyled<T, K extends keyof T> = RequiredDolar<Pick<T, K>>;
-export type StyleFunctionPick<T, K extends keyof T> = StyleFunction<PickStyled<T, K>>;
-export type StyleFunctionDolar<T> = StyleFunction<RequiredDolar<T>>;
+export type PickRequiredStyled<T, K extends keyof T> = RequiredDolar<Pick<T, K>>;
+export type StyleFunctionRequirePick<T, K extends keyof T> = StyleFunction<PickRequiredStyled<T, K>>;
+export type StyleFunctionDolar<T> = StyleFunction<DolarPrefix<T>>;

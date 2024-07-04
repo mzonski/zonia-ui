@@ -41,13 +41,13 @@ const InputRenderer = (props: StoryProps) => {
   };
 
   return (
-    <Stack $gap="16px">
-      <Stack $gap="16px" $direction="row">
+    <Stack $gap="4">
+      <Stack $gap="4" $direction="row">
         <Switch {...props} shape="large" checked={toggled} onChange={onChange} label={undefined} text={undefined} />
         <Radio {...props} checked={toggled} onChange={onChange} label={undefined} text={undefined} />
         <Checkbox {...props} checked={toggled} onChange={onChange} label={undefined} text={undefined} />
       </Stack>
-      <Stack $gap="16px">
+      <Stack $gap="4">
         <Switch {...props} shape="large" checked={toggled} onChange={onChange} />
         <Radio {...props} checked={toggled} onChange={onChange} />
         <Checkbox {...props} checked={toggled} onChange={onChange} />

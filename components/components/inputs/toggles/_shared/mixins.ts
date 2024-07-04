@@ -5,7 +5,7 @@ import {
   fillAbsoluteSpaceMixin,
   focusOutlineMixin,
   rgbaToHex,
-  StyleFunctionPick,
+  StyleFunctionRequirePick,
 } from '@zonia-ui/theme';
 import { css, StyleFunction } from 'styled-components';
 
@@ -24,7 +24,7 @@ const cursorMixin: StyleFunction<object> = () => {
   `;
 };
 
-const toggleLabelAlignmentMixin: StyleFunctionPick<StyledToggle, 'hasText'> = (ctx) => {
+const toggleLabelAlignmentMixin: StyleFunctionRequirePick<StyledToggle, 'hasText'> = (ctx) => {
   const { $hasText } = ctx;
 
   if ($hasText) return null;
@@ -56,7 +56,7 @@ const toggleDisplayMixin: StyleFunction<object> = (ctx) => {
   `;
 };
 
-const toggleBorderShapeMixin: StyleFunctionPick<StyledToggle, 'shape'> = (ctx) => {
+const toggleBorderShapeMixin: StyleFunctionRequirePick<StyledToggle, 'shape'> = (ctx) => {
   const { shape } = ctx.theme;
   return css`
     span {
@@ -64,7 +64,7 @@ const toggleBorderShapeMixin: StyleFunctionPick<StyledToggle, 'shape'> = (ctx) =
     }
   `;
 };
-const toggleBorderMixin: StyleFunctionPick<StyledToggle, 'borderType' | 'borderColor'> = (ctx) => {
+const toggleBorderMixin: StyleFunctionRequirePick<StyledToggle, 'borderType' | 'borderColor'> = (ctx) => {
   const {
     $borderType,
     $borderColor,
@@ -82,7 +82,7 @@ const toggleBorderMixin: StyleFunctionPick<StyledToggle, 'borderType' | 'borderC
   `;
 };
 
-const togglePseudoElementColorMixin: StyleFunctionPick<StyledToggle, 'color'> = (ctx) => {
+const togglePseudoElementColorMixin: StyleFunctionRequirePick<StyledToggle, 'color'> = (ctx) => {
   const {
     $color: color,
     theme: {
@@ -99,7 +99,7 @@ const togglePseudoElementColorMixin: StyleFunctionPick<StyledToggle, 'color'> = 
   `;
 };
 
-const toggleColorMixin: StyleFunctionPick<StyledToggle, 'color' | 'borderColor' | 'outlineColor'> = (ctx) => {
+const toggleColorMixin: StyleFunctionRequirePick<StyledToggle, 'color' | 'borderColor' | 'outlineColor'> = (ctx) => {
   const {
     $color: color,
     $outlineColor: outlineColor,

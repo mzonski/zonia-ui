@@ -1,4 +1,4 @@
-import { DolarPrefix, StyleFunctionPick } from '@zonia-ui/theme';
+import { DolarPrefix, StyleFunctionRequirePick } from '@zonia-ui/theme';
 import { css, StyleFunction } from 'styled-components';
 
 import { StyledToggle, toggleSizes } from '../../_shared';
@@ -29,7 +29,7 @@ const radioSizeMixin: StyleFunction<DolarPrefix<Pick<Required<StyledRadioProps>,
   `;
 };
 
-const radioShapeMixin: StyleFunctionPick<StyledToggle, 'shape'> = (ctx) => {
+const radioShapeMixin: StyleFunctionRequirePick<StyledToggle, 'shape'> = (ctx) => {
   const { shape } = ctx.theme;
 
   return css`

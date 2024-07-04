@@ -106,7 +106,7 @@ export const BadgeDisplay = () => {
   return (
     <div style={{ width: 400, height: 400, backgroundColor: secondaryColors.jadeGreenLight, overflow: 'hidden' }}>
       <SpacingBox $mh="2" $mt="5" $mb="2">
-        <Stack $wrap="wrap" $direction="row" $gap="4px">
+        <Stack $wrap="wrap" $flexDirection="row" $gap="4px">
           <Badge size="md" text={DUMMY_MESSAGE} />
           <Badge color="error" text={DUMMY_MESSAGE} />
           <Badge color="info" text={DUMMY_MESSAGE} />

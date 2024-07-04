@@ -38,7 +38,7 @@ const InputRenderer: typeof Controlled.render = (props) => {
   };
 
   return (
-    <Stack $gap="16px" $center>
+    <Stack $gap="4" $center>
       <Button size="2xs" onClick={() => console.log('Current ref', inputRef)}>
         Debug
       </Button>

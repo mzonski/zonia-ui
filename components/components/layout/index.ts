@@ -1,1 +1,1 @@
-export { default as SpaAppLayout } from './page/SinglePageAppLayout';
+export { default as SpaAppLayout } from './spa/SinglePageAppLayout';
