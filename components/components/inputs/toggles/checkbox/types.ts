@@ -1,13 +1,12 @@
 import { InputHTMLAttributes } from 'react';
-import { ValuesType } from 'utility-types';
 
-import type { StyledToggle } from '../_shared';
-
-export const checkboxSizes = ['sm', 'md', 'lg'] as const;
-export type CheckboxSize = ValuesType<typeof checkboxSizes>;
+import { StyledToggle, ToggleLabelProps } from '../_shared';
 
 export type StyledCheckboxProps = {
-  size?: CheckboxSize;
-} & StyledToggle;
+  // empty for now
+};
 
-export type CheckboxProps = StyledCheckboxProps & Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'color'>;
+export type CheckboxProps = StyledToggle &
+  ToggleLabelProps &
+  StyledCheckboxProps &
+  Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'color'>;

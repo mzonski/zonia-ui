@@ -1,4 +1,4 @@
-import { ThemePrimaryColor, ThemeTypographyTexts, ValidColorFormat } from '@zonia-ui/theme';
+import { ThemePrimaryColor, ThemeTypographyTexts } from '@zonia-ui/theme';
 import { ValuesType } from 'utility-types';
 
 export const ButtonStyle = ['contained', 'text'];

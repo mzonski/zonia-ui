@@ -5,7 +5,7 @@ import type { SpacingProps } from '../spacing/types';
 import type { BoxProps } from '../Box';
 import { Flexbox, type FlexProps } from './Flexbox';
 
-export type SpacingFlexBoxProps<C extends ElementType = 'div'> = BoxProps<C> & SpacingProps & FlexProps;
+export type SpacingFlexBoxProps<C extends ElementType = 'div' | 'span' | 'p'> = BoxProps<C> & SpacingProps & FlexProps;
 
 const SpacingFlexBox = styled(Flexbox)<SpacingFlexBoxProps>`
   ${spacingBoxMixin}

@@ -1,10 +1,10 @@
 import { css, StyleFunction } from 'styled-components';
 
-import { StyledHeadingProps } from '../HeadingVariant';
+import type { StyledHeadingProps } from '../HeadingVariant';
 import type { StyledTextProps } from '../TextVariant';
 
 export const textTypographyMixin: StyleFunction<StyledTextProps> = (ctx) => {
-  const { $variant, $color, $weight = 'medium' } = ctx;
+  const { $variant, $color, $weight = 'medium', $omitLineHeight } = ctx;
 
   const {
     components: {
@@ -22,7 +22,7 @@ export const textTypographyMixin: StyleFunction<StyledTextProps> = (ctx) => {
     color: ${fontColor ?? 'inherit'};
     font-weight: ${fontWeight};
     font-size: ${fontSize};
-    line-height: ${lineHeight};
+    line-height: ${$omitLineHeight ? fontSize : lineHeight};
   `;
 };
 

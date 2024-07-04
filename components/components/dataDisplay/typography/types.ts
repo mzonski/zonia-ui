@@ -1,10 +1,11 @@
 import { AsProp } from '@zonia-ui/core';
-import type { ThemeFontWeight, ThemeFontWeightType, ThemeTypographyHeads, ThemeTypographyTexts } from '@zonia-ui/theme';
+import type { ThemeFontWeightType, ThemeTypographyHeads, ThemeTypographyTexts } from '@zonia-ui/theme';
 import type { ElementType, PropsWithChildren } from 'react';
 
-export type BaseTypographyProps<TElement extends ElementType = 'span'> = PropsWithChildren & {
+export type BaseTypographyProps<TElement extends ElementType = 'span' | 'p' | 'div'> = PropsWithChildren & {
   weight?: ThemeFontWeightType;
   color?: 'white' | 'black';
+  omitLineHeight?: boolean;
 } & AsProp<TElement>;
 
 export type HeadingProps = BaseTypographyProps & {

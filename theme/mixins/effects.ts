@@ -1,4 +1,4 @@
-import { ThemeElevationSpacing, ThemeOutline, ThemePrimaryColor, ThemeShapeType, ThemeSpacings } from '@zonia-ui/theme';
+import { ThemeElevationSpacing, ThemeOutline, ThemePrimaryColor, ThemeSpacings } from '@zonia-ui/theme';
 import type { StyleFunction } from 'styled-components';
 import { css } from 'styled-components';
 

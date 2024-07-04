@@ -1,23 +1,18 @@
 import { ElementType, PropsWithChildren } from 'react';
 import styled from 'styled-components';
-import { DolarPrefix } from '@zonia-ui/theme';
 import { AsProp } from '@zonia-ui/core';
+import type { DolarPrefix } from '@zonia-ui/theme';
+import { SpacingBox } from '../../containers';
+import type { SpacingProps } from '../../containers/spacing/types';
+import { spacingBoxMixin } from '../../containers/spacing/utils/mixins';
 
-export type StyledBadgeProps = DolarPrefix<Pick<BadgeProps, 'size' | 'shape' | 'iconPosition' | 'color'>>;
-
-const StyledBadge = styled.div<Required<StyledBadgeProps>>`
-  ${badgeMixin}
+export const StyledPaper = styled.div<DolarPrefix<SpacingProps>>`
+  background-color: ${(props) => props.theme.colors.primary.grey100};
+  ${spacingBoxMixin}
 `;
 
-export type PaperProps<C extends ElementType = 'div'> = PropsWithChildren &
-  AsProp<C> & {
-    elevation: number;
-  };
+export type PaperProps<C extends ElementType = 'div'> = PropsWithChildren & AsProp<C>;
 
-export const Paper = ({ children }: Readonly<PaperProps>) => {
-  return (
-    <StyledBadge aria-label={text ?? 'Badge'} $size={size} $color={color} $shape={shape} $iconPosition={iconPosition}>
-      {children}
-    </StyledBadge>
-  );
+export const Paper = ({ children, ...props }: Readonly<PaperProps>) => {
+  return <StyledPaper {...props}>{children}</StyledPaper>;
 };

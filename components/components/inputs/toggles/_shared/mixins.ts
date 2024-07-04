@@ -1,6 +1,5 @@
 import {
   blendColors,
-  borderMixin,
   calculateTextContrast,
   colorMixin,
   fillAbsoluteSpaceMixin,
@@ -10,7 +9,7 @@ import {
 } from '@zonia-ui/theme';
 import { css, StyleFunction } from 'styled-components';
 
-import { StyledToggle } from './types';
+import type { StyledToggle } from './types';
 
 // TODO: Move
 const cursorMixin: StyleFunction<object> = () => {
@@ -25,36 +24,34 @@ const cursorMixin: StyleFunction<object> = () => {
   `;
 };
 
-const toggleDisplayMixin: StyleFunction<object> = () => {
+const toggleLabelAlignmentMixin: StyleFunctionPick<StyledToggle, 'hasText'> = (ctx) => {
+  const { $hasText } = ctx;
+
+  if ($hasText) return null;
+
   return css`
-    display: inline-block;
+    label > div {
+      align-content: center;
+      height: 100%;
+    }
+  `;
+};
+
+const toggleDisplayMixin: StyleFunction<object> = (ctx) => {
+  const { spacing } = ctx.theme;
+  return css`
+    display: inline-flex;
     position: relative;
+    gap: ${spacing['2.5']};
 
     span {
-      display: block;
-      ${fillAbsoluteSpaceMixin};
+      display: flex;
+      flex-grow: 0;
+      flex-shrink: 0;
     }
 
     input[type='checkbox'] {
       ${fillAbsoluteSpaceMixin};
-  `;
-};
-
-const toggleShapeMixin: StyleFunctionPick<StyledToggle, 'color'> = (ctx) => {
-  const {
-    $color: color,
-    theme: {
-      colors: { primary: primaryColors },
-    },
-  } = ctx;
-
-  const selectedColor = primaryColors[color];
-
-  return css`
-    span {
-      &:before {
-        background-color: ${calculateTextContrast(selectedColor)};
-      }
     }
   `;
 };
@@ -64,6 +61,23 @@ const toggleBorderShapeMixin: StyleFunctionPick<StyledToggle, 'shape'> = (ctx) =
   return css`
     span {
       border-radius: ${shape[ctx.$shape]};
+    }
+  `;
+};
+const toggleBorderMixin: StyleFunctionPick<StyledToggle, 'borderType' | 'borderColor'> = (ctx) => {
+  const {
+    $borderType,
+    $borderColor,
+    theme: {
+      colors: { primary },
+      borders: { size: borderSizes, defaultType },
+    },
+  } = ctx;
+
+  const borderColor = primary[$borderColor];
+  return css`
+    span {
+      border: ${borderSizes[$borderType]} ${defaultType} ${borderColor};
     }
   `;
 };
@@ -79,10 +93,8 @@ const togglePseudoElementColorMixin: StyleFunctionPick<StyledToggle, 'color'> = 
   const selectedColor = primaryColors[color];
 
   return css`
-    span {
-      &:before {
-        background-color: ${calculateTextContrast(selectedColor)};
-      }
+    span:before {
+      background-color: ${calculateTextContrast(selectedColor)};
     }
   `;
 };
@@ -90,7 +102,6 @@ const togglePseudoElementColorMixin: StyleFunctionPick<StyledToggle, 'color'> = 
 const toggleColorMixin: StyleFunctionPick<StyledToggle, 'color' | 'borderColor' | 'outlineColor'> = (ctx) => {
   const {
     $color: color,
-    $borderColor: borderColor,
     $outlineColor: outlineColor,
     theme: {
       colors: { primary: primaryColors },
@@ -100,15 +111,13 @@ const toggleColorMixin: StyleFunctionPick<StyledToggle, 'color' | 'borderColor' 
   const selectedColor = primaryColors[color];
 
   const checkedHoverBg = rgbaToHex(blendColors(selectedColor, primaryColors.white, 0.1));
-  const checkedActiveBg = rgbaToHex(blendColors(selectedColor, primaryColors.white, 0.2));
+  const checkedActiveBg = rgbaToHex(blendColors(selectedColor, primaryColors.white, 0.3));
 
   const uncheckedHoverBg = rgbaToHex(blendColors(selectedColor, primaryColors.white, 0.85));
   const uncheckedActiveBg = rgbaToHex(blendColors(selectedColor, primaryColors.white, 0.75));
-  // TODO: Remove border XD
   return css`
     span {
       ${colorMixin('bg', 'primary', 'grey100')}
-      ${borderMixin('tiny', 'all', borderColor)}
     }
 
     input[type='checkbox'] {
@@ -120,21 +129,25 @@ const toggleColorMixin: StyleFunctionPick<StyledToggle, 'color' | 'borderColor' 
         ${focusOutlineMixin('lg', outlineColor)}
       }
 
-      &:hover:checked:not(:disabled) + * {
+      &:hover:checked:not(:disabled) + *,
+      &:hover:indeterminate:not(:disabled) + * {
         background-color: ${checkedHoverBg};
       }
-      &:active:checked:not(:disabled) + * {
+
+      &:active:checked:not(:disabled) + *,
+      &:active:indeterminate:not(:disabled) + * {
         background-color: ${checkedActiveBg};
       }
 
-      &:hover:not(:checked):not(:disabled) + * {
+      &:hover:not(:checked, :indeterminate):not(:disabled) + * {
         background-color: ${uncheckedHoverBg};
       }
-      &:active:not(:checked):not(:disabled) + * {
+
+      &:active:not(:checked, :indeterminate):not(:disabled) + * {
         background-color: ${uncheckedActiveBg};
       }
 
-      &:disabled + * {
+      &:disabled ~ * {
         opacity: 0.4;
       }
     }
@@ -146,4 +159,6 @@ export const ToggleMixins = {
   pseudoElementColor: togglePseudoElementColorMixin,
   cursor: cursorMixin,
   shape: toggleBorderShapeMixin,
+  border: toggleBorderMixin,
+  label: toggleLabelAlignmentMixin,
 };

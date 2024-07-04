@@ -1,5 +1,4 @@
 import {
-  adjustLightness,
   blendColors,
   borderMixin,
   boxShadowMixin,
@@ -73,26 +72,27 @@ const buttonColorsMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'color' | '
   ruleBuilder.push(css`
     &:disabled {
       opacity: 0.4;
-      // color: ${primaryColors.grey500};
-      // background-color: ${variant === 'ghost' ? 'transparent' : primaryColors.white};
-      // border-color: ${primaryColors.grey400};
     }
   `);
 
   switch (variant) {
-    case 'primary':
+    case 'primary': {
+      const hoverBg = rgbaToHex(blendColors(selectedColor, primaryColors.white, 0.1));
+      const activeBg = rgbaToHex(blendColors(selectedColor, primaryColors.white, 0.3));
       ruleBuilder.push(css`
         background-color: ${selectedColor};
         color: ${calculateTextContrast(selectedColor)};
 
         &:hover:not(&:disabled) {
-          background-color: ${adjustLightness(selectedColor, 4)};
+          background-color: ${hoverBg};
         }
         &:active:not(&:disabled) {
-          background-color: ${adjustLightness(selectedColor, -2)};
+          background-color: ${activeBg};
         }
       `);
       break;
+    }
+
     case 'secondary':
       {
         const hoverBg = rgbaToHex(blendColors(selectedColor, primaryColors.white, 0.9));

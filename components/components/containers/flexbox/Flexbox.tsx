@@ -1,26 +1,26 @@
 import styled from 'styled-components';
 import type { Property } from 'csstype';
-import { SpacingBox } from '../spacing';
-import type { SpacingProps } from '../spacing/types';
+import { DolarPrefix } from '@zonia-ui/theme';
+import { AsProp } from '@zonia-ui/core';
 
 export type FlexProps = {
-  $inline?: boolean;
-  $direction?: Property.FlexDirection;
-  $justify?: Property.JustifyContent;
-  $align?: Property.AlignItems;
-  $wrap?: Property.FlexWrap;
-  $grow?: Property.FlexGrow;
-  $shrink?: Property.FlexShrink;
-  $basis?: Property.FlexBasis;
-  $alignContent?: Property.AlignContent;
-  $alignSelf?: Property.AlignSelf;
-  $flex?: Property.Flex;
-  $flexFlow?: Property.FlexFlow;
-  $gap?: Property.Gap;
-  $order?: Property.Order;
+  inline?: boolean;
+  direction?: Property.FlexDirection;
+  justify?: Property.JustifyContent;
+  align?: Property.AlignItems;
+  wrap?: Property.FlexWrap;
+  grow?: Property.FlexGrow;
+  shrink?: Property.FlexShrink;
+  basis?: Property.FlexBasis;
+  alignContent?: Property.AlignContent;
+  alignSelf?: Property.AlignSelf;
+  flex?: Property.Flex;
+  flexFlow?: Property.FlexFlow;
+  gap?: Property.Gap;
+  order?: Property.Order;
 };
 
-export const Flexbox = styled(SpacingBox)<FlexProps>`
+export const Flexbox = styled.div<DolarPrefix<FlexProps> & AsProp<'div' | 'span' | 'p'>>`
   display: ${(props) => (props.$inline ? 'inline-flex' : 'flex')};
   flex-direction: ${(props) => props.$direction};
   justify-content: ${(props) => props.$justify};

@@ -4,7 +4,7 @@ import { primaryColors } from '@zonia-ui/theme';
 import { defaultThemeTextTypography } from '@zonia-ui/theme/themes/typography';
 import { DUMMY_MESSAGE } from '@zonia-ui/core';
 import { expect, userEvent, waitFor, within } from '@storybook/test';
-import { Button } from './Button';
+import Button from './Button';
 import { ButtonSizes, ButtonVariants } from './types';
 
 const meta = {

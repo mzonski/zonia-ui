@@ -1,50 +1,38 @@
-import { DolarPrefix, fillAbsoluteSpaceMixin, valueToRem } from '@zonia-ui/theme';
+import { DolarPrefix } from '@zonia-ui/theme';
 import { css, StyleFunction } from 'styled-components';
 
+import { toggleSizes } from '../../_shared';
 import { StyledSwitchProps } from '../types';
 
-const switchBorderRadius: Record<NonNullable<StyledSwitchProps['size']>, number> = {
-  sm: 14,
-  md: 18,
-  lg: 22,
-};
+const switchSizeMixin: StyleFunction<DolarPrefix<Pick<Required<StyledSwitchProps>, 'size' | 'borderType'>>> = (ctx) => {
+  const {
+    $borderType,
+    $size: radioSize,
+    theme: {
+      borders: { size: borderSizes },
+    },
+  } = ctx;
 
-const switchSizeMixin: StyleFunction<DolarPrefix<Pick<Required<StyledSwitchProps>, 'size'>>> = (ctx) => {
-  const { $size: switchSize } = ctx;
+  const thumbPx = toggleSizes[radioSize];
 
-  const thumbPx = switchBorderRadius[switchSize];
-
-  const spacing = 3;
-
-  const height = thumbPx + spacing;
-  const width = thumbPx * 2 + spacing;
-  const topMargin = spacing / 2;
-  const thumbSize = thumbPx - topMargin;
-  const transformPx = width - spacing - topMargin - thumbSize;
+  const borderSize = borderSizes[$borderType];
 
   return css`
-    width: ${width}px;
-    height: ${height}px;
-
     span {
+      width: ${thumbPx * 2}px;
+      height: ${thumbPx}px;
       &:before {
-        top: ${valueToRem(topMargin)};
-        left: ${valueToRem(topMargin)};
-        height: ${valueToRem(thumbSize)};
-        width: ${valueToRem(thumbSize)};
+        width: calc(50% - (${borderSize} / 2));
+        height: calc(100%);
       }
     }
-
     input[type='checkbox'] {
-      width: ${width}px;
-      height: ${height}px;
-
       &:not(&:checked) + span:before {
-        transform: translateX(0);
+        transform: translateX(calc(${borderSize} / 2)) scale(0.75);
       }
 
       &:checked + span:before {
-        transform: translateX(${valueToRem(transformPx)});
+        transform: translateX(calc(${thumbPx}px - (${borderSize} / 2))) scale(0.75);
       }
     }
   `;
@@ -59,7 +47,6 @@ const switchPillMixin: StyleFunction<DolarPrefix<Pick<Required<StyledSwitchProps
   return css`
     span {
       &:before {
-        ${fillAbsoluteSpaceMixin};
         border-radius: ${shape[$pillShape]};
       }
     }

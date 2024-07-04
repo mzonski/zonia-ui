@@ -24,5 +24,10 @@ export default defineConfig({
     sourcemap: true,
     emptyOutDir: true,
   },
+  resolve: {
+    alias: {
+      lodash: 'lodash-es'
+    }
+  },
   plugins: [react(), dts()],
 });

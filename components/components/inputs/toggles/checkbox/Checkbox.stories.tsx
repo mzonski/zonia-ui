@@ -3,24 +3,22 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Stack } from '../../../containers';
 import { Button } from '../../button';
 import { ToggleStoryUtil } from '../_shared/toggle.storyutil';
-import { Checkbox } from './Checkbox';
-import { checkboxSizes } from './types';
+import Checkbox from './Checkbox';
 
 const meta = {
   ...ToggleStoryUtil.meta,
-  title: '2. Components/Input/Checkbox',
+  title: '2. Components/Input/Toggle/Checkbox',
   component: Checkbox,
   argTypes: {
     ...ToggleStoryUtil.meta.argTypes,
-    size: {
-      control: 'radio',
-      options: checkboxSizes,
+    disabled: {
+      checked: 'boolean',
     },
     onChange: { action: 'onChange' },
   },
   args: {
     ...ToggleStoryUtil.meta.args,
-    size: 'md',
+    disabled: false,
   },
 } satisfies Meta<typeof Checkbox>;
 
@@ -41,7 +39,7 @@ const InputRenderer: typeof Controlled.render = (props) => {
 
   return (
     <Stack $gap="16px" $center>
-      <Button size="2xs" onClick={() => console.debug('Current ref', inputRef)}>
+      <Button size="2xs" onClick={() => console.log('Current ref', inputRef)}>
         Debug
       </Button>
       <Button size="2xs" onClick={setIntermediate}>
@@ -64,13 +62,10 @@ export const Controlled: Story = {
     checked: {
       checked: 'boolean',
     },
-    disabled: {
-      checked: 'boolean',
-    },
     ...ToggleStoryUtil.disabledArgTypes,
     size: { table: { disable: true } },
   },
-  render: InputRenderer,
+  render: (props, ctx) => InputRenderer(props, ctx),
 };
 
 export const Uncontrolled: Story = {
@@ -87,5 +82,5 @@ export const Uncontrolled: Story = {
   args: {
     defaultChecked: false,
   },
-  render: InputRenderer,
+  render: (props, ctx) => InputRenderer(props, ctx),
 };

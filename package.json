@@ -5,7 +5,8 @@
   "private": true,
   "repository": "https://github.com/mzonski/zonia-ui.git",
   "scripts": {
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "fix:lint": "eslint --fix components"
   },
   "author": "Maciej Zonski <me@zonni.pl>",
   "license": "MIT",

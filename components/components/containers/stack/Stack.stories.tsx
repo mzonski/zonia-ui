@@ -20,7 +20,7 @@ export default {
     },
     $direction: {
       control: 'select',
-      options: ['column', 'row'],
+      options: ['column', 'row', 'column-reverse', 'row-reverse'],
     },
     children: { table: { disable: true } },
   },

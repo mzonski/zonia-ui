@@ -3,7 +3,7 @@ import { DUMMY_MESSAGE } from '@zonia-ui/core';
 
 import { primaryColors, secondaryColors, ValidSizeFormat } from '@zonia-ui/theme';
 
-import { keys } from 'fp-ts/Record';
+import { keys } from 'fp-ts/es6/Record';
 import { SpacingBox, Stack } from '../../containers';
 import { Badge } from './Badge';
 

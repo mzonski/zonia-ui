@@ -1,5 +1,5 @@
-import type { Meta /* StoryObj */ } from '@storybook/react';
-import { toEntries } from 'fp-ts/Record';
+import type { Meta } from '@storybook/react';
+import { toEntries } from 'fp-ts/es6/Record';
 import styled from 'styled-components';
 import {
   defaultBorderMixin,

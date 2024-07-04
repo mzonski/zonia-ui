@@ -23,7 +23,7 @@ const preview: Preview = {
     },
     darkMode: {
       dark: { ...themes.dark, appBg: 'black' },
-      light: { ...themes.normal, appBg: 'lightgrey' }
+      light: { ...themes.normal, appBg: primaryColors.grey300 }
     },
     backgrounds: {
       default: 'zui-light',

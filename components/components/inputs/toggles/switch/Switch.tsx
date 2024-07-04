@@ -16,26 +16,39 @@ const SwitchComponent = (
     color = 'primary',
     size = 'sm',
     outlineColor = 'primary',
-    borderColor = 'black',
-    shape = 'medium',
+    shape = 'pill',
     pillShape = 'oval',
+    borderType = 'tiny',
+    borderColor = 'black',
+    text,
+    label,
     ...props
   }: Readonly<SwitchProps>,
   ref: ForwardedRef<HTMLInputElement>,
 ) => {
   return (
     <Container
-      $color={color}
       $size={size}
-      $borderColor={borderColor}
-      $outlineColor={outlineColor}
       $shape={shape}
       $pillShape={pillShape}
+      $borderType={borderType}
+      $borderColor={borderColor}
+      $outlineColor={outlineColor}
+      $color={color}
+      $hasText={!!text}
     >
       <ToggleStyles.Input ref={ref} {...props} />
       <ToggleStyles.PseudoElement />
+      {!label && !text ? null : (
+        <ToggleStyles.HtmlLabel>
+          {label && <ToggleStyles.Label $omitLineHeight={!text}>{label}</ToggleStyles.Label>}
+          {text && <ToggleStyles.Text>{text}</ToggleStyles.Text>}
+        </ToggleStyles.HtmlLabel>
+      )}
     </Container>
   );
 };
 
-export const Switch = forwardRef(SwitchComponent);
+const Switch = forwardRef(SwitchComponent);
+
+export default Switch;
