@@ -16,7 +16,7 @@ export const StyledButtonGroup = styled(Stack).attrs<DolarPrefix<ButtonGroupProp
     ${ButtonMixins.size};
     ${ButtonMixins.shadows};
     ${ButtonMixins.typography};
-    ${ButtonMixins.shape};
+    ${ButtonMixins.border};
     ${ButtonMixins.colors};
   }
 `;

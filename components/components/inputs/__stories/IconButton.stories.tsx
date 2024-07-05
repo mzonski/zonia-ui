@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { primaryColors } from '@zonia-ui/theme';
+import { primaryColors, themeShape } from '@zonia-ui/theme';
 import { defaultThemeTextTypography } from '@zonia-ui/theme/themes/typography';
-import { DUMMY_MESSAGE } from '@zonia-ui/core';
-import { expect, userEvent, waitFor, within, spyOn } from '@storybook/test';
-import { Button, ButtonSizes, ButtonVariants } from '../button';
+import { expect, userEvent, waitFor, within } from '@storybook/test';
+import { IconButton } from '../iconButton';
+import { ButtonSizes, ButtonVariants } from '../button';
+import { DiamondIcon } from '../../../icons';
 
 const meta = {
   title: '2. Components/Input',
-  component: Button,
+  component: IconButton,
   parameters: {
     layout: 'centered',
   },
@@ -43,14 +44,15 @@ const meta = {
       control: 'boolean',
       defaultValue: 'false',
     },
-    children: {
-      control: 'text',
-      defaultValue: 'Zażółć geślą jaźń',
-    },
+    children: { table: { disable: true } },
     variant: {
       control: 'radio',
       options: ButtonVariants,
       defaultValue: 'primary',
+    },
+    shape: {
+      control: 'select',
+      options: themeShape,
     },
     onClick: { action: 'onClick' },
   },
@@ -62,30 +64,30 @@ const meta = {
     labelBold: false,
     disabled: false,
     fullWidth: false,
+    shape: 'oval',
     variant: 'primary',
   },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof IconButton>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const DefaultComponent: Story = {
-  name: 'Button',
+export const IconButtonStory: Story = {
+  name: 'IconButton',
   args: {
     size: 'md',
-    children: DUMMY_MESSAGE,
+    children: <DiamondIcon />,
     'data-testid': 'TEST_BUTTON',
   },
-  // play: async ({ args, canvasElement, step }) => {
-  //   const canvas = within(canvasElement);
-  //   const buttonElement = canvas.getByTestId('TEST_BUTTON');
-  //   const spy = spyOn(args, 'onClick');
-  //
-  //   await step('Click on button', async () => {
-  //     await userEvent.click(buttonElement);
-  //   });
-  //
-  //   await waitFor(() => expect(args.onClick).toHaveBeenCalled());
-  // },
+  play: async ({ args, canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    const buttonElement = canvas.getByTestId('TEST_BUTTON');
+
+    await step('Click on button', async () => {
+      await userEvent.click(buttonElement);
+    });
+
+    await waitFor(() => expect(args.onClick).toHaveBeenCalled());
+  },
 };

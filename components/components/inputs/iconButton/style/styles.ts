@@ -1,23 +1,25 @@
 import { DolarPrefix } from '@zonia-ui/theme';
 import styled from 'styled-components';
 
-import type { ButtonProps } from '../types';
+import { ButtonMixins } from '../../button/style';
+import type { IconButtonProps } from '../types';
 
-import { ButtonMixins } from './mixins';
+import { IconButtonMixins } from './mixins';
 
-export const StyledButton = styled.button<NonNullable<DolarPrefix<ButtonProps>>>`
+export const StyledIconButton = styled.button<NonNullable<DolarPrefix<IconButtonProps>>>`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 
-  ${ButtonMixins.size};
   ${ButtonMixins.shadows};
   ${ButtonMixins.typography};
   ${ButtonMixins.border};
   ${ButtonMixins.colors};
-  ${ButtonMixins.shape};
   ${ButtonMixins.transitions};
+
+  ${IconButtonMixins.size};
+  ${IconButtonMixins.shape};
 
   cursor: pointer;
 

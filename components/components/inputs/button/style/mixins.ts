@@ -126,6 +126,20 @@ const buttonColorsMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'color' | '
       `);
 
       break;
+    case 'text':
+      ruleBuilder.push(css`
+        background-color: transparent;
+        border-color: transparent;
+        box-shadow: unset;
+        //&:hover:not(&:disabled) {
+        //  border-color: transparent;
+        //}
+        &:active:not(&:disabled) {
+          border-color: ${selectedColor};
+        }
+      `);
+
+      break;
     default:
       break;
   }
@@ -148,18 +162,21 @@ function convertSizeToShadows(size: ButtonProps['size']): [ThemeElevationSpacing
 }
 
 const buttonShadowMixin: StyleFunction<
-  NonNullable<DolarPrefix<Pick<ButtonProps, 'size' | 'variant' | 'color' | 'shadowColor'>>>
+  NonNullable<DolarPrefix<Pick<ButtonProps, 'size' | 'variant' | 'shadowColor'>>>
 > = (ctx) => {
-  const { $shadowColor: shadowColor } = ctx;
-  const [hover, active] = convertSizeToShadows(ctx.$size);
+  const { $shadowColor, $variant, $size } = ctx;
+
+  if ($variant === 'text') return null;
+
+  const [hover, active] = convertSizeToShadows($size);
 
   return css`
     &:hover:not(&:disabled) {
-      ${boxShadowMixin(hover, shadowColor)};
+      ${boxShadowMixin(hover, $shadowColor)};
     }
 
     &:active:not(&:disabled) {
-      ${boxShadowMixin(active, shadowColor)};
+      ${boxShadowMixin(active, $shadowColor)};
     }
   `;
 };
@@ -190,7 +207,7 @@ const buttonTypographyMixin: StyleFunction<
   `;
 };
 
-const buttonShapeMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'variant'>>> = (ctx) => {
+const buttonBorderMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'variant'>>> = (ctx) => {
   const { $variant: variant } = ctx;
   const { size: borderSizes, defaultType } = ctx.theme.borders;
 
@@ -211,10 +228,31 @@ const buttonShapeMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'variant'>>>
   return ruleBuilder.build();
 };
 
+const buttonShapeMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'variant'>>> = (_ctx) => {
+  return css`
+    ${shapeMixin('medium')}
+  `;
+};
+
+const buttonTransitionMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'variant'>>> = (ctx) => {
+  const { $variant } = ctx;
+
+  if ($variant === 'text')
+    return css`
+      transition: border-color 0.15s cubic-bezier(0.38, 1.22, 0.54, 0.98);
+    `;
+
+  return css`
+    transition: box-shadow 0.15s cubic-bezier(0.38, 1.22, 0.54, 0.98);
+  `;
+};
+
 export const ButtonMixins = {
   typography: buttonTypographyMixin,
   size: buttonSizeMixin,
   colors: buttonColorsMixin,
   shadows: buttonShadowMixin,
+  border: buttonBorderMixin,
   shape: buttonShapeMixin,
+  transitions: buttonTransitionMixin,
 };

@@ -169,9 +169,5 @@ const buttonGroupBorderMixin: StyleFunction<DolarPrefix<Pick<ButtonGroupProps, '
 };
 
 export const ButtonGroupMixins = {
-  // typography: buttonTypographyMixin,
-  // size: buttonSizeMixin,
-  // colors: buttonColorsMixin,
-  // shadows: buttonShadowMixin,
   border: buttonGroupBorderMixin,
 };

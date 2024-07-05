@@ -5,6 +5,7 @@ import { Button, ButtonSizes, ButtonVariants } from '../button';
 import { directionMap } from '../../containers';
 import { DiamondIcon } from '../../../icons';
 import ButtonGroup from '../buttonGroup/ButtonGroup';
+import { IconButton } from '../iconButton';
 
 const meta = {
   title: '2. Components/Input/ButtonGroup',
@@ -76,14 +77,16 @@ const Buttons = [
   </Button>,
 ];
 
-export const Array: Story = {
+export const ButtonGroupArray: Story = {
+  name: 'Array',
   args: {
     children: Buttons,
     'data-testid': 'TEST_BUTTON',
   },
 };
 
-export const NestedChildren: Story = {
+export const ButtonGroupNestedChildren: Story = {
+  name: 'Nested children',
   args: {
     children: (
       <>
@@ -105,7 +108,8 @@ export const NestedChildren: Story = {
   },
 };
 
-export const IconButton: Story = {
+export const ButtonGroupIconStory: Story = {
+  name: 'MixedButtons',
   args: {
     children: (
       <>
@@ -117,10 +121,9 @@ export const IconButton: Story = {
           <DiamondIcon size={12} />
           Second
         </Button>
-        <Button key="b3">
+        <IconButton key="b3">
           <DiamondIcon size={16} />
-          Third
-        </Button>
+        </IconButton>
         <Button key="b4" color="black">
           <DiamondIcon size={20} />
         </Button>
