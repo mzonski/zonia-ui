@@ -5,7 +5,7 @@ import { primaryColors, secondaryColors, ValidSizeFormat } from '@zonia-ui/theme
 
 import { keys } from 'fp-ts/es6/Record';
 import { SpacingBox, Stack } from '../../containers';
-import { Badge } from './Badge';
+import { Badge } from '../badge';
 
 const meta = {
   title: '2. Components/Data display/Badge',
@@ -67,7 +67,7 @@ export const Display = () => {
   return (
     <div style={{ width: 400, height: 400, backgroundColor: secondaryColors.jadeGreenLight, overflow: 'scroll' }}>
       <SpacingBox $mh="2" $mt="5" $mb="2">
-        <Stack $wrap="wrap" $direction="row" $gap="1">
+        <Stack $wrap="wrap" $direction="right" $gap="1">
           <Badge color="primary" text={DUMMY_MESSAGE} icon={Icon} iconPosition="left" />
           <Badge color="error" text={DUMMY_MESSAGE} icon={Icon} iconPosition="right" />
           {keys(primaryColors).map((key) => (

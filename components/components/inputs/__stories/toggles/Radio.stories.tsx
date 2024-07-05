@@ -2,20 +2,20 @@ import { useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Stack } from '../../../containers';
 import { Button } from '../../button';
-import { ToggleStoryUtil } from '../_shared/toggle.storyutil';
-import Radio from './Radio';
+import Radio from '../../toggles/radio/Radio';
+import { ToggleStoryutil } from './Toggle.storyutil';
 
 const meta = {
-  ...ToggleStoryUtil.meta,
+  ...ToggleStoryutil.meta,
   title: '2. Components/Input/Toggle/Radio',
   component: Radio,
   argTypes: {
-    ...ToggleStoryUtil.meta.argTypes,
+    ...ToggleStoryutil.meta.argTypes,
     onChange: { action: 'onChange' },
     onFocus: { action: 'onFocus' },
   },
   args: {
-    ...ToggleStoryUtil.meta.args,
+    ...ToggleStoryutil.meta.args,
     shape: 'oval',
   },
 } satisfies Meta<typeof Radio>;
@@ -54,7 +54,7 @@ export const Controlled: Story = {
     disabled: {
       checked: 'boolean',
     },
-    ...ToggleStoryUtil.disabledArgTypes,
+    ...ToggleStoryutil.disabledArgTypes,
     size: { table: { disable: true } },
     borderType: { table: { disable: true } },
   },
@@ -64,7 +64,7 @@ export const Controlled: Story = {
 export const Uncontrolled: Story = {
   argTypes: {
     checked: { table: { disable: true } },
-    ...ToggleStoryUtil.disabledArgTypes,
+    ...ToggleStoryutil.disabledArgTypes,
     size: { table: { disable: true } },
     borderType: { table: { disable: true } },
     defaultChecked: {

@@ -26,6 +26,7 @@
   "include": [
     "index.ts",
     "types",
+    "icons",
     "foundations",
     "components",
     "components/themeOverride.d.ts",

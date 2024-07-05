@@ -3,15 +3,15 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { themeShape } from '@zonia-ui/theme/constants/shape';
 import { Button } from '../../button';
 import { Stack } from '../../../containers';
-import { ToggleStoryUtil } from '../_shared/toggle.storyutil';
-import Switch from './Switch';
+import Switch from '../../toggles/switch/Switch';
+import { ToggleStoryutil } from './Toggle.storyutil';
 
 const meta = {
-  ...ToggleStoryUtil.meta,
+  ...ToggleStoryutil.meta,
   title: '2. Components/Input/Toggle/Switch',
   component: Switch,
   argTypes: {
-    ...ToggleStoryUtil.meta.argTypes,
+    ...ToggleStoryutil.meta.argTypes,
     checked: {
       control: 'boolean',
     },
@@ -27,7 +27,7 @@ const meta = {
     onFocus: { action: 'onFocus' },
   },
   args: {
-    ...ToggleStoryUtil.meta.args,
+    ...ToggleStoryutil.meta.args,
     pillShape: 'oval',
     shape: 'large',
     disabled: false,
@@ -67,7 +67,7 @@ const InputRenderer: typeof Controlled.render = (props) => {
 
 export const Uncontrolled: Story = {
   argTypes: {
-    ...ToggleStoryUtil.disabledArgTypes,
+    ...ToggleStoryutil.disabledArgTypes,
     pillShape: { table: { disable: true } },
     checked: { table: { disable: true } },
     defaultChecked: {
@@ -82,7 +82,7 @@ export const Uncontrolled: Story = {
 };
 export const Controlled: Story = {
   argTypes: {
-    ...ToggleStoryUtil.disabledArgTypes,
+    ...ToggleStoryutil.disabledArgTypes,
     defaultChecked: { table: { disable: true } },
     pillShape: { table: { disable: true } },
     checked: {

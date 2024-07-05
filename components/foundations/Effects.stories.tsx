@@ -53,10 +53,10 @@ export const Effects = () => {
       title="Effects"
       subtitle="Shadows are commonly used to create depth, hierarchy, and visual separation between the elements. They provide a sense of realism and help users understand spatial relationships between different UI components."
     >
-      <Stack $gap="32px">
+      <Stack $gap="8">
         <div>
           <HeadingVariant variant="h4">Shadow</HeadingVariant>
-          <StyledEffectRow $direction="row" $gap="32px" $justify="space-around">
+          <StyledEffectRow $direction="right" $gap="8" $justify="space-around">
             <StyledShadowItem $type="md" $color="black">
               <TextVariant weight="bold">md</TextVariant>
             </StyledShadowItem>
@@ -70,7 +70,7 @@ export const Effects = () => {
         </div>
         <div>
           <HeadingVariant variant="h4">Color shadow</HeadingVariant>
-          <StyledEffectRow $direction="row" $gap="32px" $justify="space-around">
+          <StyledEffectRow $direction="right" $gap="8" $justify="space-around">
             <StyledShadowItem $type="md" $color="primary">
               <TextVariant weight="bold">md</TextVariant>
             </StyledShadowItem>
@@ -84,7 +84,7 @@ export const Effects = () => {
         </div>
         <div>
           <HeadingVariant variant="h4">Focus ring color</HeadingVariant>
-          <StyledEffectRow $direction="row" $gap="32px" $justify="space-around">
+          <StyledEffectRow $direction="right" $gap="8" $justify="space-around">
             <StyledOutlineItem $type="md" $color="primary">
               <TextVariant weight="bold">md</TextVariant>
             </StyledOutlineItem>
@@ -100,19 +100,3 @@ export const Effects = () => {
     </FoundationPage>
   );
 };
-
-/*
-export const BadgeDisplay = () => {
-  return (
-    <div style={{ width: 400, height: 400, backgroundColor: secondaryColors.jadeGreenLight, overflow: 'hidden' }}>
-      <SpacingBox $mh="2" $mt="5" $mb="2">
-        <Stack $wrap="wrap" $flexDirection="row" $gap="4px">
-          <Badge size="md" text={DUMMY_MESSAGE} />
-          <Badge color="error" text={DUMMY_MESSAGE} />
-          <Badge color="info" text={DUMMY_MESSAGE} />
-        </Stack>
-      </SpacingBox>
-    </div>
-  );
-};
-*/

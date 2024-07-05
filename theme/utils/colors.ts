@@ -1,9 +1,8 @@
 /* eslint-disable no-bitwise */
 // TODO: This code needs to be refactored
-import { HexColor } from '@zonia-ui/components/types';
 import { isNumber } from '@zonia-ui/core';
 
-import type { ValidColorFormat } from '../types';
+import type { HexColor, ValidColorFormat } from '../types';
 
 import { isHexColor, isValidColorFormat } from './guards';
 

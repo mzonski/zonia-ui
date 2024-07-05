@@ -2,22 +2,22 @@ import { useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Stack } from '../../../containers';
 import { Button } from '../../button';
-import { ToggleStoryUtil } from '../_shared/toggle.storyutil';
-import Checkbox from './Checkbox';
+import Checkbox from '../../toggles/checkbox/Checkbox';
+import { ToggleStoryutil } from './Toggle.storyutil';
 
 const meta = {
-  ...ToggleStoryUtil.meta,
+  ...ToggleStoryutil.meta,
   title: '2. Components/Input/Toggle/Checkbox',
   component: Checkbox,
   argTypes: {
-    ...ToggleStoryUtil.meta.argTypes,
+    ...ToggleStoryutil.meta.argTypes,
     disabled: {
       checked: 'boolean',
     },
     onChange: { action: 'onChange' },
   },
   args: {
-    ...ToggleStoryUtil.meta.args,
+    ...ToggleStoryutil.meta.args,
     disabled: false,
   },
 } satisfies Meta<typeof Checkbox>;
@@ -62,7 +62,7 @@ export const Controlled: Story = {
     checked: {
       checked: 'boolean',
     },
-    ...ToggleStoryUtil.disabledArgTypes,
+    ...ToggleStoryutil.disabledArgTypes,
     size: { table: { disable: true } },
   },
   render: (props, ctx) => InputRenderer(props, ctx),

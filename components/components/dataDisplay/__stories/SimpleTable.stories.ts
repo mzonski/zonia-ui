@@ -2,8 +2,8 @@ import { faker } from '@faker-js/faker';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ValuesType } from 'utility-types';
 
-import SimpleTable, { SimpleTableProps } from './SimpleTable';
-import { SimpleTableRequiredProps } from './types';
+import SimpleTable, { SimpleTableProps } from '../table/simpleTable/SimpleTable';
+import { SimpleTableRequiredProps } from '../table/simpleTable/types';
 
 const meta = {
   title: '2. Components/Data display/Table/Simple',

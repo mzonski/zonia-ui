@@ -2,6 +2,7 @@ import type { Property } from 'csstype';
 import type { ValuesType } from 'utility-types';
 
 import { primaryColors, secondaryColors } from '../constants';
+import { themeBorderSize } from '../constants/borderSizes';
 import { themeFontWeights, themeFontWeightType } from '../constants/fontWeights';
 import { themeShape, themeShapes } from '../constants/shape';
 import { baseTheme } from '../themes/baseTheme';
@@ -30,7 +31,7 @@ export type ThemeTypographyTypes = keyof typeof baseTheme.components.typography;
 export type ThemeTypographyHeads = keyof typeof defaultThemeHeadTypography;
 export type ThemeTypographyTexts = keyof typeof defaultThemeTextTypography;
 
-export type ThemeBorderSizes = keyof typeof baseTheme.borders.size;
+export type ThemeBorderSizes = keyof typeof themeBorderSize;
 
 export type ThemeFontWeightType = ValuesType<typeof themeFontWeightType>;
 export type ThemeFontWeight = typeof themeFontWeights;

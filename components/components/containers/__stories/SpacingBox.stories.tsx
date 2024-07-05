@@ -1,15 +1,17 @@
 import { PropsWithChildren } from 'react';
-import type { Meta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import styled from 'styled-components';
-import { DUMMY_MESSAGE } from '@zonia-ui/core';
+import { AsProp, DUMMY_MESSAGE, getRandomPangram } from '@zonia-ui/core';
 import { baseTheme } from '@zonia-ui/theme/themes/baseTheme';
+import { DolarPrefix } from '@zonia-ui/theme';
 import { HeadingVariant } from '../../dataDisplay';
-import type { SpacingBoxProps } from './SpacingBox';
-import { SpacingBox as component } from './SpacingBox';
+import { SpacingBox } from '../spacing';
+import type { SpacingProps } from '../spacing';
 
 const meta = {
   title: '2. Components/Containers',
-  component,
+  // @ts-expect-error Still haven't figured out props :/
+  component: SpacingBox,
   parameters: {
     layout: 'none',
   },
@@ -40,28 +42,31 @@ const meta = {
       options: Object.keys(baseTheme.spacing),
     },
   },
-} satisfies Meta<typeof component>;
+  args: {
+    as: 'div',
+    $mh: '0.5',
+    $mt: 'px',
+    $mb: '56',
+    // @ts-expect-error Story
+    $ph: '44',
+    $pt: '10',
+    $pb: '24',
+    children: <HeadingVariant variant="h3">{DUMMY_MESSAGE}</HeadingVariant>,
+  },
+} satisfies Meta<DolarPrefix<SpacingProps> & AsProp<'div' | 'span' | 'p'> & PropsWithChildren>;
 export default meta;
 
-const DisplayElement = styled(component)`
+type Story = StoryObj<object>;
+
+const DisplayElement = styled(SpacingBox)`
   background-image: linear-gradient(to bottom, #4adc7f 0%, #4adc7f 100%),
     linear-gradient(to bottom, #f56565 0%, #f56565 100%);
   background-clip: content-box, padding-box;
 `;
 
-export const SpacingBox = (props: SpacingBoxProps & PropsWithChildren) => {
-  return <DisplayElement {...props} />;
-};
-
-SpacingBox.args = {
-  as: 'div',
-  $mh: 0.5,
-  $mt: 'px',
-  $mb: 56,
-  $ph: 44,
-  $pt: 10,
-  $pb: 24,
-  children: <HeadingVariant variant="h3">{DUMMY_MESSAGE}</HeadingVariant>,
+export const SpacingBoxStory: Story = {
+  name: 'SpacingBox',
+  render: (props) => <DisplayElement {...props}>{getRandomPangram()}</DisplayElement>,
 };
 
 // TODO: ogarnij jak przekazywać parametry

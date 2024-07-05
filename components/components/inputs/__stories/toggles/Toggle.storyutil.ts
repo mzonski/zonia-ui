@@ -4,7 +4,7 @@ import { primaryColors } from '@zonia-ui/theme';
 import { themeShape } from '@zonia-ui/theme/constants/shape';
 import { keys } from 'fp-ts/es6/Record';
 
-import { StyledToggle, ToggleLabelProps, toggleSizes } from './types';
+import { StyledToggle, ToggleLabelProps, toggleSizes } from '../../toggles/_shared';
 
 const toggleStyleMeta = {
   parameters: {
@@ -64,7 +64,7 @@ const disabledToggleStyleArgTypes = {
   size: { table: { disable: true } },
 };
 
-export const ToggleStoryUtil = {
+export const ToggleStoryutil = {
   meta: toggleStyleMeta,
   disabledArgTypes: disabledToggleStyleArgTypes,
 };

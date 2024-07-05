@@ -4,7 +4,7 @@ import { AsProp } from '@zonia-ui/core';
 import { DUMMY_MESSAGE } from '@zonia-ui/core/constants';
 import { DolarPrefix } from '@zonia-ui/theme';
 
-import { Flexbox as component, FlexProps } from './Flexbox.tsx';
+import { Flexbox as component, FlexProps } from '../flexbox/Flexbox.tsx';
 
 const meta = {
   title: '2. Components/Containers',

@@ -1,13 +1,12 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import type { Property } from 'csstype';
-import { calculateTextContrast, DolarPrefix, StyleFunctionRequirePick, ThemeSpacings } from '@zonia-ui/theme';
+import { DolarPrefix, ThemeSpacings } from '@zonia-ui/theme';
 import { AsProp } from '@zonia-ui/core';
-import type { StyledToggle } from '../../inputs/toggles/_shared';
 import { FlexboxMixins } from './mixins';
 
 export type FlexProps = {
   inline?: boolean;
-  gap?: ThemeSpacings;
+  flexGap?: ThemeSpacings;
   columnGap?: ThemeSpacings;
   rowGap?: ThemeSpacings;
   flexDirection?: Property.FlexDirection;
@@ -27,7 +26,7 @@ export type FlexProps = {
 export const Flexbox = styled.div<DolarPrefix<FlexProps> & AsProp<'div' | 'span' | 'p'>>`
   ${FlexboxMixins.gap}
   display: ${(props) => (props.$inline ? 'inline-flex' : 'flex')};
-  flex-direction: ${(props) => props.$direction};
+  flex-direction: ${(props) => props.$flexDirection};
   justify-content: ${(props) => props.$justify};
   align-items: ${(props) => props.$align};
   flex-wrap: ${(props) => props.$wrap};

@@ -2,8 +2,8 @@ import React from 'react';
 import type { Meta } from '@storybook/react';
 import { Button } from '../../inputs/button';
 import { Flexbox } from '../../containers';
-import SinglePageAppLayout from './SinglePageAppLayout';
-import { useSPALayoutCollapseContext } from './contexts/CollapseContext';
+import SinglePageAppLayout from '../spa/SinglePageAppLayout';
+import { useSPALayoutCollapseContext } from '../spa/contexts/CollapseContext';
 
 const meta = {
   title: '2. Components/Layout',

@@ -1,4 +1,5 @@
 import { primaryColors, secondaryColors, DEFAULT_FONT_SIZE } from '../constants';
+import { themeBorderSize } from '../constants/borderSizes';
 import { themeFontWeights } from '../constants/fontWeights';
 import { themeShapes } from '../constants/shape';
 import { valueToRem } from '../utils';
@@ -31,12 +32,7 @@ export const baseTheme = {
     outline: themeElevationOutline,
   },
   borders: {
-    size: {
-      tiny: valueToRem(1),
-      small: valueToRem(1.5),
-      medium: valueToRem(2.25),
-      large: valueToRem(3),
-    },
+    size: themeBorderSize,
     color: primaryColors.black,
     defaultType: 'solid',
     defaultShape: valueToRem(4),

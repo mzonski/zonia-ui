@@ -1,6 +1,6 @@
 import { isNumber, isString } from '@zonia-ui/core';
 
-import { DEFAULT_FONT_SIZE } from '../constants';
+import { DEFAULT_FONT_SIZE } from '../constants/fonts';
 import type { ValidSizeFormat } from '../types';
 
 import { isValueSizeEm, isValueSizePx, isValueSizeRem } from './guards';
