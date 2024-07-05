@@ -27,6 +27,7 @@
     "index.ts",
     "types",
     "icons",
+    "style",
     "foundations",
     "components",
     "components/themeOverride.d.ts",

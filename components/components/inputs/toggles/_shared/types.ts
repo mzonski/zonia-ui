@@ -1,5 +1,6 @@
-import { ThemeBorderSizes, ThemePrimaryColor, ThemeShapeType } from '@zonia-ui/theme';
 import { ReactNode } from 'react';
+
+import { ThemeStyledProps } from '../../../../style/props';
 
 export const toggleSizes = {
   sm: 16,
@@ -10,14 +11,9 @@ export const toggleSizes = {
 export type ToggleSizeType = keyof typeof toggleSizes;
 
 export type StyledToggle = {
-  color?: ThemePrimaryColor;
-  outlineColor?: ThemePrimaryColor;
-  borderColor?: ThemePrimaryColor;
-  shape?: ThemeShapeType;
-  borderType?: ThemeBorderSizes;
   size?: ToggleSizeType;
   hasText?: boolean;
-};
+} & ThemeStyledProps;
 
 export type ToggleLabelProps = {
   label?: ReactNode | string;

@@ -16,7 +16,7 @@ import { FoundationPage } from './storyBlocks/FoundationPage';
 const meta = {
   title: '1. Foundations',
   parameters: {
-    layout: 'fullscreen',
+    layout: 'centered',
   },
 } satisfies Meta;
 
@@ -43,7 +43,7 @@ const StyledSecondaryColorItem = styled(StyledColorItem)<{ $color: ThemeSecondar
 export const Colors = () => {
   return (
     <FoundationPage title="Color palette" subtitle="Because we're using only displayed colors. None other allowed.">
-      <Stack $gap="32px">
+      <Stack $gap="8">
         <div>
           <HeadingVariant variant="h4">Primary colors</HeadingVariant>
           <Flexbox>

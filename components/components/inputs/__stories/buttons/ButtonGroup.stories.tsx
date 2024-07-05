@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { primaryColors } from '@zonia-ui/theme';
-import { defaultThemeTextTypography } from '@zonia-ui/theme/themes/typography';
-import { Button, ButtonSizes, ButtonVariants } from '../button';
-import { directionMap } from '../../containers';
-import { DiamondIcon } from '../../../icons';
-import ButtonGroup from '../buttonGroup/ButtonGroup';
-import { IconButton } from '../iconButton';
+import { omit } from 'lodash';
+import { Button } from '../../button';
+import { directionMap } from '../../../containers';
+import { DiamondIcon } from '../../../../icons';
+import ButtonGroup from '../../buttonGroup/ButtonGroup';
+import { IconButton } from '../../iconButton';
+import { ButtonStoryUtil } from './Button.storyutil';
 
 const meta = {
   title: '2. Components/Input/ButtonGroup',
@@ -15,44 +15,21 @@ const meta = {
   },
   argTypes: {
     onClick: { action: 'onClick' },
-    color: {
-      control: 'select',
-      options: Object.keys(primaryColors),
-      defaultValue: 'primary',
-    },
-    shadowColor: {
-      control: 'select',
-      options: Object.keys(primaryColors),
-      defaultValue: 'black',
-    },
-    labelTextVariant: {
-      control: 'select',
-      options: Object.keys(defaultThemeTextTypography),
-    },
-    size: {
-      control: 'radio',
-      options: ButtonSizes,
-    },
-    labelBold: {
-      control: 'boolean',
-      defaultValue: 'false',
-    },
-    fullWidth: {
-      control: 'boolean',
-      defaultValue: 'false',
-    },
+    ...omit(ButtonStoryUtil.meta.argTypes, 'fill'),
     direction: {
       control: 'select',
       options: Object.keys(directionMap),
     },
-    children: { table: { disable: true } },
-    variant: {
-      control: 'radio',
-      options: ButtonVariants,
-      defaultValue: 'primary',
+    stick: {
+      control: 'select',
+      options: [...Object.keys(directionMap), 'undefined'],
     },
+    children: { table: { disable: true } },
   },
-  args: {},
+  args: {
+    ...omit(ButtonStoryUtil.meta.args, 'fill'),
+    direction: 'right',
+  },
 } satisfies Meta<typeof ButtonGroup>;
 
 export default meta;
@@ -109,29 +86,29 @@ export const ButtonGroupNestedChildren: Story = {
 };
 
 export const ButtonGroupIconStory: Story = {
-  name: 'MixedButtons',
+  name: 'Mixed buttons',
   args: {
     children: (
       <>
         <Button key="b1" color="success">
-          <DiamondIcon size={8} />
+          <DiamondIcon />
           First
         </Button>
         <Button key="b2" color="error">
-          <DiamondIcon size={12} />
+          <DiamondIcon />
           Second
         </Button>
         <IconButton key="b3">
-          <DiamondIcon size={16} />
+          <DiamondIcon />
         </IconButton>
         <Button key="b4" color="black">
-          <DiamondIcon size={20} />
+          <DiamondIcon />
         </Button>
         <Button key="b5">
-          <DiamondIcon size={24} />
+          <DiamondIcon />
         </Button>
         <Button key="b6">
-          <DiamondIcon size={46} />
+          <DiamondIcon />
         </Button>
       </>
     ),

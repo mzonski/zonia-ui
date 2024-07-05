@@ -27,7 +27,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<StoryProps>;
 
 const InputRenderer = (props: StoryProps) => {
   const [toggled, , set] = useToggle(props.checked);
@@ -41,13 +41,13 @@ const InputRenderer = (props: StoryProps) => {
   };
 
   return (
-    <Stack $gap="4">
-      <Stack $gap="4" $direction="row">
+    <Stack $gap="4" $direction="bottom" $wrap="nowrap">
+      <Stack $gap="4" $direction="right" $wrap="nowrap">
         <Switch {...props} shape="large" checked={toggled} onChange={onChange} label={undefined} text={undefined} />
         <Radio {...props} checked={toggled} onChange={onChange} label={undefined} text={undefined} />
         <Checkbox {...props} checked={toggled} onChange={onChange} label={undefined} text={undefined} />
       </Stack>
-      <Stack $gap="4">
+      <Stack $gap="4" $direction="bottom" $wrap="nowrap">
         <Switch {...props} shape="large" checked={toggled} onChange={onChange} />
         <Radio {...props} checked={toggled} onChange={onChange} />
         <Checkbox {...props} checked={toggled} onChange={onChange} />
@@ -57,6 +57,7 @@ const InputRenderer = (props: StoryProps) => {
 };
 
 export const AllToggles: Story = {
+  name: 'All toggles',
   args: {
     checked: true,
     disabled: false,
@@ -69,5 +70,5 @@ export const AllToggles: Story = {
       checked: 'boolean',
     },
   },
-  render: InputRenderer,
+  render: (props) => InputRenderer(props),
 };

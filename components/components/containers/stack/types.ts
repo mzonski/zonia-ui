@@ -10,7 +10,7 @@ export const directionMap = {
   bottom: 'column',
 } as const;
 
-export type StackProps = Pick<FlexProps, 'inline' | 'flexGap'> & {
+export type StackProps = Pick<FlexProps, 'inline' | 'flexGap' | 'justify' | 'align'> & {
   center?: boolean;
   direction?: keyof typeof directionMap;
   shape?: ThemeShapeType;

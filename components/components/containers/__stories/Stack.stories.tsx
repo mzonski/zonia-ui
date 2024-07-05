@@ -2,7 +2,7 @@ import { DUMMY_MESSAGE } from '@zonia-ui/core/constants';
 
 import { createArray } from '@zonia-ui/core/utils';
 import { themeSpacing } from '@zonia-ui/theme/themes/spacing';
-import { primaryColors, themeBorderSize, themeShape } from '@zonia-ui/theme';
+import { primaryColors, themeBorderSize, themeShapeKey } from '@zonia-ui/theme';
 import { Stack as component, directionMap } from '../stack';
 
 export default {
@@ -38,7 +38,7 @@ export default {
     },
     $shape: {
       control: 'select',
-      options: themeShape,
+      options: themeShapeKey,
     },
     children: { table: { disable: true } },
   },

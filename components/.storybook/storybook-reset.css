@@ -1,30 +1,22 @@
-html {
-  width: 100%;
-  height: 100%;
-}
-
 body {
-  width: 100%;
-  height: 100%;
-}
+  .sb-show-main.sb-main-centered {
+    min-height: unset;
+  }
 
-.sb-show-main.sb-main-centered {
-  min-height: unset;
-}
+  .sb-main-centered {
+    #storybook-root {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: auto;
+    }
+  }
 
-.sb-main-centered {
-  #storybook-root {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    overflow: auto;
+  &:not(.sb-main-centered ) {
+    #storybook-root {
+      height: 100vh;
+    }
   }
 }
 
-.sb-main-fullscreen {
-  #storybook-root {
-    width: 100%;
-    height: 100%;
-  }
-}

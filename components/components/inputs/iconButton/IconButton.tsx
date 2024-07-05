@@ -17,6 +17,7 @@ const ButtonComponent = (
     variant = 'primary',
     shadowColor = 'black',
     shape = 'oval',
+    fill = false,
     ...buttonProps
   }: ButtonComponentProps,
   ref: ForwardedRef<HTMLButtonElement>,
@@ -33,6 +34,7 @@ const ButtonComponent = (
       $variant={variant}
       $shadowColor={shadowColor}
       $shape={shape}
+      $fill={fill}
     >
       {children}
     </StyledIconButton>

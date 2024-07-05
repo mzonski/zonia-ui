@@ -34,11 +34,6 @@ export function typographyMixin(
     rules.push(css`
       font-size: ${fontSize};
       line-height: ${lineHeight};
-
-      svg {
-        width: ${fontSize};
-        height: ${fontSize};
-      }
     `);
 
     if (weight) {

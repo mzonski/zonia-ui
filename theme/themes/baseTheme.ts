@@ -1,7 +1,7 @@
 import { primaryColors, secondaryColors, DEFAULT_FONT_SIZE } from '../constants';
 import { themeBorderSize } from '../constants/borderSizes';
-import { themeFontWeights } from '../constants/fontWeights';
-import { themeShapes } from '../constants/shape';
+import { themeFontWeightMap } from '../constants/fontWeights';
+import { themeShapeMap } from '../constants/shape';
 import { valueToRem } from '../utils';
 
 import { themeElevationOutline, themeElevationSpacing } from './elevation';
@@ -24,9 +24,9 @@ export const baseTheme = {
   fonts: {
     defaultSize: `${DEFAULT_FONT_SIZE}px`,
     defaultFamily: `'Plus Jakarta Sans Variable'`, // 'Inter', 'Plus Jakarta Sans Variable'
-    weights: themeFontWeights,
+    weights: themeFontWeightMap,
   },
-  shape: themeShapes,
+  shape: themeShapeMap,
   elevation: {
     spacing: themeElevationSpacing,
     outline: themeElevationOutline,

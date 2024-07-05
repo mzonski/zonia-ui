@@ -2,9 +2,9 @@ import type { Property } from 'csstype';
 
 import type { ThemeShapeType } from '../types';
 
-export const themeShape = ['sharp', 'rounded', 'medium', 'pill', 'large', 'oval'] as const;
+export const themeShapeKey = ['sharp', 'rounded', 'medium', 'pill', 'large', 'oval'] as const;
 
-export const themeShapes = {
+export const themeShapeMap = {
   sharp: '0',
   rounded: '2px',
   medium: '4px',

@@ -11,19 +11,6 @@ import { css, StyleFunction } from 'styled-components';
 
 import type { StyledToggle } from './types';
 
-// TODO: Move
-const cursorMixin: StyleFunction<object> = () => {
-  return css`
-    input[type='checkbox'] {
-      cursor: pointer;
-
-      &:disabled {
-        cursor: not-allowed;
-      }
-    }
-  `;
-};
-
 const toggleLabelAlignmentMixin: StyleFunctionRequirePick<StyledToggle, 'hasText'> = (ctx) => {
   const { $hasText } = ctx;
 
@@ -157,7 +144,6 @@ export const ToggleMixins = {
   display: toggleDisplayMixin,
   color: toggleColorMixin,
   pseudoElementColor: togglePseudoElementColorMixin,
-  cursor: cursorMixin,
   shape: toggleBorderShapeMixin,
   border: toggleBorderMixin,
   label: toggleLabelAlignmentMixin,

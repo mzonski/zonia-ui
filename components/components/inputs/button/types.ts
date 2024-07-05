@@ -18,4 +18,5 @@ export type ButtonProps = {
   variant?: ButtonVariant;
   shadowColor?: ThemePrimaryColor;
   fullWidth?: boolean;
+  fill?: boolean;
 };

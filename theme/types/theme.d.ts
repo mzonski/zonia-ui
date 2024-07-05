@@ -1,10 +1,17 @@
 import type { Property } from 'csstype';
 import type { ValuesType } from 'utility-types';
 
-import { primaryColors, secondaryColors } from '../constants';
-import { themeBorderSize } from '../constants/borderSizes';
-import { themeFontWeights, themeFontWeightType } from '../constants/fontWeights';
-import { themeShape, themeShapes } from '../constants/shape';
+import {
+  primaryColors,
+  secondaryColors,
+  themeBorderSize,
+  themeFontWeightMap,
+  themeFontWeightKey,
+  themeShapeKey,
+  themeShapeMap,
+  themePrimaryColorKey,
+  themeSecondaryColorsKey,
+} from '../constants';
 import { baseTheme } from '../themes/baseTheme';
 import { themeElevationOutline, themeElevationSpacing, themeElevationType } from '../themes/elevation';
 import { themeSpacing } from '../themes/spacing';
@@ -21,8 +28,8 @@ export type ValidColorFormat = HexColor | RgbColor | RgbaColor;
 export type TypographyConfig = { fontSize: ValidSizeFormat; lineHeight: Property.FontSize };
 
 export type ThemeColors = keyof typeof baseTheme.colors;
-export type ThemePrimaryColor = keyof typeof primaryColors;
-export type ThemeSecondaryColor = keyof typeof secondaryColors;
+export type ThemePrimaryColor = ValuesType<typeof themePrimaryColorKey>;
+export type ThemeSecondaryColor = ValuesType<typeof themeSecondaryColorsKey>;
 export type ThemeSpacings = keyof typeof themeSpacing;
 export type ThemeElevationSpacing = keyof typeof themeElevationSpacing;
 export type ThemeElevationType = ValuesType<typeof themeElevationType>;
@@ -33,8 +40,8 @@ export type ThemeTypographyTexts = keyof typeof defaultThemeTextTypography;
 
 export type ThemeBorderSizes = keyof typeof themeBorderSize;
 
-export type ThemeFontWeightType = ValuesType<typeof themeFontWeightType>;
-export type ThemeFontWeight = typeof themeFontWeights;
+export type ThemeFontWeightType = ValuesType<typeof themeFontWeightKey>;
+export type ThemeFontWeight = typeof themeFontWeightMap;
 
-export type ThemeShapeType = ValuesType<typeof themeShape>;
-export type ThemeShape = typeof themeShapes;
+export type ThemeShapeType = ValuesType<typeof themeShapeKey>;
+export type ThemeShape = typeof themeShapeMap;

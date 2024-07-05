@@ -8,38 +8,29 @@ import {
   RuleBuilder,
   shapeMixin,
   ThemeElevationSpacing,
+  ThemeSpacings,
   typographyMixin,
 } from '@zonia-ui/theme';
 import { css, Interpolation, StyleFunction } from 'styled-components';
 
 import { ButtonProps, ButtonSize } from '../types';
 
-const borderSizeMapInterpolation: Record<NonNullable<ButtonProps['size']>, Interpolation<object>> = {
-  '2xs': css`
-    padding: 6px 12px;
-    gap: 6px;
-  `,
-  xs: css`
-    padding: 8px 16px;
-    gap: 8px;
-  `,
-  sm: css`
-    padding: 10px 20px;
-    gap: 8px;
-  `,
-  md: css`
-    padding: 10px 20px;
-    gap: 10px;
-  `,
-  lg: css`
-    padding: 12px 24px;
-    gap: 10px;
-  `,
+/**
+ * returns [verticalSpacing, horizontalSpacing, gap]
+ */
+const spacingSizeButtonMap: Record<NonNullable<ButtonProps['size']>, [ThemeSpacings, ThemeSpacings, ThemeSpacings]> = {
+  '2xs': ['1.5', '3', '1'],
+  xs: ['2', '4', '1.5'],
+  sm: ['2.5', '5', '1.5'],
+  md: ['2.5', '5', '2'],
+  lg: ['3', '6', '2.5'],
 };
 
-const buttonSizeMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'size' | 'fullWidth'>>> = ({
+const buttonSizeMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'size' | 'fullWidth' | 'fill'>>> = ({
   $size: size,
   $fullWidth: isFullWidth,
+  $fill,
+  theme: { spacing },
 }) => {
   const interpolation: Interpolation<object>[] = [
     css`
@@ -54,7 +45,17 @@ const buttonSizeMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'size' | 'ful
     `);
   }
   if (size) {
-    interpolation.push(borderSizeMapInterpolation[size]);
+    const [verticalSpacing, horizontalSpacing, gap] = spacingSizeButtonMap[size];
+    interpolation.push(css`
+      padding: ${!$fill ? `${spacing[verticalSpacing]} ${spacing[horizontalSpacing]}` : 'unset'};
+      gap: ${spacing[gap]};
+    `);
+  }
+  if ($fill) {
+    interpolation.push(css`
+      width: 100%;
+      height: 100%;
+    `);
   }
   return interpolation;
 };
@@ -162,11 +163,11 @@ function convertSizeToShadows(size: ButtonProps['size']): [ThemeElevationSpacing
 }
 
 const buttonShadowMixin: StyleFunction<
-  NonNullable<DolarPrefix<Pick<ButtonProps, 'size' | 'variant' | 'shadowColor'>>>
+  NonNullable<DolarPrefix<Pick<ButtonProps, 'size' | 'variant' | 'shadowColor' | 'fill'>>>
 > = (ctx) => {
-  const { $shadowColor, $variant, $size } = ctx;
+  const { $shadowColor, $variant, $size, $fill } = ctx;
 
-  if ($variant === 'text') return null;
+  if ($variant === 'text' || $fill) return null;
 
   const [hover, active] = convertSizeToShadows($size);
 
@@ -198,29 +199,40 @@ const buttonTypographyMixin: StyleFunction<
   DolarPrefix<Pick<ButtonProps, 'size' | 'labelTextVariant' | 'labelBold'>>
 > = (ctx) => {
   const { $labelTextVariant: labelVariant, $size: size, $labelBold: isBold } = ctx;
+  const {
+    components: { typography },
+  } = ctx.theme;
 
   const fontWidth = isBold ? 'bold' : 'normal';
   const variant = labelVariant ?? convertButtonSizeToTypographyVariant(size);
 
+  const { fontSize } = typography.text[variant];
+
   return css`
     ${typographyMixin('text', variant, fontWidth)}
+    svg {
+      width: calc(${fontSize} * 1.25);
+      height: calc(${fontSize} * 1.25);
+    }
   `;
 };
 
-const buttonBorderMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'variant'>>> = (ctx) => {
-  const { $variant: variant } = ctx;
+const buttonBorderMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'variant' | 'fill'>>> = (ctx) => {
+  const { $variant, $fill } = ctx;
   const { size: borderSizes, defaultType } = ctx.theme.borders;
+
+  if ($fill) return null;
 
   const ruleBuilder = new RuleBuilder();
 
-  if (variant === 'ghost') {
+  if ($variant === 'ghost') {
     ruleBuilder.push(css`
       border: ${borderSizes.small} ${defaultType} transparent;
     `);
   }
 
   ruleBuilder.push(css`
-    ${variant !== 'ghost' && borderMixin('small')};
+    ${$variant !== 'ghost' && borderMixin('small')};
 
     ${shapeMixin('medium')}
   `);
@@ -228,14 +240,20 @@ const buttonBorderMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'variant'>>
   return ruleBuilder.build();
 };
 
-const buttonShapeMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'variant'>>> = (_ctx) => {
+const buttonShapeMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'fill'>>> = (ctx) => {
+  const { $fill } = ctx;
+
+  if ($fill) return null;
+
   return css`
     ${shapeMixin('medium')}
   `;
 };
 
-const buttonTransitionMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'variant'>>> = (ctx) => {
-  const { $variant } = ctx;
+const buttonTransitionMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'variant' | 'fill'>>> = (ctx) => {
+  const { $variant, $fill } = ctx;
+
+  if ($fill) return null;
 
   if ($variant === 'text')
     return css`

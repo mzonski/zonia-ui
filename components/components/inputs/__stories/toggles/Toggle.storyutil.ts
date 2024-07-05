@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 import { getPangram } from '@zonia-ui/core';
 import { primaryColors } from '@zonia-ui/theme';
-import { themeShape } from '@zonia-ui/theme/constants/shape';
+import { themeShapeKey } from '@zonia-ui/theme/constants/shape';
 import { keys } from 'fp-ts/es6/Record';
 
 import { StyledToggle, ToggleLabelProps, toggleSizes } from '../../toggles/_shared';
@@ -34,7 +34,7 @@ const toggleStyleMeta = {
     },
     shape: {
       control: 'select',
-      options: themeShape,
+      options: themeShapeKey,
     },
     label: {
       checked: 'string',

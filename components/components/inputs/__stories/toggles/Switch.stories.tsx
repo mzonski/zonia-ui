@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { themeShape } from '@zonia-ui/theme/constants/shape';
+import { themeShapeKey } from '@zonia-ui/theme/constants/shape';
 import { Button } from '../../button';
 import { Stack } from '../../../containers';
 import Switch from '../../toggles/switch/Switch';
@@ -17,7 +17,7 @@ const meta = {
     },
     pillShape: {
       control: 'select',
-      options: themeShape,
+      options: themeShapeKey,
     },
     disabled: {
       control: 'boolean',
@@ -49,7 +49,7 @@ export const Design: Story = {
   },
 };
 
-const InputRenderer: typeof Controlled.render = (props) => {
+const InputRenderer: typeof SwitchControlledStory.render = (props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -65,7 +65,7 @@ const InputRenderer: typeof Controlled.render = (props) => {
   );
 };
 
-export const Uncontrolled: Story = {
+export const SwitchUncontrolledStory: Story = {
   argTypes: {
     ...ToggleStoryutil.disabledArgTypes,
     pillShape: { table: { disable: true } },
@@ -80,7 +80,7 @@ export const Uncontrolled: Story = {
   },
   render: (props, ctx) => InputRenderer(props, ctx),
 };
-export const Controlled: Story = {
+export const SwitchControlledStory: Story = {
   argTypes: {
     ...ToggleStoryutil.disabledArgTypes,
     defaultChecked: { table: { disable: true } },

@@ -26,7 +26,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Design: Story = {};
 
-const InputRenderer: typeof Controlled.render = (props) => {
+const InputRenderer: typeof RadioControlledStory.render = (props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -42,7 +42,7 @@ const InputRenderer: typeof Controlled.render = (props) => {
   );
 };
 
-export const Controlled: Story = {
+export const RadioControlledStory: Story = {
   args: {
     checked: true,
     disabled: false,
@@ -61,7 +61,7 @@ export const Controlled: Story = {
   render: (props, ctx) => InputRenderer(props, ctx),
 };
 
-export const Uncontrolled: Story = {
+export const RadioUncontrolledStory: Story = {
   argTypes: {
     checked: { table: { disable: true } },
     ...ToggleStoryutil.disabledArgTypes,

@@ -75,80 +75,60 @@ const buttonGroupDirectionMixin: StyleFunction<DolarPrefix<Pick<ButtonGroupProps
 ) => {
   const { $variant, $direction } = ctx;
 
-  if ($variant === 'ghost') {
+  if ($variant === 'ghost' || !$direction) {
     return null;
   }
 
   return css`
     button {
-      ${directionBorderMap[$direction ?? 'right']}
+      ${directionBorderMap[$direction]}
     }
   `;
 };
 
 const stickBorderMap = {
   left: css`
-    &:not(:last-child) {
-      border-left: 0;
-    }
-    &:not(:first-child, :last-child) {
-      border-radius: 0;
-    }
     &:first-child {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
-    }
-    &:last-child {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+      border-left-color: transparent;
     }
   `,
   right: css`
-    &:not(:first-child) {
-      border-left: 0;
-    }
-    &:not(:first-child, :last-child) {
-      border-radius: 0;
-    }
-    &:first-child {
+    &:last-child {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
-    }
-    &:last-child {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+      border-right-color: transparent;
     }
   `,
   bottom: css`
-    &:not(:last-child) {
-      border-bottom: 0;
-    }
+    &:last-child,
+    &:first-child,
     &:not(:first-child, :last-child) {
-      border-radius: 0;
+      border-bottom-color: transparent;
     }
     &:first-child {
-      border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
     }
     &:last-child {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
     }
   `,
   top: css`
-    &:not(:first-child) {
-      border-bottom: 0;
-    }
+    &:last-child,
+    &:first-child,
     &:not(:first-child, :last-child) {
-      border-radius: 0;
-    }
-    &:last-child {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
+      border-top-color: transparent;
     }
     &:first-child {
-      border-top-left-radius: 0;
       border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+    &:last-child {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
     }
   `,
 };
@@ -161,9 +141,10 @@ const buttonGroupBorderMixin: StyleFunction<DolarPrefix<Pick<ButtonGroupProps, '
   }
 
   return css`
+    ${buttonGroupDirectionMixin}
+
     button {
-      ${buttonGroupDirectionMixin}
-      ${stickBorderMap[$stick ?? 'right']}
+      ${!!$stick && stickBorderMap[$stick]}
     }
   `;
 };

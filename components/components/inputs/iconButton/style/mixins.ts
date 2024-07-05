@@ -11,10 +11,11 @@ const sizeSpacingMap: Record<NonNullable<IconButtonProps['size']>, ThemeSpacings
   lg: '3',
 };
 
-const iconButtonSizeMixin: StyleFunction<DolarPrefix<Pick<IconButtonProps, 'size' | 'fullWidth'>>> = (ctx) => {
+const iconButtonSizeMixin: StyleFunction<DolarPrefix<Pick<IconButtonProps, 'size' | 'fullWidth' | 'fill'>>> = (ctx) => {
   const {
     $size,
     $fullWidth,
+    $fill,
     theme: { spacing },
   } = ctx;
 
@@ -32,21 +33,28 @@ const iconButtonSizeMixin: StyleFunction<DolarPrefix<Pick<IconButtonProps, 'size
       display: inline-flex;
     `);
   }
-  if (spacingSize) {
+  if (spacingSize && !$fill) {
     interpolation.push(css`
       padding: ${spacingSize};
       gap: ${spacingSize};
     `);
   }
+  if ($fill) {
+    interpolation.push(css`
+      width: 100%;
+      height: 100%;
+    `);
+  }
   return interpolation;
 };
 
-const iconButtonShapeMixin: StyleFunction<DolarPrefix<Pick<IconButtonProps, 'shape'>>> = (ctx) => {
+const iconButtonShapeMixin: StyleFunction<DolarPrefix<Pick<IconButtonProps, 'shape' | 'fill'>>> = (ctx) => {
   const {
     $shape,
+    $fill,
     theme: { shape },
   } = ctx;
-
+  if ($fill) return null;
   return css`
     border-radius: ${shape[$shape ?? 'oval']};
   `;

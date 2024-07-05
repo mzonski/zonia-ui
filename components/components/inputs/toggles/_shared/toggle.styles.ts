@@ -1,6 +1,7 @@
 import { RequiredDolar } from '@zonia-ui/theme';
 import styled from 'styled-components';
 
+import { InputMixins } from '../../../../style';
 import { StyledText, StyledTextProps } from '../../../dataDisplay';
 
 import { ToggleMixins } from './mixins';
@@ -11,7 +12,7 @@ const Container = styled.div<RequiredDolar<StyledToggle>>`
   ${ToggleMixins.border};
   ${ToggleMixins.shape};
   ${ToggleMixins.color};
-  ${ToggleMixins.cursor};
+  ${InputMixins.cursor};
   ${ToggleMixins.display};
 
   z-index: 1;
