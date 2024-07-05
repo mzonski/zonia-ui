@@ -19,3 +19,7 @@ ToggleButton
 ToggleButtonGroup
 Autocomplete
  */
+
+export * from './button';
+export * from './buttonGroup';
+export * from './toggles';
