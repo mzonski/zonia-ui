@@ -1,6 +1,8 @@
 import type { ThemeBorderSizes, ValidSizeFormat } from '../types';
 import { valueToRem } from '../utils';
 
+export const themeBorderSizeKey = ['tiny', 'small', 'medium', 'large'] as const;
+
 export const themeBorderSize = {
   tiny: valueToRem(1),
   small: valueToRem(1.5),

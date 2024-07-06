@@ -2,15 +2,13 @@ import type { Property } from 'csstype';
 import type { ValuesType } from 'utility-types';
 
 import {
-  primaryColors,
-  secondaryColors,
-  themeBorderSize,
-  themeFontWeightMap,
+  themeBorderSizeKey,
   themeFontWeightKey,
-  themeShapeKey,
-  themeShapeMap,
+  themeFontWeightMap,
   themePrimaryColorKey,
   themeSecondaryColorsKey,
+  themeShapeKey,
+  themeShapeMap,
 } from '../constants';
 import { baseTheme } from '../themes/baseTheme';
 import { themeElevationOutline, themeElevationSpacing, themeElevationType } from '../themes/elevation';
@@ -38,7 +36,7 @@ export type ThemeTypographyTypes = keyof typeof baseTheme.components.typography;
 export type ThemeTypographyHeads = keyof typeof defaultThemeHeadTypography;
 export type ThemeTypographyTexts = keyof typeof defaultThemeTextTypography;
 
-export type ThemeBorderSizes = keyof typeof themeBorderSize;
+export type ThemeBorderSizes = ValuesType<typeof themeBorderSizeKey>;
 
 export type ThemeFontWeightType = ValuesType<typeof themeFontWeightKey>;
 export type ThemeFontWeight = typeof themeFontWeightMap;

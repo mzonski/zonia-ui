@@ -7,18 +7,21 @@ export function typographyMixin(
   variant: ThemeTypographyHeads,
   weight?: ThemeFontWeightType,
   color?: ThemePrimaryColor,
+  omitLineHeight?: boolean,
 ): StyleFunction<object>;
 export function typographyMixin(
   type: 'text',
   variant: ThemeTypographyTexts,
   weight?: ThemeFontWeightType,
   color?: ThemePrimaryColor,
+  omitLineHeight?: boolean,
 ): StyleFunction<object>;
 export function typographyMixin(
   type: 'text' | 'head',
   variant: ThemeTypographyHeads | ThemeTypographyTexts,
   weight?: ThemeFontWeightType,
   color?: ThemePrimaryColor,
+  omitLineHeight?: boolean,
 ): StyleFunction<object> {
   return (ctx) => {
     const {
@@ -33,8 +36,13 @@ export function typographyMixin(
 
     rules.push(css`
       font-size: ${fontSize};
-      line-height: ${lineHeight};
     `);
+
+    if (!omitLineHeight) {
+      rules.push(css`
+        line-height: ${lineHeight};
+      `);
+    }
 
     if (weight) {
       const fontWeight = fontWeights[weight];

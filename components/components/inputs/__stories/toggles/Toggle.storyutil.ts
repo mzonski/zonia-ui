@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 import { getPangram } from '@zonia-ui/core';
-import { primaryColors } from '@zonia-ui/theme';
+import { primaryColors, themeBorderSizeKey } from '@zonia-ui/theme';
 import { themeShapeKey } from '@zonia-ui/theme/constants/shape';
 import { keys } from 'fp-ts/es6/Record';
 
@@ -30,7 +30,7 @@ const toggleStyleMeta = {
     },
     borderType: {
       control: 'radio',
-      options: ['tiny', 'small', 'medium'],
+      options: themeBorderSizeKey,
     },
     shape: {
       control: 'select',
