@@ -1,6 +1,6 @@
 import type { ThemeSpacings, ThemeTypographyTexts, ValidSizeFormat } from '@zonia-ui/theme';
 
-import type { BadgeProps } from '../Badge';
+import { BadgeProps } from '../types';
 
 export const getBadgeGapSpacing = (size: BadgeProps['size']): ThemeSpacings => {
   switch (size) {
@@ -17,20 +17,6 @@ export const getBadgeGapSpacing = (size: BadgeProps['size']): ThemeSpacings => {
 };
 
 export const getBadgeVerticalPaddingSpacing = (size: NonNullable<BadgeProps['size']>): ThemeSpacings => {
-  // const sizeToSpacing: Record<typeof size, ThemeSpacings> = {
-  //   xs: '0',
-  //   sm: '0.5',
-  //   md: '1',
-  //   lg: '1.5',
-  // };
-  //
-  // return;
-  //
-  // return pipe(
-  //   fromNullable(sizeToSpacing[size]),
-  //   getOrElse(() => '1'), // default value if size is not found
-  // );
-
   switch (size) {
     case 'xs':
     case 'sm':

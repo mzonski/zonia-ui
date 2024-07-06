@@ -97,7 +97,7 @@ const buttonColorsMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'color' | '
     case 'secondary':
       {
         const hoverBg = rgbaToHex(blendColors(selectedColor, primaryColors.white, 0.9));
-        const activeBg = rgbaToHex(blendColors(selectedColor, primaryColors.white, 0.85));
+        const activeBg = rgbaToHex(blendColors(selectedColor, primaryColors.white, 0.8));
 
         ruleBuilder.push(css`
           background-color: ${primaryColors.white};
@@ -115,18 +115,26 @@ const buttonColorsMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'color' | '
       }
 
       break;
-    case 'ghost':
+    case 'ghost': {
+      const hoverBg = rgbaToHex(blendColors(selectedColor, primaryColors.white, 0.9));
+      const activeBg = rgbaToHex(blendColors(selectedColor, primaryColors.white, 0.8));
       ruleBuilder.push(css`
         background-color: transparent;
         &:hover:not(&:disabled) {
+          color: ${calculateTextContrast(hoverBg)};
+          background-color: ${hoverBg};
           border-color: ${selectedColor};
         }
         &:active:not(&:disabled) {
+          color: ${calculateTextContrast(activeBg)};
+          background-color: ${activeBg};
           border-color: ${selectedColor};
         }
       `);
 
       break;
+    }
+
     case 'text':
       ruleBuilder.push(css`
         background-color: transparent;
@@ -258,6 +266,13 @@ const buttonTransitionMixin: StyleFunction<DolarPrefix<Pick<ButtonProps, 'varian
   if ($variant === 'text')
     return css`
       transition: border-color 0.15s cubic-bezier(0.38, 1.22, 0.54, 0.98);
+    `;
+
+  if ($variant === 'ghost')
+    return css`
+      transition:
+        box-shadow 0.15s cubic-bezier(0.38, 1.22, 0.54, 0.98),
+        border-color 0.15s cubic-bezier(0.38, 1.22, 0.54, 0.98);
     `;
 
   return css`

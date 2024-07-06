@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { DUMMY_MESSAGE } from '@zonia-ui/core';
 
-import { primaryColors, secondaryColors, ValidSizeFormat } from '@zonia-ui/theme';
+import { primaryColors, secondaryColors, themeShapeKey, ValidSizeFormat } from '@zonia-ui/theme';
 
 import { keys } from 'fp-ts/es6/Record';
 import { SpacingBox, Stack } from '../../containers';
-import { Badge } from '../badge';
+import { Badge, BadgeProps, badgeSizes } from '../badge';
 
 const meta = {
   title: '2. Components/Data display/Badge',
@@ -16,29 +16,29 @@ const meta = {
   argTypes: {
     color: {
       control: 'select',
-      options: Object.keys(primaryColors),
+      options: [...Object.keys(primaryColors), ...Object.keys(secondaryColors)],
     },
     iconPosition: {
       control: 'radio',
       options: ['left', 'right'],
     },
     shape: {
-      control: 'radio',
-      options: ['rounded', 'square'],
+      control: 'select',
+      options: themeShapeKey,
     },
     size: {
       control: 'radio',
-      options: ['xs', 'sm', 'md', 'lg'],
+      options: badgeSizes,
     },
     text: {
       control: 'text',
     },
   },
-} satisfies Meta<typeof Badge>;
+} satisfies Meta<BadgeProps>;
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<BadgeProps>;
 
 const Icon = ({ size }: { size: ValidSizeFormat }) => {
   return (

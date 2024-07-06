@@ -1,4 +1,6 @@
-import type { ThemePrimaryColor, ValidColorFormat } from '../types';
+import { isString } from '@zonia-ui/core';
+
+import type { ThemePrimaryColor, ThemeSecondaryColor, ValidColorFormat } from '../types';
 
 export const themePrimaryColorKey = [
   'black',
@@ -193,3 +195,8 @@ export const secondaryColors = {
   pastelRed: '#DE5456',
   pastelRedLight: '#F7DBD9',
 } as const;
+
+export const isThemePrimaryColor = (type: unknown): type is ThemePrimaryColor =>
+  isString(type) && themePrimaryColorKey.includes(type as ThemePrimaryColor);
+export const isThemeSecondaryColor = (type: unknown): type is ThemeSecondaryColor =>
+  isString(type) && themeSecondaryColorsKey.includes(type as ThemeSecondaryColor);

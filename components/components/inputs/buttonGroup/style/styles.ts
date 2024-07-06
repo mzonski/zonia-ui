@@ -10,7 +10,8 @@ import { ButtonGroupMixins } from './mixins';
 export const StyledButtonGroup = styled(Stack).attrs<DolarPrefix<ButtonGroupProps>>({})`
   display: flex;
 
-  ${ButtonGroupMixins.border}
+  ${ButtonGroupMixins.direction}
+  ${ButtonGroupMixins.stick}
 
   button {
     ${ButtonMixins.size};

@@ -133,7 +133,7 @@ const stickBorderMap = {
   `,
 };
 
-const buttonGroupBorderMixin: StyleFunction<DolarPrefix<Pick<ButtonGroupProps, 'variant' | 'stick'>>> = (ctx) => {
+const buttonGroupStickMixin: StyleFunction<DolarPrefix<Pick<ButtonGroupProps, 'variant' | 'stick'>>> = (ctx) => {
   const { $variant, $stick } = ctx;
 
   if ($variant === 'ghost') {
@@ -141,8 +141,6 @@ const buttonGroupBorderMixin: StyleFunction<DolarPrefix<Pick<ButtonGroupProps, '
   }
 
   return css`
-    ${buttonGroupDirectionMixin}
-
     button {
       ${!!$stick && stickBorderMap[$stick]}
     }
@@ -150,5 +148,6 @@ const buttonGroupBorderMixin: StyleFunction<DolarPrefix<Pick<ButtonGroupProps, '
 };
 
 export const ButtonGroupMixins = {
-  border: buttonGroupBorderMixin,
+  stick: buttonGroupStickMixin,
+  direction: buttonGroupDirectionMixin,
 };

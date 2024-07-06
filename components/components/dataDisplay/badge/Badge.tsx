@@ -1,25 +1,17 @@
-import { createElement, ElementType, ReactElement } from 'react';
+import { createElement, ReactElement } from 'react';
 import styled from 'styled-components';
-import { DolarPrefix, ThemePrimaryColor, type ThemeShapeType } from '@zonia-ui/theme';
+import { DolarPrefix } from '@zonia-ui/theme';
 
 import { TextVariant } from '../typography';
 import { badgeMixin } from './utils/mixins';
 import { getBadgeIconSize, getBadgeTypographyTextVariant } from './utils/converters';
+import { BadgeProps } from './types';
 
 export type StyledBadgeProps = DolarPrefix<Pick<BadgeProps, 'size' | 'shape' | 'iconPosition' | 'color'>>;
 
 const StyledBadge = styled.div<Required<StyledBadgeProps>>`
   ${badgeMixin}
 `;
-
-export type BadgeProps = {
-  size?: 'xs' | 'sm' | 'md' | 'lg';
-  color?: ThemePrimaryColor;
-  icon?: ElementType;
-  iconPosition?: 'left' | 'right';
-  shape?: 'badge' | ThemeShapeType;
-  text: string;
-};
 
 export const Badge = ({
   text,

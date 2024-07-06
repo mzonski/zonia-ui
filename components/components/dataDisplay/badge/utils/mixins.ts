@@ -1,4 +1,11 @@
-import { borderMixin, calculateTextContrast, flexAlignmentMixin } from '@zonia-ui/theme';
+import {
+  borderMixin,
+  calculateTextContrast,
+  flexAlignmentMixin,
+  isThemePrimaryColor,
+  ThemePrimaryColor,
+  ValidColorFormat,
+} from '@zonia-ui/theme';
 import type { StyleFunction } from 'styled-components';
 import { css } from 'styled-components';
 
@@ -9,29 +16,37 @@ import { getBadgeGapSpacing, getBadgeHorizontalPaddingSpacing, getBadgeVerticalP
 export type BadgeMixinProps = Required<Pick<StyledBadgeProps, '$shape' | '$color' | '$size' | '$iconPosition'>>;
 
 export const badgeMixin: StyleFunction<BadgeMixinProps> = (ctx) => {
-  const { $size: badgeSize, $color: bgColor, $shape: badgeShape, $iconPosition: iconPosition } = ctx;
+  const { $size, $color, $shape, $iconPosition } = ctx;
 
   const {
-    colors: { primary: primaryColors },
+    colors: { primary: primaryColors, secondary: secondaryColors },
     spacing,
     shape,
   } = ctx.theme;
 
-  const horizontalPadding = spacing[getBadgeHorizontalPaddingSpacing(badgeSize)];
-  const verticalPadding = spacing[getBadgeVerticalPaddingSpacing(badgeSize)];
-  const gap = spacing[getBadgeGapSpacing(badgeSize)];
-  const backgroundColor = primaryColors[bgColor];
-  const color = calculateTextContrast(primaryColors[bgColor]);
+  const horizontalPadding = spacing[getBadgeHorizontalPaddingSpacing($size)];
+  const verticalPadding = spacing[getBadgeVerticalPaddingSpacing($size)];
+  const gap = spacing[getBadgeGapSpacing($size)];
+  let backgroundColor: ValidColorFormat;
+  let color: ValidColorFormat;
+
+  if (isThemePrimaryColor($color)) {
+    backgroundColor = primaryColors[$color];
+    color = calculateTextContrast(primaryColors[$color]);
+  } else {
+    backgroundColor = secondaryColors[$color];
+    color = calculateTextContrast(secondaryColors[$color]);
+  }
 
   return css`
     ${flexAlignmentMixin('center', 'center', true)}
     ${borderMixin('tiny')}
     color: ${color};
-    flex-direction: ${iconPosition === 'left' ? 'row' : 'row-reverse'};
+    flex-direction: ${$iconPosition === 'left' ? 'row' : 'row-reverse'};
     gap: ${gap};
     padding: ${`${verticalPadding} ${horizontalPadding}`};
     background-color: ${backgroundColor};
-    border-radius: ${badgeShape === 'badge' ? horizontalPadding : shape[badgeShape]};
+    border-radius: ${$shape === 'badge' ? horizontalPadding : shape[$shape]};
     text-align: center;
   `;
 };

@@ -27,7 +27,7 @@ const meta = {
     children: { table: { disable: true } },
   },
   args: {
-    ...omit(ButtonStoryUtil.meta.args, 'fill'),
+    ...omit(ButtonStoryUtil.meta.args, 'fill', 'variant'),
     direction: 'right',
   },
 } satisfies Meta<typeof ButtonGroup>;
