@@ -11,6 +11,7 @@ type BaseBadgeProps = {
   iconPosition?: 'left' | 'right';
   shape?: 'badge' | ThemeShapeType;
   text: string;
+  noWrap?: boolean;
   color: ThemePrimaryColor | ThemeSecondaryColor;
 };
 

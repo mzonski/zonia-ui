@@ -7,7 +7,15 @@ const TextFieldComponent = (
   { id, label, helperText, left, right, ...restProps }: TextFieldProps,
   ref: ForwardedRef<HTMLInputElement>,
 ) => {
-  const { borderType, outlineColor, borderColor, shape, verticalBorders, ...inputProps } = restProps;
+  const {
+    color = 'primary',
+    borderType = 'medium',
+    outlineColor = 'primary',
+    borderColor = 'black',
+    shape = 'large',
+    verticalBorders = false,
+    ...inputProps
+  } = restProps;
   const fieldId = useUniqueId(id);
   return (
     <TextFieldStyles.Wrapper
@@ -16,6 +24,7 @@ const TextFieldComponent = (
       $borderColor={borderColor}
       $verticalBorders={verticalBorders}
       $shape={shape}
+      $color={color}
       htmlFor={`tf-${fieldId}`}
     >
       <TextFieldStyles.Input id={`tf-${fieldId}`} ref={ref} {...inputProps} />

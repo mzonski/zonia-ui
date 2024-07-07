@@ -4,7 +4,7 @@ import { ThemeStyledProps } from '../../../style/props';
 
 export type StyledTextFieldProps = {
   verticalBorders: boolean;
-} & Pick<ThemeStyledProps, 'borderType' | 'outlineColor' | 'borderColor' | 'shape'>;
+} & ThemeStyledProps;
 
 export type TextInputComponentProps = {
   label: string;

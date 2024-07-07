@@ -7,7 +7,7 @@ import { badgeMixin } from './utils/mixins';
 import { getBadgeIconSize, getBadgeTypographyTextVariant } from './utils/converters';
 import { BadgeProps } from './types';
 
-export type StyledBadgeProps = DolarPrefix<Pick<BadgeProps, 'size' | 'shape' | 'iconPosition' | 'color'>>;
+export type StyledBadgeProps = DolarPrefix<Pick<BadgeProps, 'size' | 'shape' | 'iconPosition' | 'color' | 'noWrap'>>;
 
 const StyledBadge = styled.div<Required<StyledBadgeProps>>`
   ${badgeMixin}
@@ -20,7 +20,9 @@ export const Badge = ({
   color = 'primary',
   iconPosition = 'left',
   shape = 'badge',
-}: Readonly<BadgeProps>) => {
+  noWrap = true,
+  className,
+}: Readonly<BadgeProps & Partial<Pick<HTMLDivElement, 'className'>>>) => {
   const textElement = (
     <TextVariant variant={getBadgeTypographyTextVariant(size)} weight="medium">
       {text}
@@ -41,7 +43,15 @@ export const Badge = ({
   }
 
   return (
-    <StyledBadge aria-label={text ?? 'Badge'} $size={size} $color={color} $shape={shape} $iconPosition={iconPosition}>
+    <StyledBadge
+      className={className}
+      aria-label={text ?? 'Badge'}
+      $size={size}
+      $color={color}
+      $shape={shape}
+      $iconPosition={iconPosition}
+      $noWrap={noWrap}
+    >
       {Content}
     </StyledBadge>
   );

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { ThemeStyledProps } from '../../../../style/props';
+import { ThemeStyledProps } from '../../../../style';
 
 export const toggleSizes = {
   sm: 16,
