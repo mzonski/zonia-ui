@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { getPangram, getRandomPangram } from '@zonia-ui/core';
+import { getRandomPangram } from '@zonia-ui/core';
 import { primaryColors, themeBorderSizeKey, themeShapeKey } from '@zonia-ui/theme';
 import useNextFromArray from '@zonia-ui/core/hooks/useNextFromArray';
 import { StyledTextFieldProps, TextField, TextInputComponentProps } from '../textField';
@@ -7,6 +8,7 @@ import { DiamondIcon } from '../../../icons';
 import { IconButton } from '../iconButton';
 import { Stack } from '../../containers';
 import { Button } from '../button';
+import Checkbox from '../toggles/checkbox/Checkbox';
 
 const meta = {
   title: '2. Components/Input/TextInput',
@@ -37,26 +39,16 @@ const meta = {
       control: 'select',
       options: themeShapeKey,
     },
+    color: {
+      control: 'select',
+      options: Object.keys(primaryColors),
+    },
     onChange: { action: 'onChange' },
     left: { table: { disable: true } },
     right: { table: { disable: true } },
   },
-  args: {
-    // Form control
-    error: false,
-    disabled: false,
-    label: getPangram('pl'),
-    placeholder: getRandomPangram(),
-    helperText: getRandomPangram(),
-    readOnly: false,
-    // Styling
-    borderColor: 'black',
-    borderType: 'small',
-    verticalBorders: false,
-    outlineColor: 'primary',
-    shape: 'medium',
-  },
-} satisfies Meta<StyledTextFieldProps & TextInputComponentProps>;
+  args: {},
+} satisfies Meta<typeof TextField>;
 
 export default meta;
 
@@ -77,38 +69,33 @@ export const TextFieldDesignStory: Story = {
     disabled: false,
     label: 'Lorem ipsum',
     placeholder: 'Dolor sit amet',
+    required: false,
     readOnly: false,
     helperText: getRandomPangram(),
     borderColor: 'black',
     borderType: 'small',
     verticalBorders: false,
-    error: false,
     outlineColor: 'primary',
     shape: 'medium',
   },
-  argTypes: {
-    value: { table: { disable: true } },
-  },
 };
 
-export const ControlledTextInput: Story = {
-  name: 'Controlled TextInput',
+export const TextFieldPureStory: Story = {
+  name: 'Pure TextInput',
   args: {
-    value: 'Controlled value',
+    placeholder: 'Placeholder',
+    label: 'Lorem ipsum',
   },
   argTypes: {
     left: { table: { disable: true } },
     right: { table: { disable: true } },
     helperText: { table: { disable: true } },
     verticalBorders: { table: { disable: true } },
-    borderColor: { table: { disable: true } },
-    borderType: { table: { disable: true } },
-    outlineColor: { table: { disable: true } },
-    shape: { table: { disable: true } },
+    value: { table: { disable: true } },
   },
 };
 
-const IconSwitcher = (props: StyledTextFieldProps & TextInputComponentProps) => {
+const IconSwitcher: typeof TextFieldIconSwitcherStory.render = (props) => {
   const [current, next] = useNextFromArray<'left' | 'right' | 'both' | 'none'>(['left', 'right', 'both', 'none']);
 
   let iconProps = {};
@@ -148,17 +135,10 @@ const IconSwitcher = (props: StyledTextFieldProps & TextInputComponentProps) => 
 export const TextFieldIconSwitcherStory: Story = {
   name: 'Icon switcher',
   args: {
+    label: 'Lorem ipsum',
     disabled: false,
+    required: false,
     readOnly: false,
   },
-  argTypes: {
-    left: { table: { disable: true } },
-    right: { table: { disable: true } },
-    helperText: { table: { disable: true } },
-    borderColor: { table: { disable: true } },
-    borderType: { table: { disable: true } },
-    outlineColor: { table: { disable: true } },
-    shape: { table: { disable: true } },
-  },
-  render: IconSwitcher,
+  render: (args, context) => IconSwitcher(args, context),
 };

@@ -1,1 +1,2 @@
-export * from './mixins.ts'
+export * from './mixins.ts';
+export * from './props.ts';

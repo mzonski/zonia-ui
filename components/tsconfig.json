@@ -27,6 +27,7 @@
     "index.ts",
     "types",
     "icons",
+    "hooks",
     "style",
     "foundations",
     "components",
