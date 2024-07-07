@@ -63,8 +63,8 @@ export const StyledSimpleTableTd = styled.td<StyledSimpleTableTdProps>`
   text-align: ${({ $textAlign = 'right' }) => $textAlign};
   width: ${({ $width }) => $width};
 
-  ${spacingMixin('padding', '6', ['horizontal'])}
-  ${spacingMixin('padding', '4', ['vertical'])}
+  ${spacingMixin('padding', '6', 'horizontal')}
+  ${spacingMixin('padding', '4', 'vertical')}
 `;
 
 type StyledSimpleTableThProps = DolarPrefix<{
@@ -75,6 +75,6 @@ export const StyledSimpleTableTh = styled.th<StyledSimpleTableThProps>`
   text-align: ${({ $textAlign = 'right' }) => $textAlign};
   width: ${({ $width }) => $width};
 
-  ${spacingMixin('padding', '6', ['horizontal'])}
-  ${spacingMixin('padding', '4', ['vertical'])}
+  ${spacingMixin('padding', '6', 'horizontal')}
+  ${spacingMixin('padding', '4', 'vertical')}
 `;

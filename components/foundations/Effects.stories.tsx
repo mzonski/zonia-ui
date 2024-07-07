@@ -33,8 +33,8 @@ const StyledShadowItem = styled.div<{ $type: ThemeElevationType; $color: ThemePr
   background-color: ${(props) => props.theme.colors.primary.white};
   ${defaultBorderMixin()}
   ${(props) => boxShadowMixin(props.$type, props.$color)}
-  ${spacingMixin('padding', '44', ['horizontal'])}
-  ${spacingMixin('padding', '14', ['vertical'])}
+  ${spacingMixin('padding', '44', 'horizontal')}
+  ${spacingMixin('padding', '14', 'vertical')}
   ${shapeMixin('rounded')}
 `;
 
@@ -42,8 +42,8 @@ const StyledOutlineItem = styled.div<{ $type: ThemeOutline; $color: ThemePrimary
   background-color: ${(props) => props.theme.colors.primary.white};
   ${defaultBorderMixin()}
   ${(props) => focusOutlineMixin(props.$type, props.$color)}
-  ${spacingMixin('padding', '44', ['horizontal'])}
-  ${spacingMixin('padding', '14', ['vertical'])}
+  ${spacingMixin('padding', '44', 'horizontal')}
+  ${spacingMixin('padding', '14', 'vertical')}
   ${shapeMixin('rounded')}
 `;
 

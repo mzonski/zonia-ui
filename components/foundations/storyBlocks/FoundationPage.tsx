@@ -10,7 +10,7 @@ const StyledFoundationPage = styled(SpacingBox)`
 
 const PageSpacer = styled.hr`
   border-color: ${(props) => props.theme.colors.primary.black};
-  ${spacingMixin('margin', '8', ['vertical'])}
+  ${spacingMixin('margin', '8', 'vertical')}
 `;
 
 export type FoundationPageProps = {

@@ -1,2 +1,2 @@
-export { default as TextField } from './TextField';
+export { default as TextFieldConcise } from './TextFieldConcise';
 export * from './types';

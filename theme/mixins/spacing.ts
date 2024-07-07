@@ -31,7 +31,7 @@ export const mapSpacingCornersToCssProperties = (
     .join(' ');
 };
 
-export const spacingMixin = (type: MixinMoveType, themeSpacing: ThemeSpacings, corners: MixinCorners[] = ['all']) => {
+export function spacingMixin(type: MixinMoveType, themeSpacing: ThemeSpacings, ...corners: MixinCorners[]) {
   const spacingValue = (props: ExecutionContext) => props.theme.spacing[themeSpacing];
 
   const applySpacing = (props: ExecutionContext) => {
@@ -42,7 +42,7 @@ export const spacingMixin = (type: MixinMoveType, themeSpacing: ThemeSpacings, c
   return css`
     ${applySpacing}
   `;
-};
+}
 
 export const fullViewportMixin = () => css`
   width: 100vw;

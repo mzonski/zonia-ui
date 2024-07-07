@@ -1,33 +1,40 @@
-import { DolarPrefix } from '@zonia-ui/theme';
+import { DolarPrefix, fillAbsoluteSpaceMixin } from '@zonia-ui/theme';
 import styled from 'styled-components';
 
-import { badgeMixin, BadgeMixinProps, styledBadgeMixin } from '../../../dataDisplay/badge/utils/mixins';
-import { StyledTextFieldProps } from '../types';
+import { BasseTextFieldMixins } from '../../_input';
+import { StyledTextFieldProps } from '../../textField';
 
-import { TextFieldMixins } from './mixins';
+import { ConciseTextFieldMixins } from './mixins';
 
 const LabelWrapper = styled.label<DolarPrefix<StyledTextFieldProps>>`
   display: grid;
   grid-template:
-    'label label label _1' auto
-    'label label label _1' min-content
     'left input input right' 1fr
     'helperText helperText helperText helperText' min-content
     / min-content 1fr min-content min-content;
+  position: relative;
 
-  ${TextFieldMixins.colors}
-  ${TextFieldMixins.alignment}
-  ${TextFieldMixins.border}
-  ${TextFieldMixins.shape}
-  ${TextFieldMixins.spacing}
-  ${TextFieldMixins.typography}
+  ${BasseTextFieldMixins.alignment}
+  ${BasseTextFieldMixins.border}
+  ${BasseTextFieldMixins.colors}
+  ${BasseTextFieldMixins.shape}
+  ${BasseTextFieldMixins.spacing}
+  ${BasseTextFieldMixins.typography}
+
+  ${ConciseTextFieldMixins.colors}
+  ${ConciseTextFieldMixins.alignment}
+  ${ConciseTextFieldMixins.spacing}
+  ${ConciseTextFieldMixins.typography}
+  ${ConciseTextFieldMixins.placeholder}
 `;
 
-const Placeholder = styled.span`
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 3;
-  grid-row-end: 4;
+const Placeholder = styled.div`
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  z-index: 8;
 `;
 
 const Input = styled.input.attrs({
@@ -42,7 +49,10 @@ const TitleWrapper = styled.header`
 const InputBgEl = styled.main`
   z-index: -1;
 
-  grid-area: 3 / 1 / 4 / 5;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 0;
+  grid-row-end: 2;
 `;
 const LeftEl = styled.aside`
   grid-area: left;
@@ -59,7 +69,7 @@ const Status = styled.div`
   background-color: green;
 `;
 
-export const TextFieldStyles = {
+export const TextFieldConciseStyles = {
   Wrapper: LabelWrapper,
   Input,
   Title: TitleWrapper,
@@ -68,5 +78,4 @@ export const TextFieldStyles = {
   Right: RightEl,
   HelperText,
   Placeholder,
-  Status,
 };

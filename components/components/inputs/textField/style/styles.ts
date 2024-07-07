@@ -14,17 +14,17 @@ const LabelWrapper = styled.label<DolarPrefix<StyledTextFieldProps>>`
     'helperText helperText helperText helperText' min-content
     / min-content 1fr min-content min-content;
 
-  ${TextFieldMixins.typography}
-  ${TextFieldMixins.colors}
-  ${TextFieldMixins.alignment}
-  ${TextFieldMixins.spacing}
-
   ${BasseTextFieldMixins.alignment}
   ${BasseTextFieldMixins.border}
   ${BasseTextFieldMixins.colors}
   ${BasseTextFieldMixins.shape}
   ${BasseTextFieldMixins.spacing}
   ${BasseTextFieldMixins.typography}
+
+  ${TextFieldMixins.typography}
+  ${TextFieldMixins.colors}
+  ${TextFieldMixins.alignment}
+  ${TextFieldMixins.spacing}
 `;
 
 const Input = styled.input.attrs({
@@ -43,8 +43,6 @@ const InputBgEl = styled.main`
   grid-column-end: 4;
   grid-row-start: 3;
   grid-row-end: 4;
-
-  grid-area: 2 / 1 / 3 / 5;
 `;
 const LeftEl = styled.aside`
   grid-area: left;

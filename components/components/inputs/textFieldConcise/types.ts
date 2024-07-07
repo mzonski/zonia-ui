@@ -1,17 +1,5 @@
-import { InputHTMLAttributes, ReactElement } from 'react';
+import { StyledTextFieldProps, TextInputComponentProps } from '../textField';
 
-import { ThemeStyledProps } from '../../../style/props';
-
-export type StyledTextFieldProps = {
-  verticalBorders: boolean;
-} & ThemeStyledProps;
-
-export type TextInputComponentProps = {
-  label: string;
-  placeholder?: string;
-  left?: ReactElement | string;
-  right?: ReactElement | string;
-  helperText?: ReactElement | string;
-} & Pick<InputHTMLAttributes<HTMLInputElement>, 'id' | 'required' | 'disabled' | 'readOnly' | 'onChange' | 'value'>;
+export type StyledConciseTextFieldProps = StyledTextFieldProps;
 
 export type TextFieldProps = StyledTextFieldProps & TextInputComponentProps;

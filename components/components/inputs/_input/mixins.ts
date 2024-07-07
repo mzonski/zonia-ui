@@ -277,7 +277,7 @@ const baseTextFieldAlignmentMixin: StyleFunction<object> = (_ctx) => {
 
 const baseTextFieldTypographyMixin: StyleFunction<object> = (_ctx) => {
   return css`
-    input {
+    input[type='text'] {
       ${typographyMixin('text', 'sm', 'normal', undefined, true)}
     }
   `;

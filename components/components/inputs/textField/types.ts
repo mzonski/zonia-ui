@@ -2,7 +2,7 @@ import type { InputHTMLAttributes, ReactElement } from 'react';
 
 import { BaseStyledTextFieldProps } from '../_input/types';
 
-export type StyledTextFieldProps = BaseStyledTextFieldProps & { hasError: boolean };
+export type StyledTextFieldProps = BaseStyledTextFieldProps & { hasError?: boolean };
 
 export type TextInputComponentProps = {
   label: string;

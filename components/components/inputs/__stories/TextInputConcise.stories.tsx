@@ -1,58 +1,39 @@
-import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { getRandomPangram } from '@zonia-ui/core';
-import { primaryColors, themeBorderSizeKey, themeShapeKey } from '@zonia-ui/theme';
 import useNextFromArray from '@zonia-ui/core/hooks/useNextFromArray';
-import { StyledTextFieldProps, TextField, TextInputComponentProps } from '../textField';
+import { TextFieldConcise } from '../textFieldConcise';
 import { DiamondIcon } from '../../../icons';
 import { IconButton } from '../iconButton';
 import { Stack } from '../../containers';
 import { Button } from '../button';
-import Checkbox from '../toggles/checkbox/Checkbox';
+import { ThemeStoryUtil } from '../../../style';
 
 const meta = {
-  title: '2. Components/Input/TextInput',
-  component: TextField,
+  title: '2. Components/Input/TextInput Concise',
+  component: TextFieldConcise,
   parameters: {
     layout: 'centered',
   },
   argTypes: {
-    value: {
-      control: 'text',
-    },
+    ...ThemeStoryUtil.meta.argTypes,
     helperText: {
       control: 'text',
     },
-    outlineColor: {
-      control: 'select',
-      options: Object.keys(primaryColors),
-    },
-    borderColor: {
-      control: 'select',
-      options: Object.keys(primaryColors),
-    },
-    borderType: {
-      control: 'radio',
-      options: themeBorderSizeKey,
-    },
-    shape: {
-      control: 'select',
-      options: themeShapeKey,
-    },
-    color: {
-      control: 'select',
-      options: Object.keys(primaryColors),
-    },
-    onChange: { action: 'onChange' },
     left: { table: { disable: true } },
+    onChange: { action: 'onChange' },
     right: { table: { disable: true } },
+    value: {
+      control: 'text',
+    },
   },
-  args: {},
-} satisfies Meta<typeof TextField>;
+  args: {
+    ...ThemeStoryUtil.meta.args,
+  },
+} satisfies Meta<typeof TextFieldConcise>;
 
 export default meta;
 
-type Story = StoryObj<StyledTextFieldProps & TextInputComponentProps>;
+type Story = StoryObj<typeof TextFieldConcise>;
 
 const icon = <DiamondIcon />;
 const iconButton = (
@@ -69,7 +50,6 @@ export const TextFieldDesignStory: Story = {
     disabled: false,
     label: 'Lorem ipsum',
     placeholder: 'Dolor sit amet',
-    required: false,
     readOnly: false,
     helperText: getRandomPangram(),
     borderColor: 'black',
@@ -83,7 +63,7 @@ export const TextFieldDesignStory: Story = {
 export const TextFieldPureStory: Story = {
   name: 'Pure TextInput',
   args: {
-    placeholder: 'Placeholder',
+    placeholder: undefined,
     label: 'Lorem ipsum',
   },
   argTypes: {
@@ -127,7 +107,7 @@ const IconSwitcher: typeof TextFieldIconSwitcherStory.render = (props) => {
       <Button size="2xs" onClick={next}>
         Next icon position
       </Button>
-      <TextField {...props} {...iconProps} />
+      <TextFieldConcise {...props} {...iconProps} />
     </Stack>
   );
 };
@@ -137,7 +117,6 @@ export const TextFieldIconSwitcherStory: Story = {
   args: {
     label: 'Lorem ipsum',
     disabled: false,
-    required: false,
     readOnly: false,
   },
   render: (args, context) => IconSwitcher(args, context),
