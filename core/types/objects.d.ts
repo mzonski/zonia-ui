@@ -17,3 +17,19 @@ export type RequireOnlyOne<T, Keys extends keyof T = keyof T> = Pick<T, Exclude<
 export type NonNullableDeep<T> = {
   [P in keyof T]: NonNullable<T[P]> extends object ? NonNullableDeep<NonNullable<T[P]>> : NonNullable<T[P]>;
 };
+
+export type DeepMerge<T, U> = T extends object
+  ? U extends object
+    ? {
+        [K in keyof T | keyof U]: K extends keyof T
+          ? K extends keyof U
+            ? DeepMerge<T[K], U[K]>
+            : T[K]
+          : K extends keyof U
+            ? U[K]
+            : never;
+      }
+    : U
+  : U;
+
+export type UnknownRecord = Record<string, unknown>;

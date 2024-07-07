@@ -5,3 +5,4 @@ export * from './debounce';
 export * from './domManipulation';
 export * from './pangrams';
 export * from './record';
+export * from './object';

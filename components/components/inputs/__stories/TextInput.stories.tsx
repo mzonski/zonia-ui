@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { getPangram, getRandomPangram } from '@zonia-ui/core';
-import { primaryColors, themeBorderSizeKey, themeShapeKey } from '@zonia-ui/theme';
 import useNextFromArray from '@zonia-ui/core/hooks/useNextFromArray';
 import { StyledTextFieldProps, TextField, TextInputComponentProps } from '../textField';
 import { DiamondIcon } from '../../../icons';
 import { IconButton } from '../iconButton';
 import { Stack } from '../../containers';
 import { Button } from '../button';
+import { ThemeStoryUtil } from '../../../style';
 
 const meta = {
   title: '2. Components/Input/TextInput',
@@ -15,33 +15,19 @@ const meta = {
     layout: 'centered',
   },
   argTypes: {
+    ...ThemeStoryUtil.meta.argTypes,
     value: {
       control: 'text',
     },
     helperText: {
       control: 'text',
     },
-    outlineColor: {
-      control: 'select',
-      options: Object.keys(primaryColors),
-    },
-    borderColor: {
-      control: 'select',
-      options: Object.keys(primaryColors),
-    },
-    borderType: {
-      control: 'radio',
-      options: themeBorderSizeKey,
-    },
-    shape: {
-      control: 'select',
-      options: themeShapeKey,
-    },
     onChange: { action: 'onChange' },
     left: { table: { disable: true } },
     right: { table: { disable: true } },
   },
   args: {
+    ...ThemeStoryUtil.meta.args,
     // Form control
     error: false,
     disabled: false,
@@ -49,18 +35,12 @@ const meta = {
     placeholder: getRandomPangram(),
     helperText: getRandomPangram(),
     readOnly: false,
-    // Styling
-    borderColor: 'black',
-    borderType: 'small',
-    verticalBorders: false,
-    outlineColor: 'primary',
-    shape: 'medium',
   },
-} satisfies Meta<StyledTextFieldProps & TextInputComponentProps>;
+} satisfies Meta<typeof TextField>;
 
 export default meta;
 
-type Story = StoryObj<StyledTextFieldProps & TextInputComponentProps>;
+type Story = StoryObj<typeof TextField>;
 
 const icon = <DiamondIcon />;
 const iconButton = (
@@ -136,7 +116,7 @@ const IconSwitcher = (props: StyledTextFieldProps & TextInputComponentProps) => 
   }
 
   return (
-    <Stack $gap="4" $center>
+    <Stack $gap="12">
       <Button size="2xs" onClick={next}>
         Next icon position
       </Button>

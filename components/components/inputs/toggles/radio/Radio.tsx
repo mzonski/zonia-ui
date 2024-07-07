@@ -36,7 +36,7 @@ const RadioComponent = (
       $shape={shape}
       $hasText={!!text}
     >
-      <ToggleStyles.Input ref={ref} {...props} />
+      <ToggleStyles.RadioInput ref={ref} {...props} />
       <ToggleStyles.PseudoElement />
 
       {!label && !text ? null : (

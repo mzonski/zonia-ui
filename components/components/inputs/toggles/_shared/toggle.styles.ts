@@ -26,6 +26,14 @@ const Input = styled.input.attrs({
   appearance: none;
 `;
 
+const RadioInput = styled.input.attrs({
+  type: 'radio',
+  name: 'switch',
+})`
+  z-index: 2;
+  appearance: none;
+`;
+
 const PseudoElement = styled.span`
   &:before {
     content: '';
@@ -61,6 +69,7 @@ const Text = styled(StyledText).attrs<Partial<StyledTextProps>>({
 export const ToggleStyles = {
   Container,
   Input,
+  RadioInput,
   PseudoElement,
   HtmlLabel,
   Label,

@@ -2,9 +2,8 @@ import { DolarPrefix, StyleFunctionRequirePick } from '@zonia-ui/theme';
 import { css, StyleFunction } from 'styled-components';
 
 import { StyledToggle, toggleSizes } from '../../_shared';
-import { StyledRadioProps } from '../types';
 
-const radioSizeMixin: StyleFunction<DolarPrefix<Pick<Required<StyledRadioProps>, 'size'>>> = (ctx) => {
+const radioSizeMixin: StyleFunction<DolarPrefix<Pick<Required<StyledToggle>, 'size'>>> = (ctx) => {
   const { $size: radioSize } = ctx;
 
   const thumbPx = toggleSizes[radioSize];
@@ -17,7 +16,7 @@ const radioSizeMixin: StyleFunction<DolarPrefix<Pick<Required<StyledRadioProps>,
         width: ${thumbPx}px;
       }
     }
-    input[type='checkbox'] {
+    input[type='radio'] {
       &:not(&:checked) + span:before {
         transform: scale(0);
       }

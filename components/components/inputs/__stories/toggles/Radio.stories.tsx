@@ -3,19 +3,19 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Stack } from '../../../containers';
 import { Button } from '../../button';
 import Radio from '../../toggles/radio/Radio';
-import { ToggleStoryutil } from './Toggle.storyutil';
+import { ToggleStoryUtil } from './Toggle.storyutil';
 
 const meta = {
-  ...ToggleStoryutil.meta,
+  ...ToggleStoryUtil.meta,
   title: '2. Components/Input/Toggle/Radio',
   component: Radio,
   argTypes: {
-    ...ToggleStoryutil.meta.argTypes,
-    onChange: { action: 'onChange' },
-    onFocus: { action: 'onFocus' },
+    ...ToggleStoryUtil.meta.argTypes,
+    onChange: { action: 'onChange', table: { disable: true } },
+    onFocus: { action: 'onFocus', table: { disable: true } },
   },
   args: {
-    ...ToggleStoryutil.meta.args,
+    ...ToggleStoryUtil.meta.args,
     shape: 'oval',
   },
 } satisfies Meta<typeof Radio>;
@@ -43,36 +43,17 @@ const InputRenderer: typeof RadioControlledStory.render = (props) => {
 };
 
 export const RadioControlledStory: Story = {
-  args: {
-    checked: true,
-    disabled: false,
-  },
+  name: 'Controlled',
   argTypes: {
+    ...ToggleStoryUtil.disabledArgTypes,
+    size: { table: { disable: true } },
+    borderType: { table: { disable: true } },
     checked: {
-      checked: 'boolean',
-    },
-    disabled: {
-      checked: 'boolean',
-    },
-    ...ToggleStoryutil.disabledArgTypes,
-    size: { table: { disable: true } },
-    borderType: { table: { disable: true } },
-  },
-  render: (props, ctx) => InputRenderer(props, ctx),
-};
-
-export const RadioUncontrolledStory: Story = {
-  argTypes: {
-    checked: { table: { disable: true } },
-    ...ToggleStoryutil.disabledArgTypes,
-    size: { table: { disable: true } },
-    borderType: { table: { disable: true } },
-    defaultChecked: {
       control: 'boolean',
     },
   },
   args: {
-    defaultChecked: false,
+    checked: true,
   },
   render: (props, ctx) => InputRenderer(props, ctx),
 };

@@ -37,7 +37,7 @@ const toggleDisplayMixin: StyleFunction<object> = (ctx) => {
       flex-shrink: 0;
     }
 
-    input[type='checkbox'] {
+    input {
       ${fillAbsoluteSpaceMixin};
     }
   `;
@@ -107,7 +107,7 @@ const toggleColorMixin: StyleFunctionRequirePick<StyledToggle, 'color' | 'border
       ${colorMixin('bg', 'primary', 'grey100')}
     }
 
-    input[type='checkbox'] {
+    input {
       &:checked + * {
         ${colorMixin('bg', 'primary', color)}
       }

@@ -6,19 +6,19 @@ import { StyledToggle, ToggleLabelProps } from '../../toggles/_shared';
 import { Checkbox } from '../../toggles/checkbox';
 import { Switch } from '../../toggles/switch';
 import { Radio } from '../../toggles/radio';
-import { ToggleStoryutil } from './Toggle.storyutil';
+import { ToggleStoryUtil } from './Toggle.storyutil';
 
 type StoryProps = StyledToggle & ToggleLabelProps & Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>;
 
 const meta = {
-  ...ToggleStoryutil.meta,
+  ...ToggleStoryUtil.meta,
   title: '2. Components/Input/Toggle',
   argTypes: {
-    ...ToggleStoryutil.meta.argTypes,
+    ...ToggleStoryUtil.meta.argTypes,
     shape: { table: { disable: true } },
   },
   args: {
-    ...ToggleStoryutil.meta.args,
+    ...ToggleStoryUtil.meta.args,
     shape: undefined,
     label: getPangram('pl'),
     text: getRandomPangram(),

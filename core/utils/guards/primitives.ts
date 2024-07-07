@@ -23,7 +23,7 @@ export function isBigInt(value: unknown): value is number {
 }
 
 export function isObject(value: unknown): value is object {
-  return typeof value === 'object';
+  return typeof value === 'object' && !Array.isArray(value);
 }
 
 export function isSymbol(value: unknown): value is symbol {
