@@ -6,7 +6,8 @@
   "repository": "https://github.com/mzonski/zonia-ui.git",
   "scripts": {
     "type-check": "tsc --noEmit",
-    "fix:lint": "eslint --fix components"
+    "fix:lint": "eslint --fix components",
+    "generate-license-file": "license-checker-rseidelsohn --direct true --nopeer --markdown --out LICENSE_3RD_PARTY.md --excludePrivatePackages --excludePackagesStartingWith \"zonia;@zonia\" --excludePackages \"eslint-plugin-zonia;stylelint-config-zonia\""
   },
   "author": "Maciej Zonski <me@zonni.pl>",
   "license": "MIT",
@@ -25,6 +26,9 @@
     "stylelint-config-zonia": "^1.0.0",
     "typescript": "5.2.2",
     "fp-ts": "^2.16.6"
+  },
+  "devDependencies": {
+    "license-checker-rseidelsohn": "^4.3.0"
   },
   "engines": {
     "npm": "please-use-yarn",
