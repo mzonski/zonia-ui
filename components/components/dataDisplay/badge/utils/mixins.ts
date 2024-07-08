@@ -56,8 +56,6 @@ export const styledBadgeMixin =
       padding: ${`${verticalPadding} ${horizontalPadding}`};
       border-radius: ${$shape === 'badge' ? horizontalPadding : shape[$shape ?? 'pill']};
       text-align: center;
-      ${flexAlignmentMixin('center', 'center', true)}
-      ${borderMixin('tiny')}
     `;
   };
 

@@ -40,9 +40,9 @@ const InputBgEl = styled.main`
   z-index: -1;
 
   grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
 `;
 const LeftEl = styled.aside`
   grid-area: left;

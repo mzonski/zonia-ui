@@ -71,7 +71,6 @@ export const TextFieldPureStory: Story = {
     right: { table: { disable: true } },
     helperText: { table: { disable: true } },
     verticalBorders: { table: { disable: true } },
-    value: { table: { disable: true } },
   },
 };
 

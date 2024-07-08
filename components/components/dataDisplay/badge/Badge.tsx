@@ -1,6 +1,6 @@
 import { createElement, ReactElement } from 'react';
 import styled from 'styled-components';
-import { DolarPrefix } from '@zonia-ui/theme';
+import { borderMixin, DolarPrefix, flexAlignmentMixin } from '@zonia-ui/theme';
 
 import { TextVariant } from '../typography';
 import { badgeMixin } from './utils/mixins';
@@ -11,6 +11,8 @@ export type StyledBadgeProps = DolarPrefix<Pick<BadgeProps, 'size' | 'shape' | '
 
 const StyledBadge = styled.div<Required<StyledBadgeProps>>`
   ${badgeMixin}
+  ${flexAlignmentMixin('center', 'center', true)}
+  ${borderMixin('tiny')}
 `;
 
 export const Badge = ({

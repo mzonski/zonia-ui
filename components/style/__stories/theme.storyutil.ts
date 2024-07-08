@@ -11,7 +11,7 @@ const meta = {
       options: Object.keys(primaryColors),
     },
     borderType: {
-      control: 'radio',
+      control: 'select',
       options: themeBorderSizeKey,
     },
     color: {

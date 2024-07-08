@@ -1,4 +1,10 @@
-import { convertSizeToNumber, fillAbsoluteSpaceMixin, StyleFunctionDolarPick, typographyMixin } from '@zonia-ui/theme';
+import {
+  borderMixin,
+  convertSizeToNumber,
+  fillAbsoluteSpaceMixin,
+  StyleFunctionDolarPick,
+  typographyMixin,
+} from '@zonia-ui/theme';
 import { css, StyleFunction } from 'styled-components';
 
 import { removeInputAutofill } from '../../../../style';
@@ -83,23 +89,39 @@ const textFieldTypographyMixin: StyleFunction<object> = (_ctx) => {
 
 const placeholderFieldMixinSingleElement: StyleFunctionDolarPick<
   StyledConciseTextFieldProps,
-  'borderType' | 'shape' | 'color'
+  'borderType' | 'shape' | 'color' | 'borderColor'
 > = (ctx) => {
   const {
     $color,
     $shape,
     $borderType,
+    $borderColor,
     theme: {
       borders: { size: borderSizes },
       shape,
+      spacing,
     },
   } = ctx;
 
   const borderSize = borderSizes[$borderType];
 
+  const placeholderOffset = '2px';
+
   return css`
+    input {
+      position: relative;
+      transition:
+        0.25s padding ease-out,
+        0.25s bottom ease-out;
+
+      padding-top: calc(${spacing['2']} + ${placeholderOffset});
+      padding-bottom: calc(${spacing['2']} - ${placeholderOffset});
+      bottom: ${placeholderOffset};
+    }
+
     .tf--placeholder {
       display: inline-flex;
+      box-sizing: content-box;
       width: fit-content;
       overflow: hidden;
 
@@ -109,15 +131,15 @@ const placeholderFieldMixinSingleElement: StyleFunctionDolarPick<
         0.25s transform ease-out;
 
       position: relative;
-      font-size: 0;
-      height: 16px;
+      height: 12px;
       left: ${shape[$shape]};
 
-      min-width: 14px;
+      min-width: 12px;
       min-height: 0;
-      max-height: 14px;
-      top: calc(-1 * 7px + ${borderSize} / 2);
+      max-height: 12px;
+      top: calc(-1 * 17% - (${borderSize}));
 
+      ${borderMixin($borderType, 'all', $borderColor)};
       ${styledBadgeMixin({ $size: 'xs', $color, $shape })}
       ${typographyMixin('text', 'xs', 'medium', undefined, true)}
     }
@@ -129,6 +151,12 @@ const placeholderFieldMixinSingleElement: StyleFunctionDolarPick<
     }
 
     input {
+      &:not(:placeholder-shown) {
+        padding-top: calc(${spacing['2']} + ${placeholderOffset});
+        padding-bottom: calc(${spacing['2']} - ${placeholderOffset});
+        bottom: 0;
+      }
+
       &:placeholder-shown ~ .tf--placeholder {
         transform: scaleY(0);
       }

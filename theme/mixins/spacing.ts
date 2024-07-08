@@ -44,6 +44,20 @@ export function spacingMixin(type: MixinMoveType, themeSpacing: ThemeSpacings, .
   `;
 }
 
+// export function paddingMixin(...config: {c}[]) {
+//   const applySpacing = (ctx: ExecutionContext) => {
+//     const { spacing } = ctx.theme
+//     const selectedSpacing = spacingValue(props);
+//     let output = '';
+//     // config.forEach(([corner,spacing]) => )
+//     return mapSpacingCornersToCssProperties("padding", selectedSpacing, config);
+//   };
+//
+//   return css`
+//     ${applySpacing}
+//   `;
+// }
+
 export const fullViewportMixin = () => css`
   width: 100vw;
   height: 100vh;
