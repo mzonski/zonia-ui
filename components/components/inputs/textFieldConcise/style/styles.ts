@@ -1,12 +1,12 @@
-import { DolarPrefix, fillAbsoluteSpaceMixin } from '@zonia-ui/theme';
+import { DolarPrefix } from '@zonia-ui/theme';
 import styled from 'styled-components';
 
 import { BasseTextFieldMixins } from '../../_input';
-import { StyledTextFieldProps } from '../../textField';
+import { StyledConciseTextFieldProps } from '../types';
 
 import { ConciseTextFieldMixins } from './mixins';
 
-const LabelWrapper = styled.label<DolarPrefix<StyledTextFieldProps>>`
+const LabelWrapper = styled.label<DolarPrefix<StyledConciseTextFieldProps>>`
   display: grid;
   grid-template:
     'left input input right' 1fr
@@ -34,7 +34,7 @@ const Placeholder = styled.div`
   grid-row-start: 1;
   grid-row-end: 2;
 
-  z-index: 8;
+  z-index: -2;
 `;
 
 const Input = styled.input.attrs({

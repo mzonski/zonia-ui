@@ -1,1 +1,1 @@
-export const DEFAULT_FONT_SIZE = 16;
+export const THEME_DEFAULT_FONT_SIZE = 16;

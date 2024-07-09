@@ -4,8 +4,10 @@ import {
   fillAbsoluteSpaceMixin,
   StyleFunctionDolarPick,
   typographyMixin,
+  ValidSizeFormat,
 } from '@zonia-ui/theme';
-import { css, StyleFunction } from 'styled-components';
+import { Property } from 'csstype';
+import { css, Interpolation, keyframes, StyleFunction } from 'styled-components';
 
 import { removeInputAutofill } from '../../../../style';
 import { styledBadgeMixin } from '../../../dataDisplay/badge/utils/mixins';
@@ -168,10 +170,171 @@ const placeholderFieldMixinSingleElement: StyleFunctionDolarPick<
   `;
 };
 
+const enterKeyframes = keyframes`
+  0% {
+    z-index: -2;
+    top: 8px;
+  }
+  50% {
+    z-index: -2;
+    top: -16px;
+  }
+  51% {
+    z-index: 2;
+    left: 10px;
+    top: -16px;
+  }
+  75% {
+    z-index: 2;
+    left: var(--tf-label-offset);
+    top: -8px;
+  }
+  100% {
+    z-index: 2;
+    left: var(--tf-label-offset);
+    top: -8px;
+  }
+`;
+
+const exitKeyframes = keyframes<{ $offset: Property.Top }>`
+  0% {
+    z-index: 2;
+    left: var(--tf-label-offset);
+    top: -8px;
+  }
+  25% {
+    z-index: 2;
+    left: var(--tf-label-offset);
+    top: -8px;
+  }
+  50% {
+    z-index: 2;
+    left: 10px;
+    top: -16px;
+  }
+  51% {
+    z-index: -2;
+    top: -16px;
+  }
+  100% {
+    z-index: -2;
+    top: 8px;
+  }
+`;
+
+const placeholderFieldMixin2ndVersion: StyleFunctionDolarPick<
+  StyledConciseTextFieldProps,
+  'borderType' | 'shape' | 'color' | 'borderColor' | 'hasPlaceholder'
+> = (ctx) => {
+  const {
+    $color,
+    $shape,
+    $borderType,
+    $borderColor,
+    $hasPlaceholder,
+    theme: {
+      components: { typography },
+      fonts: { defaultSize },
+      borders: { size: borderSizes },
+      shape,
+      spacing,
+    },
+  } = ctx;
+
+  const borderSize = borderSizes[$borderType];
+  const { fontSize } = typography.text.xs;
+
+  const placeholderOffset = `${(convertSizeToNumber(borderSize) * 1.5).toFixed(4)}rem`;
+
+  const interpolation: Interpolation<object>[] = [
+    css`
+      input {
+        position: relative;
+        transition:
+          0.25s padding ease-out,
+          0.25s bottom ease-out;
+
+        padding-top: calc(${spacing['2']} + ${placeholderOffset});
+        padding-bottom: calc(${spacing['2']} - ${placeholderOffset});
+        bottom: ${placeholderOffset};
+      }
+
+      .tf--placeholder {
+        box-sizing: content-box;
+        width: fit-content;
+        overflow: hidden;
+
+        transition: 0.25s top ease-out;
+
+        position: relative;
+        height: 12px;
+        top: -8px;
+
+        ${borderMixin($borderType, 'all', $borderColor)};
+        ${styledBadgeMixin({ $size: 'xs', $color, $shape: $shape ?? 'badge' })}
+        ${typographyMixin('text', 'xs', 'medium', undefined, true)}
+      }
+    `,
+  ];
+
+  if ($hasPlaceholder) {
+    interpolation.push(css`
+      input {
+        padding-top: calc(${spacing['2']} + ${placeholderOffset});
+        padding-bottom: calc(${spacing['2']} - ${placeholderOffset});
+        bottom: 0;
+      }
+
+      .tf--placeholder {
+        z-index: 1;
+        display: block;
+        top: -8px;
+      }
+    `);
+  } else {
+    interpolation.push(css`
+      --tf-label-offset: ${shape[$shape]};
+
+      .tf--placeholder {
+        z-index: -1;
+        display: none;
+
+        left: ${shape[$shape]};
+      }
+
+      input {
+        &:not(:placeholder-shown) {
+          padding-top: calc(${spacing['2']} + ${placeholderOffset});
+          padding-bottom: calc(${spacing['2']} - ${placeholderOffset});
+          bottom: 0;
+        }
+
+        &:placeholder-shown/*:not([value=''])*/ ~ .tf--placeholder {
+          display: block;
+          animation: ${exitKeyframes} 0.35s linear forwards;
+
+          @starting-style {
+            display: none;
+          }
+        }
+
+        &:not(:placeholder-shown) ~ .tf--placeholder {
+          display: block;
+          animation: ${enterKeyframes} 0.35s linear forwards;
+        }
+      }
+    `);
+  }
+
+  return interpolation;
+
+  return;
+};
+
 export const ConciseTextFieldMixins = {
   alignment: textFieldAlignmentMixin,
   colors: textFieldColorsMixin,
   spacing: textFieldSpacingMixin,
   typography: textFieldTypographyMixin,
-  placeholder: placeholderFieldMixinSingleElement,
+  placeholder: placeholderFieldMixin2ndVersion,
 };

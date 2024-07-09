@@ -1,11 +1,14 @@
 import { isNumber, isString } from '@zonia-ui/core';
 
-import { DEFAULT_FONT_SIZE } from '../constants/fonts';
+import { THEME_DEFAULT_FONT_SIZE } from '../constants/fonts';
 import type { ValidSizeFormat } from '../types';
 
 import { isValueSizeEm, isValueSizePx, isValueSizeRem } from './guards';
 
-export const valueToRem = (checkValue: number | string, baseFontSize: number = DEFAULT_FONT_SIZE): ValidSizeFormat => {
+export const valueToRem = (
+  checkValue: number | string | ValidSizeFormat,
+  baseFontSizePx: number = THEME_DEFAULT_FONT_SIZE,
+): ValidSizeFormat => {
   let value = checkValue;
   if (value === 0 || value === '0') return '0';
 
@@ -21,10 +24,13 @@ export const valueToRem = (checkValue: number | string, baseFontSize: number = D
     }
   }
 
-  return `${Number((value / baseFontSize).toFixed(4))}rem`;
+  return `${Number((value / baseFontSizePx).toFixed(4))}rem`;
 };
 
-export const remToPx = (checkValue: number | string, baseFontSize: number = DEFAULT_FONT_SIZE): ValidSizeFormat => {
+export const remToPx = (
+  checkValue: number | string,
+  baseFontSize: number = THEME_DEFAULT_FONT_SIZE,
+): ValidSizeFormat => {
   let value = checkValue;
   if (value === 0 || value === '0') return '0';
 

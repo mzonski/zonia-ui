@@ -20,7 +20,7 @@ const createReactPackageConfig = (path) => {
 
 const createStorybookReactPackageConfig = (path) => {
   return {
-    files: [`${path}/__story/*.@(ts|tsx)`],
+    files: [`${path}/**/__stories/*.@(ts|tsx)`, `${path}/**/*.stories.@(ts|tsx)`],
     parserOptions: {
       sourceType: 'module',
       tsconfigRootDir: __dirname,

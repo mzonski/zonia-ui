@@ -29,6 +29,7 @@ const TextFieldComponent = (
       $shape={shape}
       $color={color}
       $hasError={!!hasError}
+      $hasPlaceholder={!!placeholder}
       htmlFor={`tf-${fieldId}`}
     >
       <TextFieldConciseStyles.Input id={`tf-${fieldId}`} ref={ref} {...inputProps} placeholder={placeholder ?? label} />
