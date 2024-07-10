@@ -1,3 +1,4 @@
+- [svg-spinners@abfa05c49acf005b8b1e0ef8eb25a67a7057eb20](https://github.com/n3r4zzurr0/svg-spinners/tree/abfa05c49acf005b8b1e0ef8eb25a67a7057eb20) - MIT
 - [@adobe/css-tools@4.4.0](https://github.com/adobe/css-tools) - MIT
 - [@ampproject/remapping@2.3.0](https://github.com/ampproject/remapping) - Apache-2.0
 - [@aw-web-design/x-default-browser@1.4.126](https://github.com/The-Code-Monkey/TechStack) - MIT

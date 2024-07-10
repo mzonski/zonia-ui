@@ -1,6 +1,5 @@
 import { ForwardedRef, forwardRef } from 'react';
 import { useUniqueId } from '../../../hooks/useUniqueId';
-import { Badge } from '../../dataDisplay';
 import { TextFieldConciseStyles } from './style';
 import { TextFieldProps } from './types';
 

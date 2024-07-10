@@ -7,3 +7,5 @@ LinearProgress
 Snackbar
 Skeleton
  */
+export * from './colorfulSpinner';
+export * from './colorfulLoader';
