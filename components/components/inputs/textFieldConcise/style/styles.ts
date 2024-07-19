@@ -9,6 +9,7 @@ import { ConciseTextFieldMixins } from './mixins';
 const LabelWrapper = styled.label<DolarPrefix<StyledConciseTextFieldProps>>`
   display: grid;
   grid-template:
+    '_1 _1 _1 _1' 8px
     'left input input right' 1fr
     'helperText helperText helperText helperText' min-content
     / min-content 1fr min-content min-content;
@@ -31,15 +32,13 @@ const LabelWrapper = styled.label<DolarPrefix<StyledConciseTextFieldProps>>`
 const Placeholder = styled.div`
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
 
   z-index: -2;
 `;
 
-const Input = styled.input.attrs({
-  type: 'text',
-})`
+const Input = styled.input`
   z-index: 1;
   grid-area: input;
 `;
@@ -51,13 +50,15 @@ const InputBgEl = styled.main`
 
   grid-column-start: 1;
   grid-column-end: 5;
-  grid-row-start: 0;
-  grid-row-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
 `;
 const LeftEl = styled.aside`
+  z-index: 1;
   grid-area: left;
 `;
 const RightEl = styled.aside`
+  z-index: 1;
   grid-area: right;
 `;
 const HelperText = styled.footer`

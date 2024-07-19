@@ -1,10 +1,10 @@
 import { ForwardedRef, forwardRef } from 'react';
 import { useUniqueId } from '../../../hooks/useUniqueId';
 import { TextFieldConciseStyles } from './style';
-import { TextFieldProps } from './types';
+import { ConciseTextFieldProps } from './types';
 
 const TextFieldComponent = (
-  { id, label, helperText, left, right, ...restProps }: TextFieldProps,
+  { id, label, helperText, left, right, ...restProps }: ConciseTextFieldProps,
   ref: ForwardedRef<HTMLInputElement>,
 ) => {
   const {

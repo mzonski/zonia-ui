@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { getRandomPangram } from '@zonia-ui/core';
 import { TextFieldConcise } from '../textFieldConcise';
@@ -39,6 +40,16 @@ const iconButton = (
   </IconButton>
 );
 
+const ControlledRenderer: Story['render'] = (props) => {
+  const [value, setValue] = useState(props.value);
+
+  useEffect(() => {
+    setValue(props.value);
+  }, [props.value]);
+
+  return <TextFieldConcise {...props} value={value} onChange={(e) => setValue(e.currentTarget.value)} />;
+};
+
 export const TextFieldDesignStory: Story = {
   name: 'Design',
   args: {
@@ -46,23 +57,24 @@ export const TextFieldDesignStory: Story = {
     right: iconButton,
     disabled: false,
     label: 'Lorem ipsum',
-    placeholder: 'Dolor sit amet',
     readOnly: false,
     helperText: getRandomPangram(),
     borderColor: 'black',
     borderType: 'small',
-    verticalBorders: false,
+    verticalBorders: true,
     outlineColor: 'primary',
     shape: 'medium',
   },
+  render: ControlledRenderer,
 };
 
-export const TextFieldPureStory: Story = {
-  name: 'Pure TextInput',
+export const TextFieldCUncontrolledStory: Story = {
+  name: 'Uncontrolled',
   args: {
     placeholder: undefined,
     shape: undefined,
     label: 'Lorem ipsum',
+    defaultValue: 'changeMe',
   },
   argTypes: {
     left: { table: { disable: true } },
@@ -70,4 +82,21 @@ export const TextFieldPureStory: Story = {
     helperText: { table: { disable: true } },
     verticalBorders: { table: { disable: true } },
   },
+};
+
+export const TextFieldCControlledStory: Story = {
+  name: 'Controlled',
+  args: {
+    placeholder: undefined,
+    shape: undefined,
+    label: 'Lorem ipsum',
+    value: 'changeMe',
+  },
+  argTypes: {
+    left: { table: { disable: true } },
+    right: { table: { disable: true } },
+    helperText: { table: { disable: true } },
+    verticalBorders: { table: { disable: true } },
+  },
+  render: ControlledRenderer,
 };

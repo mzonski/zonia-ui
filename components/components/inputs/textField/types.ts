@@ -10,7 +10,10 @@ export type TextInputComponentProps = {
   left?: ReactElement | string;
   right?: ReactElement | string;
   helperText?: ReactElement | string;
-} & Pick<InputHTMLAttributes<HTMLInputElement>, 'id' | 'disabled' | 'readOnly' | 'onChange' | 'value'> &
-  ({ error: true; errorMessage: string } | { error: false | undefined });
+  error?: boolean;
+} & Pick<
+  InputHTMLAttributes<HTMLInputElement>,
+  'id' | 'disabled' | 'readOnly' | 'onChange' | 'value' | 'defaultValue' | 'type'
+>;
 
 export type TextFieldProps = StyledTextFieldProps & TextInputComponentProps;

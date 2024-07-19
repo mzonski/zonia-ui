@@ -279,16 +279,11 @@ const placeholderFieldMixin2ndVersion: StyleFunctionDolarPick<
 
   if ($hasPlaceholder) {
     interpolation.push(css`
-      input {
-        padding-top: calc(${spacing['2']} + ${placeholderOffset});
-        padding-bottom: calc(${spacing['2']} - ${placeholderOffset});
-        bottom: 0;
-      }
-
       .tf--placeholder {
         z-index: 1;
         display: block;
         top: -8px;
+        left: ${shape[$shape]};
       }
     `);
   } else {
@@ -309,13 +304,17 @@ const placeholderFieldMixin2ndVersion: StyleFunctionDolarPick<
           bottom: 0;
         }
 
-        &:placeholder-shown/*:not([value=''])*/ ~ .tf--placeholder {
+        &:placeholder-shown ~ .tf--placeholder {
           display: block;
           animation: ${exitKeyframes} 0.35s linear forwards;
 
           @starting-style {
             display: none;
           }
+        }
+
+        &:not(:focus-visible) ~ .tf--placeholder {
+          animation-duration: 0s !important;
         }
 
         &:not(:placeholder-shown) ~ .tf--placeholder {
@@ -327,8 +326,6 @@ const placeholderFieldMixin2ndVersion: StyleFunctionDolarPick<
   }
 
   return interpolation;
-
-  return;
 };
 
 export const ConciseTextFieldMixins = {

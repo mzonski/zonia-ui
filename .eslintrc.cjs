@@ -34,6 +34,7 @@ const createStorybookReactPackageConfig = (path) => {
       "react/destructuring-assignment": "off",
       "react/function-component-definition": "off",
       "react/jsx-props-no-spreading": "off",
+      "react/prop-types": "off",
     }
   };
 };
@@ -48,6 +49,7 @@ const config = {
   overrides: [
     createReactPackageConfig('app'),
     createReactPackageConfig('components'),
+    createReactPackageConfig('core'),
     createStorybookReactPackageConfig('components'),
     createReactPackageConfig('theme'),
   ],

@@ -270,6 +270,7 @@ const baseTextFieldAlignmentMixin: StyleFunction<object> = (_ctx) => {
     }
 
     aside {
+      overflow: hidden;
       align-content: center;
     }
   `;
