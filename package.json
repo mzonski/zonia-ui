@@ -20,7 +20,7 @@
     "theme"
   ],
   "dependencies": {
-    "vitest": "^1.6.0",
+    "vitest": "^3.0.5",
     "eslint-plugin-zonia": "^1.0.1",
     "zonia-config-prettier": "^1.0.2",
     "stylelint-config-zonia": "^1.0.0",

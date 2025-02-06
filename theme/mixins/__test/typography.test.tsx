@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 describe('responsiveFontSizeMixin', () => {
   const minSize = '16px';
   const maxSize = '24px';
@@ -32,7 +34,7 @@ describe('responsiveFontSizeMixin', () => {
 
   it('applies a font-size within the range for a mid-size viewport', () => {
     // Arrange
-    const midViewport = (parseInt(minViewport) + parseInt(maxViewport)) / 2 + 'px';
+    const midViewport = `${(parseInt(minViewport) + parseInt(maxViewport)) / 2}px`;
     global.innerWidth = parseInt(midViewport);
     const { getByText } = render(<TestComponent>Test Text</TestComponent>);
     const element = getByText('Test Text');
